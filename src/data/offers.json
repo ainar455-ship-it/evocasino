@@ -1,0 +1,28 @@
+[
+  {
+    "id": "sunbet-fs",
+    "casino_id": "sunbet",
+    "type": "free_spins",
+    "title": "Free Spins Offer (placeholder)",
+    "spins": 50,
+    "wagering": "30x winnings",
+    "min_deposit_zar": 50,
+    "max_cashout_zar": 500,
+    "cta": "Claim",
+    "source_url": "",
+    "last_verified_at": ""
+  },
+  {
+    "id": "play-dep",
+    "casino_id": "play",
+    "type": "deposit_bonus",
+    "title": "Deposit Bonus (placeholder)",
+    "bonus": "100% up to R2,000",
+    "wagering": "35x bonus",
+    "min_deposit_zar": 100,
+    "max_cashout_zar": 2000,
+    "cta": "Claim",
+    "source_url": "",
+    "last_verified_at": ""
+  }
+]
