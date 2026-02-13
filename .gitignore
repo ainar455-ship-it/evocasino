@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Agent working directories
+outputs/content-1/*
+outputs/content-2/*
+outputs/bonuses/daily-*.md
+outputs/seo/temp-*.md
+!outputs/README.md
+!outputs/**/README.md
+!outputs/quality/approved/**
