@@ -1,5 +1,42 @@
 {
   "casinos": [],
-  "lastUpdated": "2026-02-13",
-  "totalCount": 0
+  "metadata": {
+    "lastUpdated": "2026-02-13T17:21:00Z",
+    "totalCount": 0,
+    "version": "1.0"
+  },
+  "schema": {
+    "description": "Master casino database for freespincasinoza.co.za",
+    "fields": {
+      "id": "Unique identifier (slug)",
+      "name": "Casino name",
+      "rating": "Overall rating (1-5)",
+      "license": "Licensing authority",
+      "established": "Year established",
+      "welcomeBonus": {
+        "title": "Bonus title",
+        "offer": "Bonus description",
+        "wagering": "Wagering requirement",
+        "minDeposit": "Minimum deposit (ZAR)",
+        "maxWin": "Maximum win (ZAR)",
+        "validFor": "Validity period (days)",
+        "bonusCode": "Bonus code (if any)"
+      },
+      "payments": {
+        "ozow": "boolean",
+        "instantEft": "boolean",
+        "crypto": "boolean",
+        "cards": "boolean"
+      },
+      "features": {
+        "mobileApp": "boolean",
+        "ficaRequired": "boolean",
+        "withdrawalTime": "Average time (hours)"
+      },
+      "status": "active | inactive | under_review",
+      "reviewUrl": "URL to full review",
+      "affiliateLink": "Tracking link",
+      "lastReviewed": "ISO date"
+    }
+  }
 }
