@@ -7,6 +7,10 @@ type Casino = {
   slug: string;
   out_url: string;
   logo?: string; // placeholder for later: "/images/casinos/sunbet.png"
+  rating?: number;
+  reviewCount?: number;
+  license?: string;
+  established?: number;
 };
 
 type Offer = {
@@ -29,6 +33,34 @@ const OFFERS = offers as Offer[];
 
 function findCasinoName(casinoId: string) {
   return CASINOS.find((c) => c.id === casinoId)?.name ?? casinoId;
+}
+
+function renderStars(rating: number | undefined) {
+  if (!rating) return null;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  
+  return (
+    <div className="flex items-center gap-1">
+      <div className="flex">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <span
+            key={i}
+            className={`text-sm ${
+              i < fullStars
+                ? 'text-amber-400'
+                : i === fullStars && hasHalfStar
+                ? 'text-amber-400'
+                : 'text-gray-300'
+            }`}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+      <span className="text-xs font-semibold text-gray-700">{rating.toFixed(1)}</span>
+    </div>
+  );
 }
 
 export default function Home() {
@@ -132,7 +164,7 @@ export default function Home() {
                   </div>
 
                   <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
                       <h3 className="text-lg font-bold text-gray-900">{c.name}</h3>
                       <div className="trust-badge flex items-center gap-1">
                         <img 
@@ -144,6 +176,12 @@ export default function Home() {
                         <span>Licensed</span>
                       </div>
                     </div>
+                    {c.rating && (
+                      <div className="mb-2">
+                        {renderStars(c.rating)}
+                        {c.reviewCount && <span className="text-xs text-gray-500 ml-2">({c.reviewCount} reviews)</span>}
+                      </div>
+                    )}
                     <p className="mt-1 text-sm text-gray-600">Free spins offers • South Africa</p>
 
                     {/* Features */}
