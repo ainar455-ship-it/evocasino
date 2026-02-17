@@ -1,5 +1,6 @@
 import casinos from "@/data/casinos.json";
 import offers from "@/data/offers.json";
+import { renderStars } from "@/utils/ratings";
 
 type Casino = {
   id: string;
@@ -29,35 +30,6 @@ type Offer = {
 
 const CASINOS = casinos as Casino[];
 const OFFERS = offers as Offer[];
-
-function renderStars(rating: number | undefined) {
-  if (!rating) return null;
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-  
-  return (
-    <div className="flex items-center gap-2">
-      <div className="flex">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span
-            key={i}
-            className={`text-lg ${
-              i < fullStars
-                ? 'text-amber-400'
-                : i === fullStars && hasHalfStar
-                ? 'text-amber-400'
-                : 'text-gray-300'
-            }`}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-      <span className="text-sm font-semibold text-gray-700">{rating.toFixed(1)} out of 5</span>
-      {<span className="text-sm text-gray-500">({234} reviews)</span>}
-    </div>
-  );
-}
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -121,7 +93,7 @@ export default async function CasinoReviewPage({ params }: PageProps) {
             <div className="flex-1">
               <h1 className="text-4xl font-bold text-gray-900">{casino.name}</h1>
               <div className="mt-4">
-                {renderStars(casino.rating)}
+                {renderStars(casino.rating, true, 'lg')}
               </div>
               {casino.established && (
                 <p className="mt-4 text-sm text-gray-600">

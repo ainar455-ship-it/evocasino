@@ -1,5 +1,6 @@
 import casinos from "@/data/casinos.json";
 import offers from "@/data/offers.json";
+import { renderStars } from "@/utils/ratings";
 
 type Casino = {
   id: string;
@@ -33,34 +34,6 @@ const OFFERS = offers as Offer[];
 
 function findCasinoName(casinoId: string) {
   return CASINOS.find((c) => c.id === casinoId)?.name ?? casinoId;
-}
-
-function renderStars(rating: number | undefined) {
-  if (!rating) return null;
-  const fullStars = Math.floor(rating);
-  const hasHalfStar = rating % 1 >= 0.5;
-  
-  return (
-    <div className="flex items-center gap-1">
-      <div className="flex">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span
-            key={i}
-            className={`text-sm ${
-              i < fullStars
-                ? 'text-amber-400'
-                : i === fullStars && hasHalfStar
-                ? 'text-amber-400'
-                : 'text-gray-300'
-            }`}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-      <span className="text-xs font-semibold text-gray-700">{rating.toFixed(1)}</span>
-    </div>
-  );
 }
 
 export default function Home() {
