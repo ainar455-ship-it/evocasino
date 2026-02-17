@@ -67,6 +67,13 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Trust badges */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          <img src="/images/badges/ssl.svg" alt="SSL Secure" className="h-8 w-auto" loading="lazy" />
+          <img src="/images/badges/payment-secure.svg" alt="Secure Payment" className="h-8 w-auto" loading="lazy" />
+          <img src="/images/badges/responsible-gambling.svg" alt="Play Safely" className="h-8 w-auto" loading="lazy" />
+        </div>
+
         <div className="mt-8 flex flex-wrap gap-3">
           <a
             href="#top-offers"
