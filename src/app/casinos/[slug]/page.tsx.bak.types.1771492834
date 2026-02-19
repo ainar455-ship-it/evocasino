@@ -1,6 +1,33 @@
 import { getAllCasinoSlugs, getCasinoBySlug, getOffersForCasinoId } from "@/lib/queries/casino";
 import { renderStars } from "@/utils/ratings";
 
+type Casino = {
+  id: string;
+  name: string;
+  slug: string;
+  out_url: string;
+  rating?: number;
+  reviewCount?: number;
+  license?: string;
+  established?: number;
+};
+
+type Offer = {
+  id: string;
+  casino_id: string;
+  type: "free_spins" | "deposit_bonus";
+  title: string;
+  spins?: number;
+  bonus?: string;
+  wagering: string;
+  min_deposit_zar: number;
+  max_cashout_zar: number;
+  cta: string;
+  source_url?: string;
+  last_verified_at?: string;
+};
+
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -115,8 +142,8 @@ export default async function CasinoReviewPage({ params }: PageProps) {
                     )}
                     <div className="mt-3 space-y-1 text-sm text-gray-600">
                       <p><span className="font-semibold">Wagering:</span> {offer.wagering}</p>
-                      <p><span className="font-semibold">Min Deposit:</span> R{offer.minDepositZar}</p>
-                      <p><span className="font-semibold">Max Cashout:</span> R{offer.maxCashoutZar}</p>
+                      <p><span className="font-semibold">Min Deposit:</span> R{offer.min_deposit_zar}</p>
+                      <p><span className="font-semibold">Max Cashout:</span> R{offer.max_cashout_zar}</p>
                     </div>
                   </div>
                 ))}
@@ -132,13 +159,13 @@ export default async function CasinoReviewPage({ params }: PageProps) {
                 {depositBonusOffers.map((offer) => (
                   <div key={offer.id} className="border-b pb-4 last:border-b-0">
                     <h4 className="font-semibold text-gray-900">{offer.title}</h4>
-                    {typeof offer.bonusText === "string" && (
-                      <p className="mt-2 text-2xl font-bold text-amber-600">{offer.bonusText}</p>
+                    {typeof offer.bonus === "string" && (
+                      <p className="mt-2 text-2xl font-bold text-amber-600">{offer.bonus}</p>
                     )}
                     <div className="mt-3 space-y-1 text-sm text-gray-600">
                       <p><span className="font-semibold">Wagering:</span> {offer.wagering}</p>
-                      <p><span className="font-semibold">Min Deposit:</span> R{offer.minDepositZar}</p>
-                      <p><span className="font-semibold">Max Cashout:</span> R{offer.maxCashoutZar}</p>
+                      <p><span className="font-semibold">Min Deposit:</span> R{offer.min_deposit_zar}</p>
+                      <p><span className="font-semibold">Max Cashout:</span> R{offer.max_cashout_zar}</p>
                     </div>
                   </div>
                 ))}

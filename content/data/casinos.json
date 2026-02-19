@@ -1,42 +1,57 @@
 {
-  "casinos": [],
-  "metadata": {
-    "lastUpdated": "2026-02-13T17:21:00Z",
-    "totalCount": 0,
-    "version": "1.0"
-  },
-  "schema": {
-    "description": "Master casino database for freespincasinoza.co.za",
-    "fields": {
-      "id": "Unique identifier (slug)",
-      "name": "Casino name",
-      "rating": "Overall rating (1-5)",
-      "license": "Licensing authority",
-      "established": "Year established",
-      "welcomeBonus": {
-        "title": "Bonus title",
-        "offer": "Bonus description",
-        "wagering": "Wagering requirement",
-        "minDeposit": "Minimum deposit (ZAR)",
-        "maxWin": "Maximum win (ZAR)",
-        "validFor": "Validity period (days)",
-        "bonusCode": "Bonus code (if any)"
-      },
-      "payments": {
-        "ozow": "boolean",
-        "instantEft": "boolean",
-        "crypto": "boolean",
-        "cards": "boolean"
-      },
-      "features": {
-        "mobileApp": "boolean",
-        "ficaRequired": "boolean",
-        "withdrawalTime": "Average time (hours)"
-      },
-      "status": "active | inactive | under_review",
-      "reviewUrl": "URL to full review",
-      "affiliateLink": "Tracking link",
-      "lastReviewed": "ISO date"
+  "casinos": [
+    {
+      "id": "sunbet",
+      "name": "SunBet",
+      "slug": "sunbet",
+      "affiliateLink": "https://www.sunbet.co.za/",
+      "rating": 4.7,
+      "reviewCount": 234,
+      "license": "Western Cape Gambling Board",
+      "established": 2015,
+      "status": "active",
+      "lastReviewed": "2026-02-16T10:00:00Z"
+    },
+    {
+      "id": "play",
+      "name": "Play.co.za",
+      "slug": "play",
+      "affiliateLink": "https://play.co.za/",
+      "rating": 4.5,
+      "reviewCount": 189,
+      "license": "Western Cape Gambling Board",
+      "established": 2018,
+      "status": "active",
+      "lastReviewed": "2026-02-16T14:30:00Z"
+    },
+    {
+      "id": "jabulabets",
+      "name": "Jabula Bets",
+      "slug": "jabulabets",
+      "affiliateLink": "https://www.jabulabets.co.za/",
+      "rating": 4.6,
+      "reviewCount": 167,
+      "license": "Western Cape Gambling Board",
+      "established": 2016,
+      "status": "active",
+      "lastReviewed": "2026-02-16T09:15:00Z"
+    },
+    {
+      "id": "betolimp",
+      "name": "BetOlimp",
+      "slug": "betolimp",
+      "affiliateLink": "https://betolimp.co.za/",
+      "rating": 4.4,
+      "reviewCount": 145,
+      "license": "Western Cape Gambling Board",
+      "established": 2017,
+      "status": "active",
+      "lastReviewed": "2026-02-15T11:45:00Z"
     }
+  ],
+  "metadata": {
+    "lastUpdated": "2026-02-19T00:00:00Z",
+    "totalCount": 4,
+    "version": "1.0"
   }
 }

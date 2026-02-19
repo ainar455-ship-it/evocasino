@@ -1,4 +1,5 @@
-import { getHomepageData } from "@/lib/queries/homepage";
+import casinos from "@/data/casinos.json";
+import offers from "@/data/offers.json";
 
 type Casino = {
   id: string;
@@ -8,9 +9,26 @@ type Casino = {
   logo?: string;
 };
 
+type Offer = {
+  id: string;
+  casino_id: string;
+  type: "free_spins" | "deposit_bonus";
+  title: string;
+  spins?: number;
+  bonus?: string;
+  wagering: string;
+  min_deposit_zar: number;
+  max_cashout_zar: number;
+  cta: string;
+  source_url?: string;
+  last_verified_at?: string;
+};
+
+const CASINOS = casinos as Casino[];
+const OFFERS = offers as Offer[];
+
 export default function FreeSpinsPage() {
-  const { latestOffers } = getHomepageData();
-  const freeSpinsOffers = latestOffers.filter((o) => o.type === "free_spins");
+  const freeSpinsOffers = OFFERS.filter((o) => o.type === "free_spins");
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -63,6 +81,7 @@ export default function FreeSpinsPage() {
         {freeSpinsOffers.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {freeSpinsOffers.map((offer) => {
+              const casino = CASINOS.find((c) => c.id === offer.casino_id);
               return (
                 <div
                   key={offer.id}
@@ -71,9 +90,9 @@ export default function FreeSpinsPage() {
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-lg font-bold text-gray-900">{offer.title}</h3>
-                      <p className="text-sm text-gray-600 mt-1">{offer.casinoName}</p>
+                      <p className="text-sm text-gray-600 mt-1">{casino?.name}</p>
                     </div>
-                    {offer.lastVerifiedAt ? (
+                    {offer.last_verified_at ? (
                       <div className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-green-700">
                         <img src="/images/badges/verified.svg" alt="Verified" className="h-3 w-auto" loading="lazy" />
                         <span className="text-xs font-semibold">Verified</span>
@@ -99,16 +118,16 @@ export default function FreeSpinsPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Min Deposit:</span>
-                      <span className="font-semibold text-gray-900">R{offer.minDepositZar}</span>
+                      <span className="font-semibold text-gray-900">R{offer.min_deposit_zar}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Max Cashout:</span>
-                      <span className="font-semibold text-gray-900">R{offer.maxCashoutZar}</span>
+                      <span className="font-semibold text-gray-900">R{offer.max_cashout_zar}</span>
                     </div>
-                    {offer.lastVerifiedAt && (
+                    {offer.last_verified_at && (
                       <div className="flex justify-between text-xs text-gray-500 mt-3 pt-3 border-t">
                         <span>Last verified:</span>
-                        <span>{new Date(offer.lastVerifiedAt).toLocaleDateString("en-ZA")}</span>
+                        <span>{new Date(offer.last_verified_at).toLocaleDateString("en-ZA")}</span>
                       </div>
                     )}
                   </div>
@@ -116,14 +135,21 @@ export default function FreeSpinsPage() {
                   {/* CTA */}
                   <div className="flex gap-2 mt-auto">
                     <a
-                      href={offer.affiliateLink}
+                      href={casino?.out_url}
                       target="_blank"
                       rel="noreferrer"
                       className="flex-1 rounded-lg bg-green-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-md hover:bg-green-700 hover:shadow-lg transition duration-200"
                     >
                       Claim Now
                     </a>
-                    <a href={`/casinos/`} className="rounded-lg border border-gray-300 bg-white px-4 py-3 text-center text-sm font-semibold text-gray-800 hover:border-gray-400 hover:shadow transition duration-200">Review</a>
+                    {casino && (
+                      <a
+                        href={`/casinos/${casino.slug}`}
+                        className="rounded-lg border border-gray-300 bg-white px-4 py-3 text-center text-sm font-semibold text-gray-800 hover:border-gray-400 hover:shadow transition duration-200"
+                      >
+                        Review
+                      </a>
+                    )}
                   </div>
                 </div>
               );

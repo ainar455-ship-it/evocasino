@@ -1,17 +1,49 @@
-import { getAllCasinoSlugs, getCasinoBySlug, getOffersForCasinoId } from "@/lib/queries/casino";
+import casinos from "@/data/casinos.json";
+import offers from "@/data/offers.json";
 import { renderStars } from "@/utils/ratings";
+
+type Casino = {
+  id: string;
+  name: string;
+  slug: string;
+  out_url: string;
+  rating?: number;
+  reviewCount?: number;
+  license?: string;
+  established?: number;
+};
+
+type Offer = {
+  id: string;
+  casino_id: string;
+  type: "free_spins" | "deposit_bonus";
+  title: string;
+  spins?: number;
+  bonus?: string;
+  wagering: string;
+  min_deposit_zar: number;
+  max_cashout_zar: number;
+  cta: string;
+  source_url?: string;
+  last_verified_at?: string;
+};
+
+const CASINOS = casinos as Casino[];
+const OFFERS = offers as Offer[];
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return getAllCasinoSlugs().map((slug) => ({ slug }));
+  return CASINOS.map((casino) => ({
+    slug: casino.slug,
+  }));
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const casino = getCasinoBySlug(slug);
+  const casino = CASINOS.find((c) => c.slug === slug);
   return {
     title: `${casino?.name || 'Casino'} Review | FreeSpinsCasinoZA`,
     description: `Detailed review of ${casino?.name || 'casino'} - free spins, bonuses, payment methods, and more.`,
@@ -20,8 +52,8 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function CasinoReviewPage({ params }: PageProps) {
   const { slug } = await params;
-  const casino = getCasinoBySlug(slug);
-  const casinoOffers = casino ? getOffersForCasinoId(casino.id) : [];
+  const casino = CASINOS.find((c) => c.slug === slug);
+  const casinoOffers = OFFERS.filter((o) => o.casino_id === casino?.id);
   const freeSpinsOffers = casinoOffers.filter((o) => o.type === "free_spins");
   const depositBonusOffers = casinoOffers.filter((o) => o.type === "deposit_bonus");
 
@@ -77,7 +109,7 @@ export default async function CasinoReviewPage({ params }: PageProps) {
 
             <div className="flex flex-col gap-3">
               <a
-                href={casino.affiliateLink}
+                href={casino.out_url}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-lg bg-green-600 px-6 py-3 text-center text-sm font-semibold text-white shadow-md hover:bg-green-700 hover:shadow-lg transition duration-200"
@@ -85,7 +117,7 @@ export default async function CasinoReviewPage({ params }: PageProps) {
                 Play Now
               </a>
               <a
-                href={casino.affiliateLink}
+                href={casino.out_url}
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-center text-sm font-semibold text-gray-800 hover:border-gray-400 hover:shadow transition duration-200"
@@ -115,8 +147,8 @@ export default async function CasinoReviewPage({ params }: PageProps) {
                     )}
                     <div className="mt-3 space-y-1 text-sm text-gray-600">
                       <p><span className="font-semibold">Wagering:</span> {offer.wagering}</p>
-                      <p><span className="font-semibold">Min Deposit:</span> R{offer.minDepositZar}</p>
-                      <p><span className="font-semibold">Max Cashout:</span> R{offer.maxCashoutZar}</p>
+                      <p><span className="font-semibold">Min Deposit:</span> R{offer.min_deposit_zar}</p>
+                      <p><span className="font-semibold">Max Cashout:</span> R{offer.max_cashout_zar}</p>
                     </div>
                   </div>
                 ))}
@@ -132,13 +164,13 @@ export default async function CasinoReviewPage({ params }: PageProps) {
                 {depositBonusOffers.map((offer) => (
                   <div key={offer.id} className="border-b pb-4 last:border-b-0">
                     <h4 className="font-semibold text-gray-900">{offer.title}</h4>
-                    {typeof offer.bonusText === "string" && (
-                      <p className="mt-2 text-2xl font-bold text-amber-600">{offer.bonusText}</p>
+                    {typeof offer.bonus === "string" && (
+                      <p className="mt-2 text-2xl font-bold text-amber-600">{offer.bonus}</p>
                     )}
                     <div className="mt-3 space-y-1 text-sm text-gray-600">
                       <p><span className="font-semibold">Wagering:</span> {offer.wagering}</p>
-                      <p><span className="font-semibold">Min Deposit:</span> R{offer.minDepositZar}</p>
-                      <p><span className="font-semibold">Max Cashout:</span> R{offer.maxCashoutZar}</p>
+                      <p><span className="font-semibold">Min Deposit:</span> R{offer.min_deposit_zar}</p>
+                      <p><span className="font-semibold">Max Cashout:</span> R{offer.max_cashout_zar}</p>
                     </div>
                   </div>
                 ))}
@@ -187,7 +219,7 @@ export default async function CasinoReviewPage({ params }: PageProps) {
           <h2 className="text-2xl font-bold text-gray-900 mb-3">Ready to Play at {casino.name}?</h2>
           <p className="text-gray-600 mb-6">Start claiming bonuses and free spins today. 18+ Only. Play Responsibly.</p>
           <a
-            href={casino.affiliateLink}
+            href={casino.out_url}
             target="_blank"
             rel="noreferrer"
             className="inline-block rounded-lg bg-green-600 px-8 py-4 text-sm font-semibold text-white shadow-md hover:bg-green-700 hover:shadow-lg transition duration-200"
@@ -214,7 +246,7 @@ export default async function CasinoReviewPage({ params }: PageProps) {
               <div className="mt-2 space-y-1 text-xs">
                 <div><a href="/" className="text-green-600 hover:text-green-700">All Casinos</a></div>
                 <div><a href="/bonuses/free-spins" className="text-green-600 hover:text-green-700">Free Spins</a></div>
-                <div><a href={casino.affiliateLink} target="_blank" rel="noreferrer" className="text-green-600 hover:text-green-700">{casino.name} Site</a></div>
+                <div><a href={casino.out_url} target="_blank" rel="noreferrer" className="text-green-600 hover:text-green-700">{casino.name} Site</a></div>
               </div>
             </div>
             <div>
