@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 type NavLink = {
@@ -30,18 +30,33 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-[#1a2b4a] shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Hamburger Menu / Logo */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-[#2a3b5a] focus:outline-none focus:ring-2 focus:ring-[#FF6B00] md:hidden"
+              onClick={toggleMenu}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label="Toggle navigation menu"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isMenuOpen ? (
+                <X className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-gray-900 md:text-xl flex items-center gap-2"
-              aria-label="FreeSpinsCasinoZA Home"
+              className="text-lg font-bold tracking-tight text-white md:text-xl flex items-center gap-2"
+              aria-label="FreeSpinsSA Home"
             >
               <span className="text-xl">🎰</span>
-              <span className="hidden sm:inline">FreeSpinsCasinoZA</span>
+              <span className="hidden sm:inline">FreeSpinsSA</span>
             </Link>
           </div>
 
@@ -56,8 +71,8 @@ export default function Navbar() {
                     href={link.href}
                     className={`text-sm font-medium transition-colors duration-200 relative py-1 ${
                       active
-                        ? "font-semibold text-[var(--color-primary)]"
-                        : "text-gray-600 hover:text-[var(--color-primary)]"
+                        ? "font-semibold text-[#FF6B00]"
+                        : "text-gray-300 hover:text-white"
                     }`}
                     aria-current={active ? "page" : undefined}
                   >
@@ -66,19 +81,19 @@ export default function Navbar() {
                 );
               })}
             </nav>
-            <button
-              type="button"
-              className="p-2 text-gray-600 hover:text-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 rounded-full"
-              aria-label="Search"
+            {/* Orange Sign Up CTA */}
+            <a
+              href="/signup"
+              className="inline-flex items-center justify-center rounded-lg bg-[#FF6B00] px-4 py-2 text-sm font-semibold text-white hover:bg-[#e65c00] transition-colors"
             >
-              <Search className="h-5 w-5" />
-            </button>
+              Sign Up
+            </a>
           </div>
 
           {/* Mobile menu button */}
           <button
             type="button"
-            className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-[var(--color-primary)] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--color-primary)] md:hidden"
+            className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-[#2a3b5a] focus:outline-none focus:ring-2 focus:ring-[#FF6B00] md:hidden ml-auto"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -100,7 +115,7 @@ export default function Navbar() {
           role="menu"
           aria-label="Mobile Navigation"
         >
-          <div className="space-y-0.5 px-2 py-2 sm:px-3">
+          <div className="space-y-0.5 px-2 py-3 sm:px-3 bg-[#1a2b4a]">
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (
@@ -109,8 +124,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`block rounded-lg px-3 py-2 text-base font-medium transition-colors duration-200 ${
                     active
-                      ? "font-semibold text-[var(--color-primary)] bg-gray-50"
-                      : "text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary)]"
+                      ? "font-semibold text-[#FF6B00] bg-[#2a3b5a]"
+                      : "text-gray-300 hover:bg-[#2a3b5a] hover:text-white"
                   }`}
                   aria-current={active ? "page" : undefined}
                   role="menuitem"
@@ -120,6 +135,15 @@ export default function Navbar() {
                 </a>
               );
             })}
+            {/* Mobile Sign Up CTA */}
+            <div className="mt-3 px-3">
+              <a
+                href="/signup"
+                className="block w-full text-center rounded-lg bg-[#FF6B00] px-4 py-3 text-base font-semibold text-white hover:bg-[#e65c00] transition-colors"
+              >
+                Sign Up
+              </a>
+            </div>
           </div>
         </div>
       </div>
