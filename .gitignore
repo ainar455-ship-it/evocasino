@@ -48,3 +48,4 @@ outputs/seo/temp-*.md
 !outputs/README.md
 !outputs/**/README.md
 !outputs/quality/approved/**
+*.bak.*
