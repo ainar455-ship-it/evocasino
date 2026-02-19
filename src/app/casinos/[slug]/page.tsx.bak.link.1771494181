@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getAllCasinoSlugs, getCasinoBySlug, getOffersForCasinoId } from "@/lib/queries/casino";
 import { renderStars } from "@/utils/ratings";
 
@@ -33,9 +32,9 @@ export default async function CasinoReviewPage({ params }: PageProps) {
           <div className="rounded-lg border border-gray-200 bg-white p-12 text-center">
             <h1 className="text-2xl font-bold text-gray-900">Casino not found</h1>
             <p className="mt-2 text-gray-600">The casino you&apos;re looking for doesn&apos;t exist.</p>
-            <Link href="/" className="mt-4 inline-block rounded-lg bg-green-600 px-6 py-3 text-sm font-semibold text-white">
+            <a href="/" className="mt-4 inline-block rounded-lg bg-green-600 px-6 py-3 text-sm font-semibold text-white">
               Back to Home
-            </Link>
+            </a>
           </div>
         </div>
       </main>
@@ -53,9 +52,9 @@ export default async function CasinoReviewPage({ params }: PageProps) {
 
       {/* Hero */}
       <section className="mx-auto max-w-6xl px-4 py-10">
-        <Link href="/" className="mb-4 inline-block text-sm text-green-600 hover:text-green-700 font-semibold">
+        <a href="/" className="mb-4 inline-block text-sm text-green-600 hover:text-green-700 font-semibold">
           ← Back to all casinos
-        </Link>
+        </a>
 
         <div className="rounded-lg bg-white p-8 border border-gray-200 shadow-sm">
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
@@ -213,8 +212,8 @@ export default async function CasinoReviewPage({ params }: PageProps) {
             <div>
               <div className="text-sm font-semibold text-gray-900">Quick Links</div>
               <div className="mt-2 space-y-1 text-xs">
-                <div><Link href="/" className="text-green-600 hover:text-green-700">All Casinos</Link></div>
-                <div><Link href="/bonuses/free-spins" className="text-green-600 hover:text-green-700">Free Spins</Link></div>
+                <div><a href="/" className="text-green-600 hover:text-green-700">All Casinos</a></div>
+                <div><a href="/bonuses/free-spins" className="text-green-600 hover:text-green-700">Free Spins</a></div>
                 <div><a href={casino.affiliateLink} target="_blank" rel="noreferrer" className="text-green-600 hover:text-green-700">{casino.name} Site</a></div>
               </div>
             </div>

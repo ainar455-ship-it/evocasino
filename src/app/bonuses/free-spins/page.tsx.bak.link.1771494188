@@ -1,5 +1,12 @@
-import Link from "next/link";
 import { getHomepageData } from "@/lib/queries/homepage";
+
+type Casino = {
+  id: string;
+  name: string;
+  slug: string;
+  out_url: string;
+  logo?: string;
+};
 
 export default function FreeSpinsPage() {
   const { latestOffers } = getHomepageData();
@@ -25,18 +32,18 @@ export default function FreeSpinsPage() {
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link
+          <a
             href="/#top-offers"
             className="rounded-lg bg-green-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-green-700 hover:shadow-lg transition duration-200"
           >
             Back to Top Casinos
-          </Link>
-          <Link
+          </a>
+          <a
             href="/"
             className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-800 hover:border-gray-400 hover:shadow transition duration-200"
           >
             Browse All Offers
-          </Link>
+          </a>
         </div>
 
         <p className="mt-4 text-xs text-gray-500">
