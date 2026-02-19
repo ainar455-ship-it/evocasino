@@ -92,22 +92,13 @@ export function Navbar() {
             </a>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            className="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-[#2a3b5a] focus:outline-none focus:ring-2 focus:ring-[#FF6B00] md:hidden ml-auto"
-            onClick={toggleMenu}
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-menu"
-            aria-label="Toggle navigation menu"
+          {/* Mobile Sign Up CTA - visible on mobile only */}
+          <a
+            href="/signup"
+            className="hidden md:flex inline-flex items-center justify-center rounded-lg bg-[#FF6B00] px-4 py-2 text-sm font-semibold text-white hover:bg-[#e65c00] transition-colors ml-2"
           >
-            <span className="sr-only">Open main menu</span>
-            {isMenuOpen ? (
-              <X className="h-6 w-6" aria-hidden="true" />
-            ) : (
-              <Menu className="h-6 w-6" aria-hidden="true" />
-            )}
-          </button>
+            Sign Up
+          </a>
         </div>
 
         {/* Mobile Navigation */}
