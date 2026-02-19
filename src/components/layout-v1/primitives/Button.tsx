@@ -1,7 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost";
 
 type ButtonProps = {
   href?: string;
@@ -24,6 +24,8 @@ export function Button({
       "bg-[#FF6B00] text-white hover:bg-[#e65c00] shadow-md hover:shadow-lg",
     secondary:
       "bg-white text-[var(--color-primary)] border border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white",
+    outline:
+      "bg-white text-[#1a2b4a] border border-white hover:bg-[#f0f0f0] shadow-md",
     ghost: "text-[var(--color-primary)] hover:underline hover:text-[var(--color-primary-light)]",
   };
 

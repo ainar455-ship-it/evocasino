@@ -25,7 +25,7 @@ export function Hero() {
           <Button href="#top-offers" variant="primary" className="px-6 py-3">
             See Top Offers
           </Button>
-          <Button href="/bonuses/free-spins" variant="secondary" className="px-6 py-3">
+          <Button href="/bonuses/free-spins" variant="outline" className="px-6 py-3">
             Browse Free Spins
           </Button>
         </div>
