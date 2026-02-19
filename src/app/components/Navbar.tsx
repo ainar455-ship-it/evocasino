@@ -1,6 +1,4 @@
 import Link from "next/link";
-"use client";
-
 import { useState } from "react";
 import { Menu, X, Search } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -34,22 +32,22 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="flex h-14 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-gray-900 md:text-2xl flex items-center gap-2"
+              className="text-lg font-bold tracking-tight text-gray-900 md:text-xl flex items-center gap-2"
               aria-label="FreeSpinsCasinoZA Home"
             >
-              <span className="text-2xl">🎰</span>
-              FreeSpinsCasinoZA
+              <span className="text-xl">🎰</span>
+              <span className="hidden sm:inline">FreeSpinsCasinoZA</span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <nav className="flex items-center space-x-8" aria-label="Main Navigation">
+          <div className="hidden md:flex items-center space-x-4">
+            <nav className="flex items-center space-x-6" aria-label="Main Navigation">
               {navLinks.map((link) => {
                 const active = isActive(link.href);
                 return (
@@ -58,8 +56,8 @@ export default function Navbar() {
                     href={link.href}
                     className={`text-sm font-medium transition-colors duration-200 relative py-1 ${
                       active
-                        ? "font-semibold text-primary"
-                        : "text-gray-700 hover:text-primary"
+                        ? "font-semibold text-[var(--color-primary)]"
+                        : "text-gray-600 hover:text-[var(--color-primary)]"
                     }`}
                     aria-current={active ? "page" : undefined}
                   >
@@ -70,7 +68,7 @@ export default function Navbar() {
             </nav>
             <button
               type="button"
-              className="p-2 text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full"
+              className="p-2 text-gray-600 hover:text-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 rounded-full"
               aria-label="Search"
             >
               <Search className="h-5 w-5" />
@@ -80,7 +78,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             type="button"
-            className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary md:hidden"
+            className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-[var(--color-primary)] hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--color-primary)] md:hidden"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
@@ -111,8 +109,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`block rounded-lg px-3 py-2 text-base font-medium transition-colors duration-200 ${
                     active
-                      ? "font-semibold text-primary bg-gray-50"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-primary"
+                      ? "font-semibold text-[var(--color-primary)] bg-gray-50"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary)]"
                   }`}
                   aria-current={active ? "page" : undefined}
                   role="menuitem"
