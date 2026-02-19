@@ -1,0 +1,34 @@
+[
+  {
+    "id": "offer-1",
+    "title": "No Deposit Bonus - R25 Free",
+    "description": "Get R25 free just for signing up! No deposit required to claim this exciting bonus.",
+    "casino": "BonusCasino ZA",
+    "expires": "2026-03-31",
+    "featured": true
+  },
+  {
+    "id": "offer-2",
+    "title": "First Deposit Match - 100%",
+    "description": "Double your first deposit up to R1,000 at SpinWin SA. Start your gaming journey with extra funds.",
+    "casino": "SpinWin SA",
+    "expires": "2026-04-15",
+    "featured": true
+  },
+  {
+    "id": "offer-3",
+    "title": "Weekend Free Spins",
+    "description": "Enjoy 25 free spins every weekend on selected slots. Play, win, and repeat!",
+    "casino": "GrandJackpot",
+    "expires": "2026-06-30",
+    "featured": false
+  },
+  {
+    "id": "offer-4",
+    "title": "Cashback Wednesday",
+    "description": "Get 10% cashback on all your losses every Wednesday at BonusCasino ZA.",
+    "casino": "BonusCasino ZA",
+    "expires": "2026-12-31",
+    "featured": false
+  }
+]

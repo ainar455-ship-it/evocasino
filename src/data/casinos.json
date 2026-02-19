@@ -1,0 +1,56 @@
+[
+  {
+    "id": "casino-1",
+    "rank": 1,
+    "name": "BonusCasino ZA",
+    "logo": "https://placehold.co/120x40/1a2b4a/FFFFFF?text=Bonus+ZA",
+    "bonusHeadline": "Up to 100% Bonus + 50 Free Spins",
+    "wagering": "30x",
+    "minDeposit": "R100",
+    "maxCashout": "R50,000",
+    "features": [
+      "No Code Needed",
+      "Instant Payouts",
+      "Mobile Friendly",
+      "24/7 Support"
+    ],
+    "ctaLink": "/casinos/bonus-casino-za",
+    "color": "blue"
+  },
+  {
+    "id": "casino-2",
+    "rank": 2,
+    "name": "SpinWin SA",
+    "logo": "https://placehold.co/120x40/1a2b4a/FFFFFF?text=SpinWin",
+    "bonusHeadline": "150% First Deposit Bonus",
+    "wagering": "35x",
+    "minDeposit": "R50",
+    "maxCashout": "R100,000",
+    "features": [
+      "No Code Needed",
+      "Fast Withdrawals",
+      "VIP Program",
+      "Cashback Offers"
+    ],
+    "ctaLink": "/casinos/spinwin-sa",
+    "color": "blue"
+  },
+  {
+    "id": "casino-3",
+    "rank": 3,
+    "name": "GrandJackpot",
+    "logo": "https://placehold.co/120x40/1a2b4a/FFFFFF?text=Grand+Jackpot",
+    "bonusHeadline": "200% Welcome Bonus up to R5,000",
+    "wagering": "28x",
+    "minDeposit": "R200",
+    "maxCashout": "R250,000",
+    "features": [
+      "No Code Needed",
+      "Large Selection",
+      "Live Dealer Games",
+      "Weekly Reloads"
+    ],
+    "ctaLink": "/casinos/grandjackpot",
+    "color": "blue"
+  }
+]
