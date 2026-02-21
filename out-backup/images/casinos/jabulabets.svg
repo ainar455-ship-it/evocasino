@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="48" viewBox="0 0 160 48">
+  <defs>
+    <linearGradient id="jabulabets-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9900CC"/>
+      <stop offset="100%" stop-color="#CC00FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="48" rx="8" fill="url(#jabulabets-gradient)"/>
+  <text x="80" y="28" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="18">Jabula Bets</text>
+</svg>

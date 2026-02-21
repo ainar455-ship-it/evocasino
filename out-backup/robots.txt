@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://freespincasinosza.co.za/sitemap.xml

@@ -1,0 +1,176 @@
+import casinos from "@/data/casinos.json";
+import offers from "@/data/offers.json";
+
+type Casino = {
+  id: string;
+  name: string;
+  slug: string;
+  out_url: string;
+  logo?: string;
+};
+
+type Offer = {
+  id: string;
+  casino_id: string;
+  title: string;
+  bonus?: string;
+  min_deposit_zar: number;
+};
+
+const CASINOS = casinos as Casino[];
+const OFFERS = offers as Offer[];
+
+export default function Home() {
+  const casinoList = CASINOS.slice(0, 4).map((casino, index) => {
+    const offer = OFFERS.find(o => o.casino_id === casino.id);
+    return { rank: index + 1, ...casino, offer };
+  });
+
+  return (
+import casinos from "@/data/casinos.json";
+import offers from "@/data/offers.json";
+
+type Casino = {
+  id: string;
+  name: string;
+  slug: string;
+  out_url: string;
+  logo?: string;
+};
+
+type Offer = {
+  id: string;
+  casino_id: string;
+  title: string;
+  bonus?: string;
+  min_deposit_zar: number;
+};
+
+const CASINOS = casinos as Casino[];
+const OFFERS = offers as Offer[];
+
+export default function Home() {
+  const casinoList = CASINOS.slice(0, 4).map((casino, index) => {
+    const offer = OFFERS.find(o => o.casino_id === casino.id);
+    return { rank: index + 1, ...casino, offer };
+  });
+
+  return (
+    <div className="min-h-screen bg-white">
+      <header className="bg-white border-b sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button className="md:hidden text-2xl">☰</button>
+            <div className="text-xl font-bold">
+              <span className="text-blue-600">bonus</span>
+              <span className="text-gray-800">.com</span>
+            </div>
+          </div>
+          <button className="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold">
+            Sign Up
+          </button>
+        </div>
+      </header>
+
+      <section className="bg-blue-700 text-white py-10 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-bold mb-3 leading-tight">
+            Best Online Casino Bonuses<br />And Sign-Up Promos
+          </h1>
+          <p className="text-lg md:text-xl mb-5 text-blue-100">
+            Find the best online casino bonus options for real money casinos, sweepstakes casinos and real money slots.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <button className="bg-white text-blue-700 px-5 py-2.5 rounded-full font-semibold flex items-center gap-2">
+              Real Money Online Casinos <span>→</span>
+            </button>
+            <button className="bg-white text-blue-700 px-5 py-2.5 rounded-full font-semibold flex items-center gap-2">
+              Sweepstakes Casinos <span>→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 py-6">
+        <div className="space-y-4">
+          {casinoList.map((casino) => (
+            <div key={casino.id} className="bg-white border rounded-xl p-5 hover:shadow-lg transition">
+              <div className="flex flex-col sm:flex-row gap-4 items-start">
+                <div className="flex items-center gap-4 flex-shrink-0">
+                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    {casino.rank}
+                  </div>
+                  {casino.logo ? (
+                    <img src={casino.logo} alt={casino.name} className="w-20 h-20 object-contain hidden sm:block" />
+                  ) : (
+                    <div className="w-20 h-20 bg-gray-100 rounded-lg flex items-center justify-center text-3xl hidden sm:block">
+                      🎰
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex-grow">
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">
+                    {casino.offer?.title || `${casino.offer?.bonus || '$1,000 Bonus'} On Your First Deposit`}
+                  </h3>
+                  
+                  <div className="space-y-1.5 mb-4">
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600 font-bold text-base">✓</span>
+                      <span className="text-gray-700">{casino.offer?.bonus || '100% up to $1,000'}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600 font-bold text-base">✓</span>
+                      <span className="text-gray-700">On Your First Deposit</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-green-600 font-bold text-base">✓</span>
+                      <span className="text-gray-700">To Claim: <strong>Click Play Now</strong></span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3 items-center">
+                    <div className="border-2 border-dashed border-gray-300 px-4 py-2 rounded-lg">
+                      <span className="text-xs font-bold text-gray-600 tracking-wide">NO CODE NEEDED</span>
+                    </div>
+                    
+                      href={casino.out_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-bold text-base transition shadow-sm"
+                    >
+                      PLAY NOW
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-3 pt-3 border-t border-gray-100">
+                <a href={`/casinos/${casino.slug}`} className="text-blue-600 hover:underline font-semibold text-sm">
+                  {casino.name}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 py-10">
+        <h2 className="text-3xl font-bold mb-4 text-gray-900">How Welcome Bonus Casinos Work</h2>
+        <div className="prose max-w-none text-gray-700 space-y-4">
+          <p>
+            A welcome bonus casino offers new players promotional incentives for signing up and making their first deposit. 
+            These bonuses typically come in the form of a deposit match, free spins, or a combination of both.
+          </p>
+        </div>
+      </section>
+
+      <footer className="bg-gray-900 text-white py-8 px-4">
+        <div className="max-w-7xl mx-auto text-center text-sm text-gray-400">
+          <p className="mb-2">18+ • T&Cs apply • Play responsibly • This site contains affiliate links</p>
+          <p>Copyright © 2026 Bonus.com</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
