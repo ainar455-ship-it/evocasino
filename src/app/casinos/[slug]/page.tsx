@@ -2,6 +2,13 @@ import { notFound } from "next/navigation";
 import { getAllCasinos } from "@/lib/evo/load";
 import { computeEvolutionScore } from "@/lib/evo/score";
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  const casinos = getAllCasinos();
+  return casinos.map((c) => ({ slug: c.slug }));
+}
+
 export default function CasinoPage({
   params,
 }: {
@@ -10,9 +17,7 @@ export default function CasinoPage({
   const casinos = getAllCasinos();
   const casino = casinos.find((c) => c.slug === params.slug);
 
-  if (!casino) {
-    notFound();
-  }
+  if (!casino) notFound();
 
   const evolutionScore = computeEvolutionScore(casino);
 
@@ -67,9 +72,7 @@ export default function CasinoPage({
         <section style={{ marginTop: 24 }}>
           <h2>Bonus</h2>
           <p>{casino.bonuses.headline}</p>
-          {casino.bonuses.wageringX && (
-            <p>Wagering: x{casino.bonuses.wageringX}</p>
-          )}
+          {casino.bonuses.wageringX && <p>Wagering: x{casino.bonuses.wageringX}</p>}
           <p>Last verified: {casino.bonuses.lastVerified}</p>
         </section>
       )}
