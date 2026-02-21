@@ -1,6 +1,8 @@
+import RankingExplainer from "@/components/evocasino/RankingExplainer";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow, PayoutSpeed, PaymentMethod } from "@/data/evocasino/schema";
+import { evoBreadcrumbsEvolutionCasinos } from "@/lib/seo/jsonld";
 
 function pick<T extends string>(v: string | undefined, allowed: readonly T[]): T | undefined {
   if (!v) return undefined;
@@ -12,6 +14,7 @@ export default function EvolutionCasinosPage({
 }: {
   searchParams?: Record<string, string | string[] | undefined>;
 }) {
+
   const sp = searchParams ?? {};
 
   const show = pick(sp.show as string | undefined, [
@@ -48,6 +51,11 @@ export default function EvolutionCasinosPage({
 
   return (
     <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
+      {/* JSON-LD: Evo breadcrumbs (Evolution Casinos) (no UI) */}
+      <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(evoBreadcrumbsEvolutionCasinos()) }}
+      />
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>Best Evolution Live Casinos</h1>
       <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
         Ranked by a derived <strong>Evolution Score</strong> (0–100) computed from SSOT facts.
@@ -61,6 +69,7 @@ export default function EvolutionCasinosPage({
           <a href="/games/lightning-roulette" style={{ textDecoration: "underline" }}>Lightning Roulette</a>
           <a href="/games/monopoly-live" style={{ textDecoration: "underline" }}>Monopoly Live</a>
           <a href="/evolution-bonuses" style={{ textDecoration: "underline" }}>Evolution Bonuses</a>
+          <a href="/how-we-rank" style={{ textDecoration: "underline" }}>How we rank</a>
         </div>
       </section>
 
@@ -128,6 +137,8 @@ export default function EvolutionCasinosPage({
           ))}
         </div>
       </section>
+
+      <RankingExplainer variant="hub" />
     </main>
   );
 }

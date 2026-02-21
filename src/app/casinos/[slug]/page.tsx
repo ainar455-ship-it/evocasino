@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
-import { getAllCasinos } from "@/lib/evo/load";
+import RelatedCasinos from "@/components/evocasino/RelatedCasinos";
+import RankingExplainer from "@/components/evocasino/RankingExplainer";
+import { getAllCasinos, getRelatedCasinos } from "@/lib/evo/load";
 import { computeEvolutionScore } from "@/lib/evo/score";
+import { evoBreadcrumbsCasino } from "@/lib/seo/jsonld";
 
 export const dynamicParams = false;
 
@@ -20,9 +23,16 @@ export default function CasinoPage({
   if (!casino) notFound();
 
   const evolutionScore = computeEvolutionScore(casino);
+  const related = getRelatedCasinos(params.slug, 6);
 
   return (
     <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(evoBreadcrumbsCasino(casino.name, params.slug)),
+        }}
+      />
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>
         {casino.name} — Evolution Live Casino Review
       </h1>
@@ -76,6 +86,9 @@ export default function CasinoPage({
           <p>Last verified: {casino.bonuses.lastVerified}</p>
         </section>
       )}
+      <RankingExplainer variant="casino" />
+
+      <RelatedCasinos title="Alternatives for Evolution players" items={related} />
     </main>
   );
 }

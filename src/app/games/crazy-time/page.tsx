@@ -1,3 +1,4 @@
+import RelatedCasinos from "@/components/evocasino/RelatedCasinos";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 
 export default function CrazyTimePage() {
@@ -49,6 +50,12 @@ export default function CrazyTimePage() {
           ))}
         </div>
       </section>
+
+      {/* Reinforcement block */}
+      <RelatedCasinos
+        title="Top Evolution Casinos"
+        items={rows.slice(0, 6).map((r) => r)}
+      />
     </main>
   );
 }
