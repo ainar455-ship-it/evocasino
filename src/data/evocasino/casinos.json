@@ -1,0 +1,78 @@
+[
+  {
+    "id": "stake",
+    "slug": "stake",
+    "name": "Stake",
+    "brandUrl": "https://stake.com",
+    "license": "Curacao",
+    "markets": ["INTL"],
+    "evolution": {
+      "provider": "evolution",
+      "liveCasino": true,
+      "shows": ["crazy-time", "monopoly-live", "lightning-roulette", "dream-catcher", "lightning-dice"],
+      "tablesApprox": 180,
+      "lastVerified": "2026-02-21"
+    },
+    "payouts": { "speed": "fast", "lastTested": "2026-02-18" },
+    "payments": { "methods": ["bitcoin", "usdt", "visa", "mastercard"], "lastVerified": "2026-02-21" },
+    "mobile": { "experience": 5, "lastVerified": "2026-02-21" },
+    "bonuses": { "headline": "Welcome offer available", "lastVerified": "2026-02-21" }
+  },
+  {
+    "id": "coincasino",
+    "slug": "coincasino",
+    "name": "CoinCasino",
+    "brandUrl": "https://coincasino.com",
+    "license": "Curacao",
+    "markets": ["INTL"],
+    "evolution": {
+      "provider": "evolution",
+      "liveCasino": true,
+      "shows": ["crazy-time", "lightning-roulette", "dream-catcher"],
+      "tablesApprox": 130,
+      "lastVerified": "2026-02-21"
+    },
+    "payouts": { "speed": "fast", "lastTested": "2026-02-19" },
+    "payments": { "methods": ["bitcoin", "usdt"], "lastVerified": "2026-02-21" },
+    "mobile": { "experience": 4, "lastVerified": "2026-02-21" },
+    "bonuses": { "headline": "Welcome offer available", "lastVerified": "2026-02-21" }
+  },
+  {
+    "id": "betpanda",
+    "slug": "betpanda",
+    "name": "BetPanda",
+    "brandUrl": "https://betpanda.io",
+    "license": "Curacao",
+    "markets": ["INTL"],
+    "evolution": {
+      "provider": "evolution",
+      "liveCasino": true,
+      "shows": ["lightning-roulette", "monopoly-live", "dream-catcher"],
+      "tablesApprox": 110,
+      "lastVerified": "2026-02-21"
+    },
+    "payouts": { "speed": "avg", "lastTested": "2026-02-15" },
+    "payments": { "methods": ["bitcoin", "usdt", "visa"], "lastVerified": "2026-02-21" },
+    "mobile": { "experience": 4, "lastVerified": "2026-02-21" },
+    "bonuses": { "headline": "Welcome offer available", "lastVerified": "2026-02-21" }
+  },
+  {
+    "id": "vega",
+    "slug": "vega",
+    "name": "Vega",
+    "brandUrl": "https://vegacasino.io",
+    "license": "Curacao",
+    "markets": ["INTL"],
+    "evolution": {
+      "provider": "evolution",
+      "liveCasino": true,
+      "shows": ["crazy-time", "lightning-roulette"],
+      "tablesApprox": 90,
+      "lastVerified": "2026-02-21"
+    },
+    "payouts": { "speed": "avg", "lastTested": "2026-02-12" },
+    "payments": { "methods": ["bitcoin", "usdt"], "lastVerified": "2026-02-21" },
+    "mobile": { "experience": 3, "lastVerified": "2026-02-21" },
+    "bonuses": { "headline": "Welcome offer available", "lastVerified": "2026-02-21" }
+  }
+]
