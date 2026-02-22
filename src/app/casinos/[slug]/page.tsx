@@ -4,6 +4,7 @@ import RankingExplainer from "@/components/evocasino/RankingExplainer";
 import { getAllCasinos, getRelatedCasinos } from "@/lib/evo/load";
 import { computeEvolutionScore } from "@/lib/evo/score";
 import { evoBreadcrumbsCasino } from "@/lib/seo/jsonld";
+import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 
 export const dynamicParams = false;
 
@@ -25,6 +26,14 @@ export default function CasinoPage({
   const evolutionScore = computeEvolutionScore(casino);
   const related = getRelatedCasinos(params.slug, 6);
 
+  // Deterministic: show-guides relevant to this casino’s SSOT evolution.shows
+  const showKeys = new Set(casino.evolution.shows);
+  const relevantGuides = guideRegistry.filter((g) => {
+    if (!g.intent.startsWith("show:")) return false;
+    const key = g.intent.slice("show:".length);
+    return showKeys.has(key as any);
+  });
+
   return (
     <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
       <script
@@ -33,9 +42,28 @@ export default function CasinoPage({
           __html: JSON.stringify(evoBreadcrumbsCasino(casino.name, params.slug)),
         }}
       />
+
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>
         {casino.name} — Evolution Live Casino Review
       </h1>
+
+      {/* Internal links: guides (Phase 4 authority graph; no curation) */}
+      <section style={{ marginTop: 18, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
+        <strong>Relevant Evolution guides</strong>
+        <div style={{ marginTop: 8, display: "flex", gap: 12, flexWrap: "wrap" }}>
+          {relevantGuides.length ? (
+            relevantGuides.map((g) => (
+              <a key={g.slug} href={`/guides/${g.slug}`} style={{ textDecoration: "underline" }}>
+                {`${g.title}${GUIDE_H1_SUFFIX}`}
+              </a>
+            ))
+          ) : (
+            <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
+              Explore Evolution casinos
+            </a>
+          )}
+        </div>
+      </section>
 
       <section style={{ marginTop: 16 }}>
         <h2>Evolution Score</h2>
@@ -86,8 +114,8 @@ export default function CasinoPage({
           <p>Last verified: {casino.bonuses.lastVerified}</p>
         </section>
       )}
-      <RankingExplainer variant="casino" />
 
+      <RankingExplainer variant="casino" />
       <RelatedCasinos title="Alternatives for Evolution players" items={related} />
     </main>
   );
