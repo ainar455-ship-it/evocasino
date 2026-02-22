@@ -31,4 +31,9 @@ export const guideRegistry = [
     title: "Lightning Roulette on Evolution Live",
     intent: "show:lightning-roulette",
   },
+  {
+    slug: "monopoly-live",
+    title: "Monopoly Live on Evolution Live",
+    intent: "show:monopoly-live",
+  },
 ] as const satisfies readonly GuideRegistryEntry[];
