@@ -3,6 +3,7 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow, PayoutSpeed, PaymentMethod } from "@/data/evocasino/schema";
 import { evoBreadcrumbsEvolutionCasinos } from "@/lib/seo/jsonld";
+import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 
 function pick<T extends string>(v: string | undefined, allowed: readonly T[]): T | undefined {
   if (!v) return undefined;
@@ -14,7 +15,6 @@ export default function EvolutionCasinosPage({
 }: {
   searchParams?: Record<string, string | string[] | undefined>;
 }) {
-
   const sp = searchParams ?? {};
 
   const show = pick(sp.show as string | undefined, [
@@ -53,9 +53,10 @@ export default function EvolutionCasinosPage({
     <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
       {/* JSON-LD: Evo breadcrumbs (Evolution Casinos) (no UI) */}
       <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(evoBreadcrumbsEvolutionCasinos()) }}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(evoBreadcrumbsEvolutionCasinos()) }}
       />
+
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>Best Evolution Live Casinos</h1>
       <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
         Ranked by a derived <strong>Evolution Score</strong> (0–100) computed from SSOT facts.
@@ -70,6 +71,21 @@ export default function EvolutionCasinosPage({
           <a href="/games/monopoly-live" style={{ textDecoration: "underline" }}>Monopoly Live</a>
           <a href="/evolution-bonuses" style={{ textDecoration: "underline" }}>Evolution Bonuses</a>
           <a href="/how-we-rank" style={{ textDecoration: "underline" }}>How we rank</a>
+        </div>
+      </section>
+
+      {/* NEW: Authority guides block (registry-derived, no curation) */}
+      <section style={{ marginTop: 18, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
+        <strong>Evolution guides</strong>
+        <div style={{ marginTop: 8, display: "flex", gap: 12, flexWrap: "wrap" }}>
+          {guideRegistry.map((g) => {
+            const anchor = `${g.title}${GUIDE_H1_SUFFIX}`;
+            return (
+              <a key={g.slug} href={`/guides/${g.slug}`} style={{ textDecoration: "underline" }}>
+                {anchor}
+              </a>
+            );
+          })}
         </div>
       </section>
 
@@ -120,25 +136,11 @@ export default function EvolutionCasinosPage({
                     Payments: {c.payments.methods.join(", ")}
                   </div>
                 </div>
-
-                <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 22, fontWeight: 900 }}>Score: {c.evolutionScore}</div>
-                  <div style={{ marginTop: 8, display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap" }}>
-                    <a href={c.brandUrl} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>Visit</a>
-                    <a href={`/casinos/${c.slug}`} style={{ textDecoration: "underline" }}>Review</a>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ marginTop: 10, fontSize: 13, opacity: 0.7 }}>
-                Verified: Evo {c.evolution.lastVerified} · Payments {c.payments.lastVerified} · Mobile {c.mobile.lastVerified} · Payout tested {c.payouts.lastTested}
               </div>
             </div>
           ))}
         </div>
       </section>
-
-      <RankingExplainer variant="hub" />
     </main>
   );
 }
