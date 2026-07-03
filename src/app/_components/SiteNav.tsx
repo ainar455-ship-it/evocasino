@@ -1,18 +1,30 @@
 import Link from "next/link";
 
+const navLinks = [
+  { href: "/evolution-casinos", label: "Casinos" },
+  { href: "/evolution-games", label: "Games" },
+  { href: "/evolution-bonuses", label: "Bonuses" },
+  { href: "/games/crazy-time", label: "Crazy Time" },
+  { href: "/games/lightning-roulette", label: "Lightning Roulette" },
+  { href: "/games/monopoly-live", label: "Monopoly Live" },
+];
+
 export default function SiteNav() {
   return (
-    <nav style={{ borderBottom: "1px solid #e5e7eb" }}>
-      <div style={{ maxWidth: 980, margin: "0 auto", padding: "14px 24px", display: "flex", gap: 14, flexWrap: "wrap" }}>
-        <Link href="/" style={{ fontWeight: 800, textDecoration: "none" }}>EvoCasino</Link>
-        <span style={{ opacity: 0.4 }}>·</span>
-        <Link href="/evolution-casinos" style={{ textDecoration: "underline" }}>Evolution Casinos</Link>
-        <Link href="/evolution-games" style={{ textDecoration: "underline" }}>Evolution Games</Link>        
-        <Link href="/evolution-bonuses" style={{ textDecoration: "underline" }}>Evolution Bonuses</Link>
-        <Link href="/games/crazy-time" style={{ textDecoration: "underline" }}>Crazy Time</Link>
-        <Link href="/games/lightning-roulette" style={{ textDecoration: "underline" }}>Lightning Roulette</Link>
-        <Link href="/games/monopoly-live" style={{ textDecoration: "underline" }}>Monopoly Live</Link>
+    <header className="site-header">
+      <div className="site-header-shell">
+        <Link href="/" className="site-brand">
+          EvoCasino
+        </Link>
+
+        <nav className="site-nav" aria-label="Primary navigation">
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }
