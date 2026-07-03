@@ -3,53 +3,31 @@
 :root {
   --background: 40 20% 97%;
   --foreground: 220 25% 12%;
-
   --card: 0 0% 100%;
   --card-foreground: 220 25% 12%;
-
   --popover: 0 0% 100%;
   --popover-foreground: 220 25% 12%;
-
   --primary: 220 55% 22%;
   --primary-foreground: 40 20% 97%;
-
   --secondary: 220 12% 92%;
   --secondary-foreground: 220 25% 12%;
-
   --muted: 220 12% 94%;
   --muted-foreground: 220 10% 46%;
-
   --accent: 40 85% 52%;
   --accent-foreground: 220 25% 12%;
-
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
-
   --border: 220 15% 90%;
   --input: 220 15% 90%;
   --ring: 220 55% 22%;
-
   --radius: 0.5rem;
-
   --gold: 40 85% 52%;
   --gold-muted: 40 40% 92%;
-
   --footer: 220 45% 13%;
   --footer-foreground: 220 15% 72%;
   --footer-heading: 220 10% 88%;
-
   --surface: 0 0% 100%;
   --surface-raised: 220 12% 98%;
-
-  --sidebar-background: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-primary: 240 5.9% 10%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
-  --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 217.2 91.2% 59.8%;
-
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
 }
@@ -64,6 +42,7 @@ html {
 }
 
 body {
+  margin: 0;
   background: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: var(--font-body);
@@ -145,4 +124,699 @@ h4 {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--card) / 0.8);
+  backdrop-filter: blur(16px);
+}
+
+.site-header-shell {
+  width: min(100% - 32px, 1028px);
+  height: 56px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-brand {
+  color: hsl(var(--primary));
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-nav a {
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.site-nav a:hover {
+  color: hsl(var(--foreground));
+}
+
+.site-menu-button {
+  display: none;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: hsl(var(--foreground));
+}
+
+.site-menu-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.site-mobile-menu {
+  display: none;
+}
+
+.home-page {
+  min-height: 100vh;
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+}
+
+.home-container {
+  width: min(100% - 32px, 1028px);
+  margin: 0 auto;
+}
+
+.home-hero {
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.home-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 80px;
+  align-items: start;
+  padding-top: 96px;
+  padding-bottom: 80px;
+}
+
+.home-hero-copy {
+  max-width: 640px;
+}
+
+.home-eyebrow,
+.home-card-kicker,
+.home-card-type {
+  margin: 0;
+  color: hsl(var(--muted-foreground));
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.home-eyebrow {
+  margin-bottom: 24px;
+}
+
+.home-card-type {
+  display: block;
+  margin-top: 22px;
+  color: hsl(var(--gold));
+}
+
+.home-hero-title {
+  max-width: 545px;
+  margin: 0 0 24px;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 64.8px;
+  letter-spacing: -0.02em;
+}
+
+.home-hero-title span {
+  color: hsl(var(--primary));
+}
+
+.home-hero-lede {
+  max-width: 544px;
+  margin: 0 0 36px;
+  color: hsl(var(--muted-foreground));
+  font-size: 18px;
+  line-height: 30.6px;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 49.6px;
+  padding: 0 32px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.home-button-primary {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.home-button-secondary {
+  background: hsl(var(--card));
+  color: hsl(var(--primary));
+}
+
+.home-feature-card {
+  display: block;
+  width: 100%;
+  min-height: 375px;
+  padding: 28px;
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 8px;
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  transition: border-color 150ms ease;
+}
+
+.home-feature-card:hover {
+  border-color: hsl(var(--border));
+}
+
+.home-card-title,
+.home-guide-card strong,
+.home-game-tile strong,
+.home-casino-card h3,
+.home-principle-card h3,
+.home-bonus-card h3 {
+  display: block;
+  margin: 14px 0 12px;
+  color: hsl(var(--foreground));
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 31px;
+  letter-spacing: -0.02em;
+}
+
+.home-card-copy,
+.home-guide-card > span:not(.home-card-type):not(.home-stat-grid):not(.home-card-link),
+.home-section-intro p,
+.home-casino-card p,
+.home-casino-card li,
+.home-principle-card p,
+.home-bonus-panel p,
+.home-bonus-card p,
+.site-footer p {
+  color: hsl(var(--muted-foreground));
+  font-size: 15px;
+  line-height: 26px;
+}
+
+.home-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 26px 0 24px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.home-stat-grid > span {
+  display: block;
+  min-width: 0;
+  padding: 12px 16px;
+  background: hsl(var(--card));
+}
+
+.home-stat-grid > span + span {
+  border-left: 1px solid hsl(var(--border));
+}
+
+.home-stat-grid small {
+  display: block;
+  margin-bottom: 2px;
+  color: hsl(var(--muted-foreground));
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.home-stat-grid strong {
+  color: hsl(var(--foreground));
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.home-card-link,
+.home-text-link,
+.home-casino-card a,
+.home-bonus-card a {
+  color: hsl(var(--primary));
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-trust-strip {
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--background));
+}
+
+.home-trust-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 48px;
+  padding: 22px 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.home-trust-list span::before {
+  content: "·";
+  margin-right: 10px;
+  color: hsl(var(--gold));
+  font-weight: 700;
+}
+
+.home-section {
+  padding: 80px 0;
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+}
+
+.home-section-muted {
+  background: hsl(var(--background));
+}
+
+.home-section-intro {
+  max-width: 620px;
+  margin-bottom: 44px;
+}
+
+.home-section-intro-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+  gap: 56px;
+  align-items: end;
+  max-width: none;
+}
+
+.home-section-intro h2,
+.home-bonus-panel h2 {
+  margin: 12px 0 16px;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+}
+
+.home-section-intro p,
+.home-bonus-panel p {
+  margin: 0;
+}
+
+.home-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid hsl(var(--border));
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.home-guide-card {
+  display: block;
+  min-height: 306px;
+  padding: 0 1px 0 0;
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  text-decoration: none;
+  transition: background-color 150ms ease;
+}
+
+.home-guide-card + .home-guide-card {
+  border-left: 1px solid hsl(var(--border));
+}
+
+.home-guide-card > * {
+  margin-left: 26px;
+  margin-right: 26px;
+}
+
+.home-guide-card .home-card-type {
+  margin-top: 26px;
+}
+
+.home-guide-card-muted {
+  opacity: 0.75;
+}
+
+.home-games-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid hsl(var(--border));
+  border-left: 1px solid hsl(var(--border));
+}
+
+.home-game-tile {
+  min-height: 146px;
+  padding: 22px;
+  border-right: 1px solid hsl(var(--border));
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  text-decoration: none;
+}
+
+.home-game-tile strong {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.home-game-tile span {
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-casino-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border: 1px solid hsl(var(--border));
+}
+
+.home-casino-card {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 230px;
+  padding: 26px;
+  background: hsl(var(--card));
+}
+
+.home-casino-card + .home-casino-card {
+  border-left: 1px solid hsl(var(--border));
+}
+
+.home-casino-rank {
+  color: hsl(var(--primary));
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.home-casino-card h3 {
+  margin: 0 0 8px;
+  font-size: 25px;
+  line-height: 31px;
+}
+
+.home-casino-card p {
+  margin: 0 0 12px;
+}
+
+.home-casino-card ul {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.home-casino-card a {
+  align-self: end;
+  grid-column: 2;
+}
+
+.home-research-note {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.home-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid hsl(var(--border));
+  border-left: 1px solid hsl(var(--border));
+}
+
+.home-principle-card {
+  min-height: 214px;
+  padding: 28px;
+  border-right: 1px solid hsl(var(--border));
+  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+}
+
+.home-principle-card h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.home-principle-card p {
+  margin: 0;
+}
+
+.home-bonus-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.home-bonus-list {
+  display: grid;
+  gap: 12px;
+}
+
+.home-bonus-card {
+  padding: 18px 20px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+  background: hsl(var(--card));
+}
+
+.home-bonus-card span,
+.home-bonus-card small {
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-bonus-card h3 {
+  margin: 6px 0 4px;
+  font-size: 22px;
+  line-height: 27px;
+}
+
+.home-bonus-card p {
+  margin: 0 0 10px;
+}
+
+.site-footer {
+  border-top: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+}
+
+.site-footer-shell {
+  width: min(100% - 32px, 1028px);
+  margin: 0 auto;
+  padding: 56px 0 48px;
+  display: grid;
+  grid-template-columns: 1.25fr repeat(3, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.site-footer-brand {
+  margin-bottom: 10px;
+  color: hsl(var(--primary));
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.site-footer h2 {
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.site-footer a {
+  display: block;
+  margin-top: 12px;
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: hsl(var(--foreground));
+}
+
+.site-footer-bottom {
+  border-top: 1px solid hsl(var(--border));
+  padding: 20px 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+}
+
+@media (max-width: 1024px) {
+  .home-hero-grid {
+    gap: 48px;
+  }
+
+  .home-hero-title {
+    font-size: 52px;
+    line-height: 57px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header-shell {
+    height: 56px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .site-menu-button {
+    display: inline-flex;
+  }
+
+  .site-mobile-menu {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    border-top: 0 solid hsl(var(--border));
+    background: hsl(var(--background));
+    opacity: 0;
+    transition: max-height 200ms ease, opacity 200ms ease;
+  }
+
+  .site-mobile-menu-open {
+    max-height: 430px;
+    border-top-width: 1px;
+    opacity: 1;
+  }
+
+  .site-mobile-nav {
+    width: min(100% - 32px, 1028px);
+    margin: 0 auto;
+    padding: 16px 0;
+  }
+
+  .site-mobile-nav a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: hsl(var(--foreground));
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .site-mobile-kicker {
+    padding: 12px 12px 4px;
+    color: hsl(var(--muted-foreground));
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .home-hero-grid,
+  .home-section-intro-row,
+  .home-bonus-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero-grid {
+    padding-top: 64px;
+    padding-bottom: 56px;
+  }
+
+  .home-hero-title {
+    max-width: 100%;
+    font-size: 48px;
+    line-height: 52px;
+  }
+
+  .home-guide-grid,
+  .home-games-grid,
+  .home-casino-list,
+  .home-principles-grid,
+  .site-footer-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .home-guide-card + .home-guide-card,
+  .home-casino-card + .home-casino-card {
+    border-left: 0;
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  .home-section {
+    padding: 64px 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-container,
+  .site-header-shell,
+  .site-footer-shell {
+    width: min(100% - 28px, 1028px);
+  }
+
+  .home-hero-title {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .home-hero-lede {
+    font-size: 17px;
+    line-height: 29px;
+  }
+
+  .home-actions,
+  .home-button {
+    width: 100%;
+  }
+
+  .home-section-intro h2,
+  .home-bonus-panel h2 {
+    font-size: 34px;
+    line-height: 40px;
+  }
 }
