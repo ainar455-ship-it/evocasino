@@ -11,11 +11,10 @@ const primaryLinks = [
   { href: "/how-we-rank", label: "How we rank" },
 ];
 
-const guideLinks = [
-  { href: "/guides/crazy-time", label: "Crazy Time" },
-  { href: "/guides/lightning-roulette", label: "Lightning Roulette" },
-  { href: "/guides/monopoly-live", label: "Monopoly Live" },
-  { href: "/guides/dream-catcher", label: "Dream Catcher" },
+const gameLinks = [
+  { href: "/games/crazy-time", label: "Crazy Time" },
+  { href: "/games/lightning-roulette", label: "Lightning Roulette" },
+  { href: "/games/monopoly-live", label: "Monopoly Live" },
 ];
 
 export default function SiteNav() {
@@ -55,7 +54,7 @@ export default function SiteNav() {
           ))}
 
           <div className="site-mobile-kicker">Game guides</div>
-          {guideLinks.map((link) => (
+          {gameLinks.map((link) => (
             <Link key={link.href} href={link.href} onClick={() => setOpen(false)}>
               {link.label}
             </Link>
