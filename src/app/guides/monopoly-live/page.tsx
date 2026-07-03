@@ -4,6 +4,10 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
+export const metadata = {
+  title: "Monopoly Live (Evolution) – Bonus Rounds, RTP & How to Play",
+  description: "Monopoly Live guide: rules, bonus rounds, multipliers, RTP, and strategy tips. Learn how Evolution’s game show works."
+};
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
   if (!g) throw new Error(`Guide registry missing entry for slug: ${slug}`);
@@ -91,7 +95,7 @@ export default function CrazyTimeGuidePage() {
       <section style={{ marginTop: 18 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
         <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-          (Scaffold) This guide explains Crazy Time gameplay at a high level without outbound links.
+          Monopoly Live is a live casino game show developed by Evolution and based on the classic Monopoly board game. Players bet on numbered segments of a large wheel, and bonus rounds allow them to move around the Monopoly board to win multipliers and prizes.
         </p>
       </section>
     </main>

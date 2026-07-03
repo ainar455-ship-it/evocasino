@@ -4,6 +4,10 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
+export const metadata = {
+  title: "Crazy Coin Flip (Evolution) – How It Works & Strategy Guide",
+  description: "Learn how Crazy Coin Flip works, including multipliers, rules, and simple strategies. Quick guide to Evolution bonus game."
+};
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
   if (!g) throw new Error(`Guide registry missing entry for slug: ${slug}`);
@@ -91,7 +95,7 @@ export default function CrazyTimeGuidePage() {
       <section style={{ marginTop: 18 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
         <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-          (Scaffold) This guide explains Crazy Time gameplay at a high level without outbound links.
+          Crazy Coin Flip is a live casino bonus-style game developed by Evolution. Players watch a giant coin flip on screen, where each side can contain multipliers that determine the final payout depending on the result.
         </p>
       </section>
     </main>

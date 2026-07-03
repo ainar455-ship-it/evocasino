@@ -7,6 +7,7 @@ export default function SiteNav() {
         <Link href="/" style={{ fontWeight: 800, textDecoration: "none" }}>EvoCasino</Link>
         <span style={{ opacity: 0.4 }}>·</span>
         <Link href="/evolution-casinos" style={{ textDecoration: "underline" }}>Evolution Casinos</Link>
+        <Link href="/evolution-games" style={{ textDecoration: "underline" }}>Evolution Games</Link>        
         <Link href="/evolution-bonuses" style={{ textDecoration: "underline" }}>Evolution Bonuses</Link>
         <Link href="/games/crazy-time" style={{ textDecoration: "underline" }}>Crazy Time</Link>
         <Link href="/games/lightning-roulette" style={{ textDecoration: "underline" }}>Lightning Roulette</Link>

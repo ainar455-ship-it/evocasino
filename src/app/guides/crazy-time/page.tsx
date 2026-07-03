@@ -4,6 +4,11 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
+export const metadata = {
+  title: "Crazy Time (Evolution) – How It Works, Bonus Rounds & Strategy",
+  description: "Complete Crazy Time guide: how to play, bonus rounds, multipliers, and strategy tips. Understand Evolution’s most popular game show."
+};
+
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
   if (!g) throw new Error(`Guide registry missing entry for slug: ${slug}`);
@@ -88,12 +93,101 @@ export default function CrazyTimeGuidePage() {
         </div>
       </section>
 
-      <section style={{ marginTop: 18 }}>
-        <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
-        <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-          (Scaffold) This guide explains Crazy Time gameplay at a high level without outbound links.
-        </p>
-      </section>
+<section style={{ marginTop: 18 }}>
+  <h2 style={{ fontSize: 28, fontWeight: 800 }}>Introduction</h2>
+
+  <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+    Crazy Time is Evolution’s flagship live casino game show and one of the most popular live games in the industry. The game combines a large money wheel, four separate bonus rounds, and the Top Slot multiplier system into a highly volatile live experience.
+  </p>
+
+  <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+    Players bet on number segments or bonus segments before the wheel spins. When the wheel lands on a bonus game, qualifying players enter a separate feature round with its own mechanics and multiplier potential.
+  </p>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>How Crazy Time Works</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      The Crazy Time wheel contains 54 segments made up of number payouts and four bonus rounds: Coin Flip, Cash Hunt, Pachinko, and Crazy Time.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Each round begins with a betting phase followed by a wheel spin. Above the wheel, the Top Slot system can apply random multipliers to winning segments, increasing potential payouts significantly.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Bonus rounds are triggered when the wheel lands on one of the dedicated bonus segments. Each bonus uses completely different mechanics and payout structures.
+    </p>
+  </section>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>The Four Bonus Rounds</h2>
+
+    <h3 style={{ marginTop: 18, fontSize: 20, fontWeight: 700 }}>Coin Flip</h3>
+
+    <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Coin Flip is the most common bonus round and uses a two-sided coin with randomly generated multiplier values. The winning side determines the payout multiplier for all participating players.
+    </p>
+
+    <h3 style={{ marginTop: 18, fontSize: 20, fontWeight: 700 }}>Cash Hunt</h3>
+
+    <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Cash Hunt presents a large wall of hidden multipliers where players choose a target symbol. Each player can receive a different payout result depending on their selected target.
+    </p>
+
+    <h3 style={{ marginTop: 18, fontSize: 20, fontWeight: 700 }}>Pachinko</h3>
+
+    <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Pachinko uses a vertical peg board where a puck bounces toward multiplier slots at the bottom. Double slots can increase all multipliers and trigger additional drops.
+    </p>
+
+    <h3 style={{ marginTop: 18, fontSize: 20, fontWeight: 700 }}>Crazy Time Bonus</h3>
+
+    <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      The Crazy Time bonus is the rarest and highest-volatility feature in the game. Players choose coloured flappers on a secondary wheel with multipliers, Double, and Triple segments capable of dramatically increasing payouts.
+    </p>
+  </section>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>Crazy Time RTP & Volatility</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      RTP varies depending on which segment players bet on. Number 1 offers the highest published RTP at around 96.08%, while bonus rounds and higher-volatility segments operate with larger variance and lower theoretical return percentages.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Crazy Time is designed as a high-volatility live casino game. Long stretches of standard wheel outcomes can be interrupted by bonus rounds with significantly larger payout potential.
+    </p>
+  </section>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>Basic Strategy</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Many players use a blended betting approach that combines number segments with bonus segments. Number bets can create more stable session pacing, while bonus bets provide access to the game’s largest multipliers.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      No betting strategy can overcome the house edge or predict bonus outcomes. Crazy Time is fundamentally a random game built around variance and multiplier-driven volatility.
+    </p>
+  </section>
+
+  <section style={{ marginTop: 28, marginBottom: 24 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>Where to Play Crazy Time</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Crazy Time is available at many Evolution casinos, although table availability, limits, and regional access can vary depending on operator and jurisdiction.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      You can compare live casino operators and Evolution availability through our{" "}
+      <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
+        Evolution Casinos
+      </a>{" "}
+      hub.
+    </p>
+  </section>
+</section>
     </main>
   );
 }

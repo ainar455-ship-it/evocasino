@@ -5,18 +5,19 @@ import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
 export const metadata = {
-  title: "Dream Catcher (Evolution) – How to Play, Odds & Strategy Guide",
-  description: "Dream Catcher explained: rules, payouts, odds, and strategy tips. Learn how this Evolution money wheel game works."
+  title: "Crazy Time (Evolution) – How It Works, Bonus Rounds & Strategy",
+  description: "Complete Crazy Time guide: how to play, bonus rounds, multipliers, and strategy tips. Understand Evolution’s most popular game show."
 };
+
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
   if (!g) throw new Error(`Guide registry missing entry for slug: ${slug}`);
   return g;
 }
 
-const guide = getGuide("dream-catcher");
+const guide = getGuide("crazy-time");
 
-export default function DreamCatcherGuidePage() {
+export default function CrazyTimeGuidePage() {
   const h1 = `${guide.title}${GUIDE_H1_SUFFIX}`;
 
   // Deterministic top-2 (SSOT-derived)
@@ -92,22 +93,40 @@ export default function DreamCatcherGuidePage() {
         </div>
       </section>
 
-<section style={{ marginTop: 18 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
-  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-    Dream Catcher is a live casino money wheel game developed by Evolution. Players place bets on numbered segments of a large spinning wheel, while multiplier rounds can increase potential payouts. The host spins the wheel each round, and the segment where the pointer lands determines the outcome. This guide explains how Dream Catcher works, including the game rules, RTP and odds, and simple strategy tips players should know before playing.
+<section style={{ marginTop: 28 }}>
+  <h2 style={{ fontSize: 22, fontWeight: 700 }}>RTP & Volatility</h2>
+
+  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
+    Crazy Time has a base RTP of around 96.08%, although the actual return depends heavily on bonus round frequency and volatility. The game is designed with high variance, meaning wins can be infrequent but potentially very large during bonus features.
   </p>
 </section>
 
-<section style={{ marginTop: 18 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 700 }}>
-    How Dream Catcher compares to other Evolution games
-  </h2>
-  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-    Dream Catcher is generally considered a simpler and lower-volatility game compared to other Evolution game shows. Games like Crazy Time offer more complex bonus rounds and higher potential payouts, while Monopoly Live focuses on board-style gameplay with multipliers. Dream Catcher, by comparison, has straightforward rules and a more consistent pace, making it easier for beginners to understand.
+<section style={{ marginTop: 28 }}>
+  <h2 style={{ fontSize: 22, fontWeight: 700 }}>Bonus Rounds</h2>
+
+  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
+    Crazy Time includes four bonus games:
+  </p>
+
+  <ul style={{ marginTop: 10, paddingLeft: 22, lineHeight: 1.8 }}>
+    <li>Coin Flip</li>
+    <li>Cash Hunt</li>
+    <li>Pachinko</li>
+    <li>Crazy Time bonus</li>
+  </ul>
+
+  <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
+    Each bonus round uses multipliers and random mechanics which can significantly increase payouts compared to the base wheel game.
   </p>
 </section>
 
-</main>
-);
+<section style={{ marginTop: 28, marginBottom: 24 }}>
+  <h2 style={{ fontSize: 22, fontWeight: 700 }}>Simple Strategy Tips</h2>
+
+  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.6, opacity: 0.85 }}>
+    Many players spread bets across multiple segments to reduce volatility. Lower-risk betting strategies often focus on numbers like 1 and 2, while higher-risk players target bonus segments for bigger potential multipliers.
+  </p>
+</section>
+    </main>
+  );
 }

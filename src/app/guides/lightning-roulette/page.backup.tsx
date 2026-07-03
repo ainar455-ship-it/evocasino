@@ -5,8 +5,8 @@ import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
 export const metadata = {
-  title: "Dream Catcher (Evolution) – How to Play, Odds & Strategy Guide",
-  description: "Dream Catcher explained: rules, payouts, odds, and strategy tips. Learn how this Evolution money wheel game works."
+  title: "Lightning Roulette (Evolution) – Rules, Multipliers & RTP Guide",
+  description: "Learn how Lightning Roulette works, including lightning multipliers, RTP, rules, and simple strategies for better play."
 };
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
@@ -14,9 +14,9 @@ function getGuide(slug: string) {
   return g;
 }
 
-const guide = getGuide("dream-catcher");
+const guide = getGuide("lightning-roulette");
 
-export default function DreamCatcherGuidePage() {
+export default function CrazyTimeGuidePage() {
   const h1 = `${guide.title}${GUIDE_H1_SUFFIX}`;
 
   // Deterministic top-2 (SSOT-derived)
@@ -92,22 +92,12 @@ export default function DreamCatcherGuidePage() {
         </div>
       </section>
 
-<section style={{ marginTop: 18 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
-  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-    Dream Catcher is a live casino money wheel game developed by Evolution. Players place bets on numbered segments of a large spinning wheel, while multiplier rounds can increase potential payouts. The host spins the wheel each round, and the segment where the pointer lands determines the outcome. This guide explains how Dream Catcher works, including the game rules, RTP and odds, and simple strategy tips players should know before playing.
-  </p>
-</section>
-
-<section style={{ marginTop: 18 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 700 }}>
-    How Dream Catcher compares to other Evolution games
-  </h2>
-  <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-    Dream Catcher is generally considered a simpler and lower-volatility game compared to other Evolution game shows. Games like Crazy Time offer more complex bonus rounds and higher potential payouts, while Monopoly Live focuses on board-style gameplay with multipliers. Dream Catcher, by comparison, has straightforward rules and a more consistent pace, making it easier for beginners to understand.
-  </p>
-</section>
-
-</main>
-);
+      <section style={{ marginTop: 18 }}>
+        <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
+        <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
+          Lightning Roulette is a live roulette variant developed by Evolution. Before each spin, random numbers receive lightning multipliers that can increase potential payouts. Players place bets like in traditional roulette, but multipliers can significantly boost winnings.
+        </p>
+      </section>
+    </main>
+  );
 }

@@ -59,16 +59,15 @@ export default function EvolutionCasinosPage({
 
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>Best Evolution Live Casinos</h1>
       <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
-        Ranked by a derived <strong>Evolution Score</strong> (0–100) computed from SSOT facts.
-        Use filters to find the best casinos for specific Evolution games and features.
+        Evolution is the leading provider of live dealer casino games. Online casinos that offer Evolution tables give players access to popular titles such as Crazy Time, Lightning Roulette and Dream Catcher. Casinos on this page are ranked by a derived <strong>Evolution Score</strong> (0–100) computed from SSOT facts.
       </p>
-
       <section style={{ marginTop: 18, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
         <strong>Quick links</strong>
         <div style={{ marginTop: 8, display: "flex", gap: 12, flexWrap: "wrap" }}>
           <a href="/games/crazy-time" style={{ textDecoration: "underline" }}>Crazy Time</a>
           <a href="/games/lightning-roulette" style={{ textDecoration: "underline" }}>Lightning Roulette</a>
           <a href="/games/monopoly-live" style={{ textDecoration: "underline" }}>Monopoly Live</a>
+          <a href="/guides/dream-catcher" style={{ textDecoration: "underline" }}>Dream Catcher</a>
           <a href="/evolution-bonuses" style={{ textDecoration: "underline" }}>Evolution Bonuses</a>
           <a href="/how-we-rank" style={{ textDecoration: "underline" }}>How we rank</a>
         </div>
@@ -102,14 +101,6 @@ export default function EvolutionCasinosPage({
             <a href="/evolution-casinos?show=lightning-roulette" style={{ textDecoration: "underline" }}>Lightning Roulette</a>{" · "}
             <a href="/evolution-casinos?show=monopoly-live" style={{ textDecoration: "underline" }}>Monopoly Live</a>
           </div>
-
-          <div>
-            <span style={{ opacity: 0.75 }}>Payout:</span>{" "}
-            <a href="/evolution-casinos?payout=fast" style={{ textDecoration: "underline" }}>Fast</a>{" · "}
-            <a href="/evolution-casinos?payout=avg" style={{ textDecoration: "underline" }}>Avg</a>{" · "}
-            <a href="/evolution-casinos?payout=slow" style={{ textDecoration: "underline" }}>Slow</a>
-          </div>
-
           <div>
             <span style={{ opacity: 0.75 }}>Mobile min:</span>{" "}
             <a href="/evolution-casinos?mobileMin=4" style={{ textDecoration: "underline" }}>4+</a>{" · "}
@@ -130,7 +121,7 @@ export default function EvolutionCasinosPage({
                     #{idx + 1} — {c.name}
                   </div>
                   <div style={{ marginTop: 6, opacity: 0.8 }}>
-                    Shows: {c.evolution.shows.join(", ")} · Payout: {c.payouts.speed} · Mobile: {c.mobile.experience}/5
+                    Shows: {c.evolution.shows.join(", ")} · Mobile: {c.mobile.experience}/5
                   </div>
                   <div style={{ marginTop: 4, opacity: 0.75 }}>
                     Payments: {c.payments.methods.join(", ")}

@@ -1,0 +1,92 @@
+import { getAllCasinos } from "@/lib/evo/load";
+import { loadOffers } from "@/data/evocasino/loaders/offers";
+import { computeBonusScoreFromOffers } from "@/lib/evo/bonus";
+
+export default function EvolutionBonusesPage() {
+  const all = getAllCasinos();
+  const offers = loadOffers();
+
+  const offersByCasino = new Map<string, typeof offers>();
+  for (const o of offers) {
+    const arr = offersByCasino.get(o.casinoSlug) ?? [];
+    arr.push(o);
+    offersByCasino.set(o.casinoSlug, arr);
+  }
+
+  const rows = all
+    .map((c) => {
+      const casinoOffers = offersByCasino.get(c.slug) ?? [];
+      const bonusScore = computeBonusScoreFromOffers(casinoOffers);
+      return { ...c, offers: casinoOffers, bonusScore };
+    })
+    .filter((c) => c.offers.length > 0)
+    .sort(
+      (a, b) =>
+        b.bonusScore.final - a.bonusScore.final ||
+        b.evolutionScore - a.evolutionScore ||
+        a.name.localeCompare(b.name)
+    );
+
+  return (
+    <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
+      <h1 style={{ fontSize: 34, fontWeight: 800 }}>Best Evolution Bonuses</h1>
+      <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
+        Bonuses are ranked using SSOT facts-only <strong>Offers v2</strong>. We show both{" "}
+        <strong>Quality</strong> (0–100) and <strong>Terms Confidence</strong> (0–100). Evolution Score remains the tie-breaker.
+      </p>
+
+      <section style={{ marginTop: 20 }}>
+        {rows.length === 0 && <p>No offers found in SSOT.</p>}
+
+        <div style={{ display: "grid", gap: 12 }}>
+          {rows.map((c, idx) => {
+            const best = c.offers[0]; // display-only; selection is done by scoring
+            return (
+              <div
+                key={c.id}
+                style={{
+                  padding: 16,
+                  border: "1px solid #e5e7eb",
+                  borderRadius: 12,
+                }}
+              >
+                <div style={{ fontSize: 18, fontWeight: 800 }}>
+                  #{idx + 1} — {c.name}
+                </div>
+
+                <div style={{ marginTop: 6, opacity: 0.85 }}>
+                  Final: <strong>{c.bonusScore.final}</strong> · Quality: {c.bonusScore.quality} · Confidence:{" "}
+                  {c.bonusScore.confidence} · Evolution Score: {c.evolutionScore}
+                </div>
+
+                <div style={{ marginTop: 10 }}>
+                  <div style={{ fontWeight: 700 }}>Offers</div>
+                  <div style={{ marginTop: 4, opacity: 0.85 }}>
+                    Offers tracked: <strong>{c.offers.length}</strong>
+                  </div>
+                  <div style={{ marginTop: 4, opacity: 0.75 }}>
+                    Last verified (shown offer): {best?.lastVerifiedAt ?? "—"}
+                  </div>
+
+                  {best?.termsUrl && (
+                    <div style={{ marginTop: 6 }}>
+                      <a href={best.termsUrl} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>
+                        Bonus terms
+                      </a>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ marginTop: 10 }}>
+                  <a href={`/casinos/${c.slug}`} style={{ textDecoration: "underline" }}>
+                    View full review
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    </main>
+  );
+}

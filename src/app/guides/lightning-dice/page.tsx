@@ -4,6 +4,11 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
+export const metadata = {
+  title: "Lightning Dice (Evolution) – RTP, Odds & Strategy Guide",
+  description: "Learn how Lightning Dice works: RTP, odds, rules, and simple winning strategies. Quick guide to Evolution’s live dice game."
+};
+
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
   if (!g) throw new Error(`Guide registry missing entry for slug: ${slug}`);
@@ -34,7 +39,7 @@ export default function CrazyTimeGuidePage() {
             webPageJsonLd({
               path: `/guides/${guide.slug}`,
               name: h1,
-              description: "How to play Crazy Time on Evolution Live, plus SSOT-derived links to relevant casino reviews.",
+              description: "How to play Lightning Dice on Evolution Live, including RTP, rules, and strategy.",
             })
           ),
         }}
@@ -91,9 +96,10 @@ export default function CrazyTimeGuidePage() {
       <section style={{ marginTop: 18 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
         <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-          (Scaffold) This guide explains Crazy Time gameplay at a high level without outbound links.
+          Lightning Dice is a live casino dice game developed by Evolution. This guide explains how Lightning Dice works, including RTP, rules, and simple strategies. Players bet on the total result of three dice, similar to Sic Bo, while random lightning multipliers can increase potential payouts before each roll.
         </p>
       </section>
     </main>
   );
 }
+

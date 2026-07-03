@@ -4,6 +4,10 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
 
+export const metadata = {
+  title: "Lightning Roulette (Evolution) – Rules, Multipliers & RTP Guide",
+  description: "Learn how Lightning Roulette works, including lightning multipliers, RTP, rules, and simple strategies for better play."
+};
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
   if (!g) throw new Error(`Guide registry missing entry for slug: ${slug}`);
@@ -88,12 +92,65 @@ export default function CrazyTimeGuidePage() {
         </div>
       </section>
 
-      <section style={{ marginTop: 18 }}>
-        <h2 style={{ fontSize: 22, fontWeight: 700 }}>How to play</h2>
-        <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5, opacity: 0.85 }}>
-          (Scaffold) This guide explains Crazy Time gameplay at a high level without outbound links.
-        </p>
-      </section>
+<section style={{ marginTop: 18 }}>
+  <h2 style={{ fontSize: 28, fontWeight: 800 }}>Introduction</h2>
+
+  <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+    Lightning Roulette is one of Evolution’s most popular live casino games. It follows the same core rules as European roulette, but adds random lightning multipliers that can increase straight-up payouts up to 500x.
+  </p>
+
+  <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+    Before each spin, between one and five Lucky Numbers receive random multipliers ranging from 50x to 500x. If the winning number matches one of those Lucky Numbers and you placed a straight-up bet on it, the multiplier payout applies automatically.
+  </p>
+
+  <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+    The game was developed by Evolution and combines traditional roulette mechanics with a higher-volatility multiplier system. Outside bets such as red/black and odd/even work exactly like standard European roulette, while straight-up bets trade a reduced base payout for the chance to hit boosted multipliers.
+  </p>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>How Lightning Roulette Works</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Each round begins with a betting phase where players place roulette bets on the table. After betting closes, the game randomly selects Lucky Numbers and assigns lightning multipliers before the wheel spins.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Multipliers only apply to straight-up bets placed on individual numbers. Standard roulette bets like splits, corners, dozens, and outside bets continue using normal European roulette payouts.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Lightning Roulette uses a single-zero European wheel with 37 pockets. The base straight-up payout is reduced from 35:1 to 29:1 to fund the multiplier system.
+    </p>
+  </section>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>Lightning Roulette RTP</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Outside bets in Lightning Roulette use the same RTP as standard European roulette at 97.30%. Straight-up bets use Evolution’s published RTP of 97.10% when multiplier wins are included over the long run.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      The game is designed around higher volatility. Sessions without multiplier hits may feel less forgiving because straight-up payouts are reduced to 29:1 unless a lightning multiplier activates.
+    </p>
+  </section>
+
+  <section style={{ marginTop: 28 }}>
+    <h2 style={{ fontSize: 24, fontWeight: 700 }}>Where to Play Lightning Roulette</h2>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      Lightning Roulette is available at many Evolution casinos. Stream quality, mobile compatibility, table limits, and regional availability can vary between operators.
+    </p>
+
+    <p style={{ marginTop: 12, fontSize: 16, lineHeight: 1.7, opacity: 0.9 }}>
+      You can compare Evolution casino reviews and live casino availability through our{" "}
+      <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
+        Evolution Casinos
+      </a>{" "}
+      hub.
+    </p>
+  </section>
+</section>
     </main>
   );
 }
