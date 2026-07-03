@@ -2,10 +2,19 @@ import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
 import { guideRegistry } from "@/lib/guides/guideRegistry";
 
-export default function HomePage() {
-  const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 5);
+const trustItems = [
+  "Facts-only rankings",
+  "No paid placements",
+  "Evolution-only focus",
+  "RTP & game analysis",
+  "Transparent methodology",
+];
 
-  const bonusRows = getAllCasinos()
+export default function HomePage() {
+  const allCasinos = getAllCasinos();
+  const topCasinos = filterAndRank(allCasinos, {}).slice(0, 5);
+
+  const bonusRows = allCasinos
     .filter((c) => !!c.bonuses?.headline)
     .map((c) => ({
       casino: c,
@@ -20,260 +29,191 @@ export default function HomePage() {
     .slice(0, 5);
 
   const topGuides = guideRegistry.slice(0, 3);
+  const featuredGuide = topGuides[0];
 
   return (
-    <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
-      {/* HERO */}
-      <header style={{ padding: 18, border: "1px solid #e5e7eb", borderRadius: 12 }}>
-        <h1 style={{ fontSize: 34, fontWeight: 800, margin: 0 }}>EvoCasino</h1>
+    <main className="home-page">
+      <section className="home-hero" aria-labelledby="home-heading">
+        <div className="home-shell home-hero-grid">
+          <div className="home-hero-copy">
+            <p className="home-eyebrow">Independent editorial · Evolution gaming</p>
 
-        <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
-          Evolution Live Casino specialist site. Rankings are computed deterministically
-          from facts-only SSOT data — no manual ranking overrides.
-        </p>
+            <h1 id="home-heading" className="home-hero-title">
+              The authority guide to <span>Evolution Live Casino.</span>
+            </h1>
 
-        <div
-          style={{
-            marginTop: 14,
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
-          <a
-            href="/evolution-casinos"
-            style={{
-              display: "inline-block",
-              padding: "10px 14px",
-              borderRadius: 10,
-              border: "1px solid #111827",
-              textDecoration: "none",
-              fontWeight: 700,
-            }}
-          >
-            View ranked Evolution casinos →
-          </a>
+            <p className="home-hero-lede">
+              Deep game breakdowns, transparent casino rankings, and editorial analysis
+              of the world's most-played live dealer studio — built on real facts, not
+              marketing copy.
+            </p>
 
-          <a href="/evolution-games" style={{ textDecoration: "underline" }}>
-            Evolution games
-          </a>
-
-          <a href="/how-we-rank" style={{ textDecoration: "underline" }}>
-            How we rank
-          </a>
-        </div>
-      </header>
-
-      {/* GUIDES */}
-      <section style={{ marginTop: 18, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
-        <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>
-          Popular Evolution Guides
-        </h2>
-
-        <div style={{ marginTop: 14, display: "grid", gap: 14 }}>
-          {topGuides.map((g) => (
-            <div key={g.slug}>
-              <a
-                href={`/guides/${g.slug}`}
-                style={{
-                  fontSize: 18,
-                  fontWeight: 700,
-                  textDecoration: "underline",
-                }}
-              >
-                {g.title}
+            <div className="home-actions" aria-label="Primary homepage links">
+              <a className="home-button home-button-primary" href="/evolution-casinos">
+                View ranked Evolution casinos →
               </a>
-
-              <div style={{ marginTop: 4, opacity: 0.8, lineHeight: 1.5 }}>
-                Learn how the game works, including RTP, rules, payouts, and simple strategies.
-              </div>
+              <a className="home-button home-button-secondary" href="/evolution-games">
+                Evolution games
+              </a>
+              <a className="home-text-link" href="/how-we-rank">
+                How we rank
+              </a>
             </div>
-          ))}
-        </div>
+          </div>
 
-        <div style={{ marginTop: 16 }}>
-          <a href="/evolution-games" style={{ textDecoration: "underline" }}>
-            Explore all Evolution games →
-          </a>
-        </div>
-      </section>
-
-      {/* TOP CASINOS */}
-      <section style={{ marginTop: 18 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 12,
-            flexWrap: "wrap",
-            alignItems: "baseline",
-          }}
-        >
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>
-            Top Evolution casinos
-          </h2>
-
-          <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
-            See full ranked list + filters →
-          </a>
-        </div>
-
-        <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-          {topCasinos.map((c, idx) => (
-            <div
-              key={c.id}
-              style={{
-                padding: 14,
-                border: "1px solid #e5e7eb",
-                borderRadius: 12,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  flexWrap: "wrap",
-                }}
-              >
+          {featuredGuide && (
+            <article className="home-feature-card" aria-label="Featured guide">
+              <div className="home-card-kicker">Featured guide</div>
+              <div className="home-card-type">Game show</div>
+              <h2>{featuredGuide.title.replace(" on Evolution Live", "")}</h2>
+              <p>
+                A complete editorial breakdown of Evolution's flagship live game,
+                including rules, RTP, payout structure, and bankroll discipline.
+              </p>
+              <div className="home-stat-grid" aria-label="Guide highlights">
                 <div>
-                  <div style={{ fontSize: 18, fontWeight: 800 }}>
-                    #{idx + 1} — {c.name}
-                  </div>
-
-                  <div style={{ marginTop: 6, opacity: 0.85 }}>
-                    Shows: {c.evolution.shows.join(", ")} · Mobile:{" "}
-                    {c.mobile.experience}/5
-                  </div>
-
-                  <div style={{ marginTop: 4, opacity: 0.75 }}>
-                    Payments: {c.payments.methods.join(", ")}
-                  </div>
+                  <span>Focus</span>
+                  <strong>Rules</strong>
                 </div>
-
-                <div style={{ alignSelf: "center" }}>
-                  <a
-                    href={`/casinos/${c.slug}`}
-                    style={{
-                      textDecoration: "underline",
-                      fontWeight: 700,
-                    }}
-                  >
-                    View review →
-                  </a>
+                <div>
+                  <span>Includes</span>
+                  <strong>Strategy</strong>
                 </div>
               </div>
-            </div>
+              <a href={`/guides/${featuredGuide.slug}`}>Read the full guide ↗</a>
+            </article>
+          )}
+        </div>
+      </section>
+
+      <section className="home-trust-strip" aria-label="EvoCasino principles">
+        <div className="home-shell home-trust-list">
+          {trustItems.map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
       </section>
 
-      {/* BONUSES */}
-      <section style={{ marginTop: 18 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 12,
-            flexWrap: "wrap",
-            alignItems: "baseline",
-          }}
-        >
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>
-            Top Evolution bonuses
-          </h2>
-
-          <a href="/evolution-bonuses" style={{ textDecoration: "underline" }}>
-            See all bonuses →
-          </a>
+      <section className="home-section home-shell" aria-labelledby="featured-guides-heading">
+        <div className="home-section-heading">
+          <p className="home-eyebrow">Featured guides</p>
+          <h2 id="featured-guides-heading">Editorial breakdowns of Evolution's biggest games</h2>
+          <a href="/evolution-games">Explore all Evolution games →</a>
         </div>
 
-        <p style={{ marginTop: 8, opacity: 0.85, lineHeight: 1.5 }}>
-          Bonuses are surfaced from SSOT facts and the existing bonus scoring logic.
-        </p>
+        <div className="home-guide-grid">
+          {topGuides.map((g) => (
+            <article className="home-content-card" key={g.slug}>
+              <p className="home-card-type">Evolution guide</p>
+              <h3>
+                <a href={`/guides/${g.slug}`}>{g.title}</a>
+              </h3>
+              <p>
+                Learn how the game works, including RTP, rules, payouts, and simple strategies.
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
+      <section className="home-section home-shell" aria-labelledby="games-heading">
+        <div className="home-section-heading home-section-heading-wide">
+          <p className="home-eyebrow">Evolution games</p>
+          <h2 id="games-heading">Game pages built for rules, odds, and casino context</h2>
+          <a href="/evolution-games">Evolution games →</a>
+        </div>
+
+        <div className="home-games-grid">
+          {guideRegistry.map((g) => (
+            <a className="home-game-tile" href={`/guides/${g.slug}`} key={g.slug}>
+              <span>{g.title.replace(" on Evolution Live", "")}</span>
+              <small>Guide and casino context</small>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section home-shell" aria-labelledby="top-casinos-heading">
+        <div className="home-section-heading home-section-heading-row">
+          <div>
+            <p className="home-eyebrow">Ranked casinos</p>
+            <h2 id="top-casinos-heading">Top Evolution casinos</h2>
+          </div>
+          <a href="/evolution-casinos">See full ranked list + filters →</a>
+        </div>
+
+        <div className="home-ranked-list">
+          {topCasinos.map((c, idx) => (
+            <article className="home-ranked-card" key={c.id}>
+              <div className="home-rank-number">#{idx + 1}</div>
+              <div className="home-ranked-main">
+                <h3>{c.name}</h3>
+                <p>
+                  Shows: {c.evolution.shows.join(", ")} · Mobile: {c.mobile.experience}/5
+                </p>
+                <p>Payments: {c.payments.methods.join(", ")}</p>
+              </div>
+              <a href={`/casinos/${c.slug}`}>View review →</a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="home-section home-shell" aria-labelledby="bonuses-heading">
+        <div className="home-section-heading home-section-heading-row">
+          <div>
+            <p className="home-eyebrow">Bonuses</p>
+            <h2 id="bonuses-heading">Top Evolution bonuses</h2>
+            <p>
+              Bonuses are surfaced from SSOT facts and the existing bonus scoring logic.
+            </p>
+          </div>
+          <a href="/evolution-bonuses">See all bonuses →</a>
+        </div>
+
+        <div className="home-bonus-grid">
           {bonusRows.map((r, idx) => {
             const c = r.casino;
 
             return (
-              <div
-                key={c.id}
-                style={{
-                  padding: 14,
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 12,
-                }}
-              >
-                <div style={{ fontSize: 18, fontWeight: 800 }}>
-                  #{idx + 1} — {c.name}
-                </div>
-
-                <div style={{ marginTop: 6, opacity: 0.85 }}>
-                  Bonus Quality Score: <strong>{r.bonusScore}</strong> · Evolution
-                  Score: {c.evolutionScore}
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                  <div style={{ fontWeight: 700 }}>Bonus</div>
-
-                  <div style={{ marginTop: 4 }}>
-                    {c.bonuses?.headline}
-                  </div>
-
-                  <div style={{ marginTop: 4, opacity: 0.75 }}>
-                    Last verified: {c.bonuses?.lastVerified}
-                  </div>
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                  <a
-                    href={`/casinos/${c.slug}`}
-                    style={{
-                      textDecoration: "underline",
-                      fontWeight: 700,
-                    }}
-                  >
-                    View full review →
-                  </a>
-                </div>
-              </div>
+              <article className="home-content-card home-bonus-card" key={c.id}>
+                <p className="home-card-type">#{idx + 1} · {c.name}</p>
+                <h3>{c.bonuses?.headline}</h3>
+                <p>
+                  Bonus Quality Score: <strong>{r.bonusScore}</strong> · Evolution Score: {c.evolutionScore}
+                </p>
+                <p>Last verified: {c.bonuses?.lastVerified}</p>
+                <a href={`/casinos/${c.slug}`}>View full review →</a>
+              </article>
             );
           })}
         </div>
       </section>
 
-      {/* TRUST */}
-      <section
-        style={{
-          marginTop: 18,
-          padding: 16,
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-        }}
-      >
-        <strong>Trust & transparency</strong>
-
-        <ul
-          style={{
-            marginTop: 10,
-            marginBottom: 0,
-            paddingLeft: 18,
-            lineHeight: 1.6,
-          }}
-        >
-          <li>Facts-only SSOT data; if schemas drift, the build fails.</li>
-          <li>Rankings are computed deterministically in code.</li>
-          <li>Unknowns stay unknown.</li>
-          <li>No payout testing or fake performance claims.</li>
-        </ul>
-
-        <div style={{ marginTop: 10 }}>
-          <a href="/how-we-rank" style={{ textDecoration: "underline" }}>
-            Read methodology →
-          </a>
+      <section className="home-section home-shell home-principles" aria-labelledby="principles-heading">
+        <div>
+          <p className="home-eyebrow">How EvoCasino is built</p>
+          <h2 id="principles-heading">Editorial standards without ranking shortcuts</h2>
         </div>
+
+        <div className="home-principles-grid">
+          <article>
+            <h3>Facts-only SSOT data</h3>
+            <p>If schemas drift, the build fails. Unknowns stay unknown.</p>
+          </article>
+          <article>
+            <h3>Deterministic rankings</h3>
+            <p>Casino order is computed in code from the existing production scoring system.</p>
+          </article>
+          <article>
+            <h3>No fake performance claims</h3>
+            <p>Editorial analysis avoids payout testing claims that are not supported by data.</p>
+          </article>
+        </div>
+
+        <a className="home-text-link" href="/how-we-rank">
+          Read methodology →
+        </a>
       </section>
     </main>
   );
