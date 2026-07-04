@@ -66,7 +66,7 @@ html {
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: var(--font-body);
+  font-family: var(--font-body), system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
@@ -79,9 +79,17 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: var(--font-heading), Georgia, serif;
   color: hsl(var(--foreground));
   letter-spacing: -0.02em;
+}
+
+.font-heading {
+  font-family: var(--font-heading), Georgia, serif;
+}
+
+.font-body {
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 h1 {
