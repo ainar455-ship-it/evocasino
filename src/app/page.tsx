@@ -52,7 +52,7 @@ export default function HomePage() {
                 <p className="mb-6 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--muted-foreground))]">
                   Independent Editorial · Evolution Gaming
                 </p>
-                <h1 className="mb-6">
+                <h1 className="mb-6 text-[2.5rem] font-bold leading-[1.08] tracking-[-0.02em] md:text-[3rem] lg:text-[3.75rem]">
                   The authority guide to{" "}
                   <span className="text-[hsl(var(--primary))]">
                     Evolution Live Casino
