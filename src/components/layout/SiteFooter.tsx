@@ -24,15 +24,15 @@ const companyLinks = [
 function FooterSection({ title, links }: { title: string; links: { label: string; to: string }[] }) {
   return (
     <div>
-      <h4 className="mb-4 text-xs ![font-family:var(--font-body)] font-semibold uppercase tracking-widest !text-[hsl(var(--footer-heading))]">
+      <h4 className="mb-4 ![font-family:var(--font-body)] !text-[0.75rem] !font-semibold !uppercase !leading-4 ![letter-spacing:0.1em] !text-[hsl(var(--footer-heading))]">
         {title}
       </h4>
-      <ul className="space-y-2.5">
+      <ul className="space-y-[0.625rem]">
         {links.map((link) => (
           <li key={link.label}>
             <Link
               href={link.to}
-              className="text-sm [font-family:var(--font-body)] text-[hsl(var(--footer-foreground))] hover:text-[hsl(var(--footer-heading))] transition-colors"
+              className="[font-family:var(--font-body)] text-[0.875rem] leading-5 text-[hsl(var(--footer-foreground))] no-underline transition-colors hover:text-[hsl(var(--footer-heading))]"
             >
               {link.label}
             </Link>
@@ -45,29 +45,29 @@ function FooterSection({ title, links }: { title: string; links: { label: string
 
 export function SiteFooter() {
   return (
-    <footer className="bg-[hsl(var(--footer))] mt-8 md:mt-12">
-      <div className="container max-w-[1060px] mx-auto px-4">
-        <div className="py-10 md:py-12">
+    <footer className="mt-[2rem] bg-[hsl(var(--footer))] md:mt-[3rem]">
+      <div className="mx-auto w-full max-w-[1060px] px-4">
+        <div className="py-[2.5rem] md:py-[3rem]">
           {/* Brand */}
-          <div className="mb-8 md:mb-10">
-            <Link href="/" className="[font-family:var(--font-heading)] text-xl font-bold tracking-tight text-[hsl(var(--footer-heading))]">
+          <div className="mb-[2rem] md:mb-[2.5rem]">
+            <Link href="/" className="[font-family:var(--font-heading)] text-[1.25rem] font-bold leading-7 tracking-tight text-[hsl(var(--footer-heading))] no-underline">
               EvoCasino
             </Link>
-            <p className="mt-2 text-sm [font-family:var(--font-body)] text-[hsl(var(--footer-foreground))] max-w-xs">
+            <p className="mt-2 max-w-xs [font-family:var(--font-body)] text-[0.875rem] leading-5 text-[hsl(var(--footer-foreground))]">
               Independent authority on Evolution Live casinos.
             </p>
           </div>
 
           {/* Link sections */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-16">
+          <div className="grid grid-cols-1 gap-[2.5rem] sm:grid-cols-3 md:gap-[4rem]">
             <FooterSection title="Guides" links={guidesLinks} />
             <FooterSection title="Casino Research" links={researchLinks} />
             <FooterSection title="Company" links={companyLinks} />
           </div>
         </div>
 
-        <hr className="border-t border-[hsl(220_30%_20%)]" />
-        <p className="py-6 text-xs [font-family:var(--font-body)] text-[hsl(var(--footer-foreground))]">
+        <hr className="border-0 border-t !border-[hsl(220_30%_20%)]" />
+        <p className="py-[1.5rem] [font-family:var(--font-body)] text-[0.75rem] leading-4 text-[hsl(var(--footer-foreground))]">
           © {new Date().getFullYear()} EvoCasino. All rights reserved.
         </p>
       </div>
