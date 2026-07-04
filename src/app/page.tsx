@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, FileText } from "lucide-react";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
+import { guideRegistry } from "@/lib/guides/guideRegistry";
 
 const principles = [
   { label: "Facts-only rankings" },
@@ -63,6 +64,37 @@ const featuredGuides: FeaturedGuideCard[] = [
     available: false,
   },
 ];
+
+type EvolutionGameCard = {
+  name: string;
+  type: string;
+  href: string;
+  available: boolean;
+};
+
+const liveGameRoutes = new Set([
+  "crazy-time",
+  "lightning-roulette",
+  "monopoly-live",
+]);
+
+const evolutionGames: EvolutionGameCard[] = guideRegistry
+  .map((guide) => {
+    if (!guide.intent.startsWith("show:")) {
+      return null;
+    }
+
+    const slug = guide.intent.slice("show:".length);
+    const name = guide.title.replace(/ on Evolution Live$/, "");
+
+    return {
+      name,
+      type: getEvolutionGameType(name),
+      href: `/games/${slug}`,
+      available: liveGameRoutes.has(slug),
+    };
+  })
+  .filter((game): game is EvolutionGameCard => game !== null);
 
 export default function HomePage() {
   const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 5);
@@ -200,6 +232,38 @@ export default function HomePage() {
                 <GuideCard key={guide.title} guide={guide} />
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EVOLUTION GAMES */}
+      <section className="border-b border-[hsl(var(--border))] bg-[hsl(var(--muted)/0.3)]">
+        <div className="mx-auto max-w-[1060px] px-4">
+          <div className="py-16 md:py-20">
+            <SectionHeader
+              eyebrow="Evolution Games"
+              title="One studio. Covered in full."
+              lead="We focus exclusively on Evolution Gaming. Below is the working catalogue of games we cover — guides ship on a regular editorial schedule."
+            />
+
+            <ul className="m-0 grid list-none grid-cols-2 gap-px overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--border))] p-0 md:grid-cols-3 lg:grid-cols-4">
+              {evolutionGames.map((game) => (
+                <li key={game.name}>
+                  {game.available ? (
+                    <Link
+                      href={game.href}
+                      className="group block h-full bg-[hsl(var(--card))] px-5 py-5 transition-colors hover:bg-[hsl(var(--muted)/0.4)]"
+                    >
+                      <GameCell name={game.name} type={game.type} available />
+                    </Link>
+                  ) : (
+                    <div className="h-full bg-[hsl(var(--card))] px-5 py-5">
+                      <GameCell name={game.name} type={game.type} />
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -386,6 +450,18 @@ export default function HomePage() {
   );
 }
 
+function getEvolutionGameType(name: string) {
+  if (name.includes("Roulette")) {
+    return "Live Roulette";
+  }
+
+  if (name.includes("Dream Catcher")) {
+    return "Money Wheel";
+  }
+
+  return "Game Show";
+}
+
 function SectionHeader({
   eyebrow,
   title,
@@ -475,5 +551,40 @@ function GuideCard({ guide }: { guide: FeaturedGuideCard }) {
     >
       {inner}
     </Link>
+  );
+}
+
+function GameCell({
+  name,
+  type,
+  available,
+}: {
+  name: string;
+  type: string;
+  available?: boolean;
+}) {
+  return (
+    <div className="flex h-full flex-col">
+      <div className="mb-2 flex items-start justify-between gap-3">
+        <h4 className="font-heading text-[15px] font-semibold leading-tight tracking-[-0.02em] text-[hsl(var(--foreground))]">
+          {name}
+        </h4>
+        {available && (
+          <ArrowUpRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[hsl(var(--muted-foreground))] transition-colors group-hover:text-[hsl(var(--primary))]" />
+        )}
+      </div>
+      <p className="mb-3 font-body text-[11.5px] uppercase tracking-wider text-[hsl(var(--muted-foreground))]">
+        {type}
+      </p>
+      <span
+        className={`mt-auto font-body text-[10.5px] font-semibold uppercase tracking-widest ${
+          available
+            ? "text-[hsl(var(--primary))]"
+            : "text-[hsl(var(--muted-foreground)/0.6)]"
+        }`}
+      >
+        {available ? "Guide live" : "Coming soon"}
+      </span>
+    </div>
   );
 }
