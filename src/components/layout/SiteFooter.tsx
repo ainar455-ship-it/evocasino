@@ -50,7 +50,7 @@ export function SiteFooter() {
         <div className="py-[2.5rem] md:py-[3rem]">
           {/* Brand */}
           <div className="mb-[2rem] md:mb-[2.5rem]">
-            <Link href="/" className="[font-family:var(--font-heading)] text-[1.25rem] font-bold leading-7 tracking-tight text-[hsl(var(--footer-heading))] no-underline">
+            <Link href="/" className="[font-family:var(--font-heading),Georgia,serif] text-xl font-bold tracking-tight text-[hsl(var(--footer-heading))]">
               EvoCasino
             </Link>
             <p className="mt-2 max-w-xs [font-family:var(--font-body)] text-[0.875rem] leading-5 text-[hsl(var(--footer-foreground))]">
