@@ -2,7 +2,6 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, FileText } from "lucide-react";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
-import { guideRegistry } from "@/lib/guides/guideRegistry";
 
 const principles = [
   { label: "Facts-only rankings" },
@@ -22,6 +21,49 @@ const featuredGuide = {
   href: "/guides/crazy-time",
 };
 
+type FeaturedGuideCard = {
+  category: string;
+  title: string;
+  description: string;
+  rtp: string;
+  volatility: string;
+  href: string;
+  available: boolean;
+};
+
+const featuredGuides: FeaturedGuideCard[] = [
+  {
+    category: "Game Show",
+    title: "Crazy Time",
+    description:
+      "A complete editorial breakdown of Evolution's flagship money-wheel game show — bonus mechanics, RTP per segment, and bankroll discipline.",
+    rtp: "96.08%",
+    volatility: "Very High",
+    href: "/guides/crazy-time",
+    available: true,
+  },
+  {
+    category: "Live Roulette",
+    title: "Lightning Roulette",
+    description:
+      "How Lightning multipliers reshape the maths of European roulette, and where the trade-off between volatility and RTP actually sits.",
+    rtp: "97.30%",
+    volatility: "High",
+    href: "/guides/lightning-roulette",
+    available: false,
+  },
+  {
+    category: "Game Show",
+    title: "Monopoly Live",
+    description:
+      "A clear-eyed look at the 2 Rolls and 4 Rolls bonus boards, hit frequencies, and how the game compares to other Evolution wheels.",
+    rtp: "96.23%",
+    volatility: "High",
+    href: "/guides/monopoly-live",
+    available: false,
+  },
+];
+
 export default function HomePage() {
   const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 5);
 
@@ -38,8 +80,6 @@ export default function HomePage() {
         a.casino.name.localeCompare(b.casino.name)
     )
     .slice(0, 5);
-
-  const topGuides = guideRegistry.slice(0, 3);
 
   return (
     <main>
@@ -145,41 +185,26 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
-      {/* GUIDES */}
-      <section style={{ marginTop: 18, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
-        <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>
-          Popular Evolution Guides
-        </h2>
+      {/* FEATURED GUIDES */}
+      <section className="border-b border-[hsl(var(--border))]">
+        <div className="mx-auto max-w-[1060px] px-4">
+          <div className="py-16 md:py-20">
+            <SectionHeader
+              eyebrow="Featured Guides"
+              title="Editorial breakdowns of Evolution's biggest games"
+              lead="Each guide unpacks the mechanics, maths and trade-offs — written for players who want to understand the game, not the marketing."
+            />
 
-        <div style={{ marginTop: 14, display: "grid", gap: 14 }}>
-          {topGuides.map((g) => (
-            <div key={g.slug}>
-              <a
-                href={`/guides/${g.slug}`}
-                style={{
-                  fontSize: 18,
-                  fontWeight: 700,
-                  textDecoration: "underline",
-                }}
-              >
-                {g.title}
-              </a>
-
-              <div style={{ marginTop: 4, opacity: 0.8, lineHeight: 1.5 }}>
-                Learn how the game works, including RTP, rules, payouts, and simple strategies.
-              </div>
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--border))] md:grid-cols-3">
+              {featuredGuides.map((guide) => (
+                <GuideCard key={guide.title} guide={guide} />
+              ))}
             </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 16 }}>
-          <a href="/evolution-games" style={{ textDecoration: "underline" }}>
-            Explore all Evolution games →
-          </a>
+          </div>
         </div>
       </section>
 
+      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
       {/* TOP CASINOS */}
       <section style={{ marginTop: 18 }}>
         <div
@@ -358,5 +383,97 @@ export default function HomePage() {
       </section>
       </div>
     </main>
+  );
+}
+
+function SectionHeader({
+  eyebrow,
+  title,
+  lead,
+  action,
+}: {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  action?: { label: string; href: string };
+}) {
+  return (
+    <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between">
+      <div className="max-w-[36rem]">
+        <p className="mb-3 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--muted-foreground))]">
+          {eyebrow}
+        </p>
+        <h2 className="mb-3 text-2xl font-semibold leading-snug tracking-[-0.02em] text-[hsl(var(--foreground))] md:text-3xl">
+          {title}
+        </h2>
+        {lead && (
+          <p className="m-0 text-[15px] leading-[1.75] text-[hsl(var(--muted-foreground))]">
+            {lead}
+          </p>
+        )}
+      </div>
+      {action && (
+        <Link
+          href={action.href}
+          className="inline-flex shrink-0 items-center gap-1.5 font-body text-sm font-medium text-[hsl(var(--primary))] transition-all hover:gap-2"
+        >
+          {action.label}
+          <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      )}
+    </div>
+  );
+}
+
+function GuideCard({ guide }: { guide: FeaturedGuideCard }) {
+  const inner = (
+    <div className="flex h-full flex-col p-6 md:p-7">
+      <p className="mb-3 font-body text-[10.5px] font-semibold uppercase tracking-[0.18em] text-gold">
+        {guide.category}
+      </p>
+      <h3 className="mb-3 font-heading text-xl font-semibold leading-tight tracking-[-0.02em] text-[hsl(var(--foreground))] md:text-2xl">
+        {guide.title}
+      </h3>
+      <p className="mb-6 flex-1 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+        {guide.description}
+      </p>
+      <div className="flex items-center justify-between border-t border-[hsl(var(--border)/0.7)] pt-5">
+        <div className="flex items-center gap-5">
+          <div>
+            <p className="mb-0.5 font-body text-[10px] uppercase tracking-wider text-[hsl(var(--muted-foreground))]">
+              RTP
+            </p>
+            <p className="font-body text-[13px] font-semibold tabular-nums text-[hsl(var(--foreground))]">
+              {guide.rtp}
+            </p>
+          </div>
+          <div>
+            <p className="mb-0.5 font-body text-[10px] uppercase tracking-wider text-[hsl(var(--muted-foreground))]">
+              Volatility
+            </p>
+            <p className="font-body text-[13px] font-semibold text-[hsl(var(--foreground))]">
+              {guide.volatility}
+            </p>
+          </div>
+        </div>
+        <span className="inline-flex items-center gap-1 font-body text-[12.5px] font-medium text-[hsl(var(--primary))]">
+          {guide.available ? "Read" : "Soon"}
+          {guide.available && <ArrowUpRight className="h-3 w-3" />}
+        </span>
+      </div>
+    </div>
+  );
+
+  if (!guide.available) {
+    return <div className="bg-[hsl(var(--card))] opacity-75">{inner}</div>;
+  }
+
+  return (
+    <Link
+      href={guide.href}
+      className="group block bg-[hsl(var(--card))] transition-colors hover:bg-[hsl(var(--muted)/0.4)]"
+    >
+      {inner}
+    </Link>
   );
 }
