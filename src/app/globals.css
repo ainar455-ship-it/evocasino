@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    --foreground: 220 25% 12%;
+    --card: 0 0% 100%;
+    --primary: 220 55% 22%;
+    --secondary: 220 12% 92%;
+    --muted-foreground: 220 10% 46%;
+    --border: 220 15% 90%;
+    --ring: 220 55% 22%;
+    --font-heading: Georgia, serif;
+    --font-body: system-ui, sans-serif;
+  }
+}
