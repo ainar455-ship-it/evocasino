@@ -1,22 +1,22 @@
 import Link from "next/link";
 
 const guidesLinks = [
-  { label: "Crazy Time", to: "/guide/crazy-time" },
-  { label: "Lightning Roulette", to: "#" },
-  { label: "Monopoly Live", to: "#" },
+  { label: "Crazy Time", to: "/guides/crazy-time" },
+  { label: "Lightning Roulette", to: "/guides/lightning-roulette" },
+  { label: "Monopoly Live", to: "/guides/monopoly-live" },
+  { label: "Dream Catcher", to: "/guides/dream-catcher" },
 ];
 
 const researchLinks = [
-  { label: "Evolution Casinos", to: "/best/crazy-time-casinos" },
-  { label: "Evolution Bonuses", to: "#" },
-  { label: "How We Rank", to: "#" },
+  { label: "Evolution Casinos", to: "/evolution-casinos" },
+  { label: "Evolution Games", to: "/evolution-games" },
+  { label: "Evolution Bonuses", to: "/evolution-bonuses" },
+  { label: "How We Rank", to: "/how-we-rank" },
 ];
 
 const companyLinks = [
-  { label: "About", to: "#" },
-  { label: "Contact", to: "#" },
-  { label: "Disclosure", to: "#" },
-  { label: "Responsible Gambling", to: "#" },
+  { label: "Home", to: "/" },
+  { label: "Methodology", to: "/how-we-rank" },
 ];
 
 function FooterSection({ title, links }: { title: string; links: { label: string; to: string }[] }) {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SiteNav from "@/app/_components/SiteNav";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 export const metadata: Metadata = {
   title: "EvoCasino — Evolution Live Casino Guide",
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <SiteNav />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
