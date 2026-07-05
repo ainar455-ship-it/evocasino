@@ -393,39 +393,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
-      {/* TRUST */}
-      <section
-        style={{
-          marginTop: 18,
-          padding: 16,
-          border: "1px solid hsl(var(--border))",
-          borderRadius: 12,
-        }}
-      >
-        <strong>Trust & transparency</strong>
-
-        <ul
-          style={{
-            marginTop: 10,
-            marginBottom: 0,
-            paddingLeft: 18,
-            lineHeight: 1.6,
-          }}
-        >
-          <li>Facts-only SSOT data; if schemas drift, the build fails.</li>
-          <li>Rankings are computed deterministically in code.</li>
-          <li>Unknowns stay unknown.</li>
-          <li>No payout testing or fake performance claims.</li>
-        </ul>
-
-        <div style={{ marginTop: 10 }}>
-          <a href="/how-we-rank" style={{ textDecoration: "underline" }}>
-            Read methodology →
-          </a>
+      {/* EDITORIAL TRUST */}
+      <section>
+        <div className="mx-auto max-w-[1060px] px-4">
+          <div className="max-w-[42rem] py-16 md:py-20">
+            <p className="mb-4 font-body text-[11px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--muted-foreground))]">
+              Editorial Principles
+            </p>
+            <h2 className="mb-4">Independent rankings. Transparent methodology.</h2>
+            <div className="mb-6 space-y-4">
+              <p className="m-0 text-[15.5px] leading-[1.75] text-[hsl(var(--muted-foreground))]">
+                EvoCasino evaluates Evolution casinos independently, with research
+                focused on licensing, payout handling, live table coverage, mobile
+                experience, and player-facing reliability.
+              </p>
+              <p className="m-0 text-[15.5px] leading-[1.75] text-[hsl(var(--muted-foreground))]">
+                Our methodology is published openly so readers can see how each
+                recommendation is formed. Commercial relationships do not decide
+                rankings or rewrite editorial judgement.
+              </p>
+              <p className="m-0 text-[15.5px] leading-[1.75] text-[hsl(var(--muted-foreground))]">
+                Rankings are based on documented research and player experience,
+                then connected to full reviews where the details can be checked.
+              </p>
+            </div>
+            <Link
+              href="/how-we-rank"
+              className="inline-flex items-center gap-1.5 font-body text-sm font-medium text-[hsl(var(--primary))] transition-all hover:gap-2"
+            >
+              Read our methodology
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
-      </div>
     </main>
   );
 }
