@@ -374,7 +374,7 @@ export default function HomePage() {
                 No bonuses found in SSOT.
               </p>
             ) : (
-              <>
+              <div className="pt-1 md:pt-2">
                 <FeaturedBonusCard row={featuredBonusRow} />
 
                 {secondaryBonusRows.length > 0 && (
@@ -388,7 +388,7 @@ export default function HomePage() {
                     ))}
                   </div>
                 )}
-              </>
+              </div>
             )}
           </div>
         </div>
@@ -635,31 +635,34 @@ function FeaturedBonusCard({ row }: { row: BonusRow }) {
   const headline = getBonusHeadline(casino);
 
   return (
-    <article className="relative mb-4 overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(45_40%_98%)] md:mb-5">
+    <article className="relative mb-5 overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(45_40%_98%)] md:mb-6">
       <div className="absolute left-0 top-0 h-full w-[3px] bg-gold" aria-hidden="true" />
-      <div className="grid gap-5 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:gap-7 md:px-8 md:py-7">
-        <div className="flex min-w-0 gap-4 md:gap-5">
+      <div className="grid gap-6 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:gap-8 md:px-8 md:py-8">
+        <div className="flex min-w-0 gap-4 md:gap-6">
           <BonusLogoMark casino={casino} featured />
           <div className="min-w-0 flex-1">
-            <p className="mb-1.5 font-body text-[10.5px] font-bold uppercase tracking-[0.18em] text-gold">
+            <p className="mb-2 font-body text-[10.5px] font-bold uppercase tracking-[0.18em] text-gold">
               Editor&apos;s Choice
             </p>
-            <h3 className="mb-2 font-heading text-[19px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[21px]">
+            <h3 className="mb-2 font-heading text-[17px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[18.5px]">
               {casino.name}
             </h3>
-            <p className="mb-2 font-heading text-[15px] font-semibold leading-snug text-[hsl(var(--foreground))] md:text-[16.5px]">
+            <p className="mb-3 max-w-[24ch] font-heading text-[22px] font-semibold leading-[1.12] tracking-tight text-[hsl(var(--foreground))] md:text-[26px]">
               {headline}
             </p>
-            <p className="m-0 max-w-[36rem] text-[13.5px] leading-[1.6] text-[hsl(var(--muted-foreground))]">
-              {getFeaturedBonusSummary(row, bonusScore)}
+            <p className="m-0 max-w-[36rem] text-[14px] leading-[1.65] text-[hsl(var(--muted-foreground))]">
+              {getFeaturedBonusEditorialSummary(row)}
+            </p>
+            <p className="m-0 mt-3 font-body text-[11.5px] leading-snug text-[hsl(var(--muted-foreground)/0.72)]">
+              {getFeaturedBonusMetadata(row, bonusScore)}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-3 md:flex-col md:items-end md:justify-center md:border-l md:border-[hsl(var(--border)/0.7)] md:pl-6">
+        <div className="flex items-center justify-between gap-3 md:flex-col md:items-end md:justify-center md:border-l md:border-[hsl(var(--border)/0.7)] md:pl-7">
           <Link
             href={href}
-            className="group/cta inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[hsl(var(--primary))] px-4 font-body text-sm font-bold text-[hsl(var(--primary-foreground))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+            className="group/cta inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[hsl(var(--primary))] px-5 font-body text-sm font-bold text-[hsl(var(--primary-foreground))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2 md:min-w-[148px]"
           >
             View full review
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
@@ -690,32 +693,32 @@ function BonusRecommendationCard({
   return (
     <Link
       href={href}
-      className="group relative flex items-center gap-3 overflow-hidden rounded-lg border border-[hsl(var(--border)/0.6)] bg-[hsl(var(--card))] p-4 transition-colors duration-200 hover:border-[hsl(var(--gold)/0.3)] hover:bg-[hsl(var(--muted)/0.1)] md:gap-4 md:p-5"
+      className="group relative flex items-center gap-3 overflow-hidden rounded-lg border border-[hsl(var(--border)/0.6)] bg-[hsl(var(--card))] p-4 transition-colors duration-200 hover:border-[hsl(var(--gold)/0.3)] hover:bg-[hsl(var(--muted)/0.1)] md:gap-4 md:px-5 md:py-[1.125rem]"
     >
       <span
         className="absolute left-0 top-0 h-full w-[3px] bg-gold opacity-0 transition-opacity duration-200 group-hover:opacity-100"
         aria-hidden="true"
       />
 
-      <span className="w-5 shrink-0 font-heading text-[20px] font-semibold leading-none tabular-nums text-[hsl(var(--foreground)/0.3)] md:w-7 md:text-[24px]">
+      <span className="w-5 shrink-0 font-heading text-[20px] font-semibold leading-none tabular-nums text-[hsl(var(--foreground)/0.3)] md:w-7 md:text-[22px]">
         {rank}
       </span>
 
       <BonusLogoMark casino={casino} />
 
       <div className="min-w-0 flex-1">
-        <h4 className="font-heading text-[15.5px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[17px]">
+        <h4 className="font-heading text-[15.5px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[16.5px]">
           {casino.name}
         </h4>
-        <p className="mt-0.5 font-body text-[12.5px] font-semibold leading-snug text-gold md:text-[13px]">
+        <p className="mt-1 font-body text-[12px] font-semibold leading-snug text-[hsl(var(--gold)/0.86)] md:text-[12.5px]">
           {getBonusHeadline(casino)}
         </p>
-        <p className="mt-0.5 text-[13px] leading-snug text-[hsl(var(--muted-foreground))] md:text-sm">
+        <p className="mt-1.5 text-[13px] leading-[1.45] text-[hsl(var(--muted-foreground))] md:text-[13.5px]">
           {getCompactBonusSummary(row)}
         </p>
       </div>
 
-      <span className="hidden shrink-0 items-center gap-1.5 font-body text-sm font-semibold text-[hsl(var(--primary))] transition-all group-hover:gap-2 md:inline-flex">
+      <span className="hidden shrink-0 items-center gap-1.5 font-body text-[13.5px] font-semibold text-[hsl(var(--primary))] transition-all group-hover:gap-2 md:inline-flex">
         View review
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
       </span>
@@ -759,12 +762,17 @@ function getBonusHeadline(casino: CasinoRow) {
   return casino.bonuses?.headline ?? "Bonus details unavailable";
 }
 
-function getFeaturedBonusSummary(row: BonusRow, bonusScore: number) {
+function getFeaturedBonusEditorialSummary(row: BonusRow) {
+  const { casino } = row;
+  return `Highest-ranked current bonus entry from the production scoring model, balanced against ${casino.name}'s Evolution coverage and payout profile.`;
+}
+
+function getFeaturedBonusMetadata(row: BonusRow, bonusScore: number) {
   const { casino } = row;
   const lastVerified = casino.bonuses?.lastVerified;
-  const verified = lastVerified ? ` Last verified: ${lastVerified}.` : "";
+  const verified = lastVerified ? ` · Last verified ${lastVerified}` : "";
 
-  return `Ranked from production bonus facts with a Bonus Quality Score of ${bonusScore}/100 and an Evolution Score of ${casino.evolutionScore}.${verified}`;
+  return `Bonus Quality Score ${bonusScore}/100 · Evolution Score ${casino.evolutionScore}${verified}`;
 }
 
 function getCompactBonusSummary(row: BonusRow) {
