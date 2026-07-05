@@ -113,7 +113,7 @@ export default function HomePage() {
     .slice(0, 5);
 
   return (
-    <main>
+    <main className="bg-[hsl(var(--card))]">
       {/* HERO */}
       <section className="border-b border-[hsl(var(--border))]">
         <div className="mx-auto max-w-[1060px] px-4">
@@ -323,7 +323,7 @@ export default function HomePage() {
                 key={c.id}
                 style={{
                   padding: 14,
-                  border: "1px solid #e5e7eb",
+                  border: "1px solid hsl(var(--border))",
                   borderRadius: 12,
                 }}
               >
@@ -370,7 +370,7 @@ export default function HomePage() {
         style={{
           marginTop: 18,
           padding: 16,
-          border: "1px solid #e5e7eb",
+          border: "1px solid hsl(var(--border))",
           borderRadius: 12,
         }}
       >
@@ -521,7 +521,10 @@ function CasinoResearchCards({ casinos }: { casinos: CasinoRow[] }) {
                   </h4>
                 </div>
 
-                <div className="min-w-0 border-l-2 border-[hsl(var(--gold-divider))] pl-3">
+                <div
+                  className="min-w-0 border-l-2 pl-3"
+                  style={{ borderLeftColor: "#D4A843" }}
+                >
                   <p className="m-0 mb-2 font-body text-[13px] font-medium leading-snug text-[hsl(var(--foreground))]">
                     {getCasinoBonusSummary(casino)}
                   </p>
@@ -560,7 +563,10 @@ function CasinoResearchCards({ casinos }: { casinos: CasinoRow[] }) {
                   </div>
                 </div>
 
-                <div className="border-l-2 border-[hsl(var(--gold-divider))] pl-3">
+                <div
+                  className="border-l-2 pl-3"
+                  style={{ borderLeftColor: "#D4A843" }}
+                >
                   <p className="m-0 font-body text-[13px] font-medium leading-snug text-[hsl(var(--foreground))]">
                     {getCasinoBonusSummary(casino)}
                   </p>
