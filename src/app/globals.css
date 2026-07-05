@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-gold: hsl(var(--gold));
+  --color-gold-muted: hsl(var(--gold-muted));
+  --color-gold-divider: hsl(var(--gold-divider));
+  --color-surface: hsl(var(--surface));
+  --color-surface-raised: hsl(var(--surface-raised));
+}
+
 :root {
   --background: 40 20% 97%;
   --foreground: 220 25% 12%;
@@ -33,6 +60,7 @@
 
   --gold: 40 85% 52%;
   --gold-muted: 40 40% 92%;
+  --gold-divider: 41.8 63% 54.7%;
 
   --footer: 220 45% 13%;
   --footer-foreground: 220 15% 72%;
