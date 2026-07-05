@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, FileText } from "lucide-react";
-import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
+import { ArrowRight, ArrowUpRight, Check, FileText } from "lucide-react";
+import { filterAndRank, getAllCasinos, type CasinoRow } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
 import { guideRegistry } from "@/lib/guides/guideRegistry";
 
@@ -96,7 +96,7 @@ const evolutionGames: EvolutionGameCard[] = designEvolutionGames.map((game) => {
 });
 
 export default function HomePage() {
-  const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 5);
+  const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 3);
 
   const bonusRows = getAllCasinos()
     .filter((c) => !!c.bonuses?.headline)
@@ -267,77 +267,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
-      {/* TOP CASINOS */}
-      <section style={{ marginTop: 18 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 12,
-            flexWrap: "wrap",
-            alignItems: "baseline",
-          }}
-        >
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>
-            Top Evolution casinos
-          </h2>
+      {/* CASINO RESEARCH */}
+      <section className="border-b border-[hsl(var(--border))]">
+        <div className="mx-auto max-w-[1060px] px-4">
+          <div className="py-16 md:py-20">
+            <SectionHeader
+              eyebrow="Casino Research"
+              title="Where to play Evolution live tables"
+              lead="A short, deliberately small ranking. We test payouts with real withdrawals and re-evaluate every quarter — see methodology below."
+              action={{ label: "Full ranking", href: "/evolution-casinos" }}
+            />
 
-          <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
-            See full ranked list + filters →
-          </a>
-        </div>
+            <CasinoResearchCards casinos={topCasinos} />
 
-        <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-          {topCasinos.map((c, idx) => (
-            <div
-              key={c.id}
-              style={{
-                padding: 14,
-                border: "1px solid #e5e7eb",
-                borderRadius: 12,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: 12,
-                  flexWrap: "wrap",
-                }}
-              >
-                <div>
-                  <div style={{ fontSize: 18, fontWeight: 800 }}>
-                    #{idx + 1} — {c.name}
-                  </div>
-
-                  <div style={{ marginTop: 6, opacity: 0.85 }}>
-                    Shows: {c.evolution.shows.join(", ")} · Mobile:{" "}
-                    {c.mobile.experience}/5
-                  </div>
-
-                  <div style={{ marginTop: 4, opacity: 0.75 }}>
-                    Payments: {c.payments.methods.join(", ")}
-                  </div>
-                </div>
-
-                <div style={{ alignSelf: "center" }}>
-                  <a
-                    href={`/casinos/${c.slug}`}
-                    style={{
-                      textDecoration: "underline",
-                      fontWeight: 700,
-                    }}
-                  >
-                    View review →
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
+            <p className="mt-6 max-w-[42rem] font-body text-xs text-[hsl(var(--muted-foreground))]">
+              Rankings reflect overall Evolution experience — licensing, payout
+              speed, table coverage, and verified player feedback. They are not
+              influenced by commercial relationships.
+            </p>
+          </div>
         </div>
       </section>
 
+      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
       {/* BONUSES */}
       <section style={{ marginTop: 18 }}>
         <div
@@ -543,6 +495,125 @@ function GuideCard({ guide }: { guide: FeaturedGuideCard }) {
       {inner}
     </Link>
   );
+}
+
+function CasinoResearchCards({ casinos }: { casinos: CasinoRow[] }) {
+  return (
+    <div>
+      <ul className="m-0 list-none space-y-3 p-0">
+        {casinos.map((casino, index) => {
+          const rank = index + 1;
+          const highlights = getCasinoHighlights(casino);
+
+          return (
+            <li
+              key={casino.id}
+              className="group rounded-lg border border-[hsl(var(--border)/0.6)] bg-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--border))]"
+            >
+              <div className="hidden gap-x-6 px-6 py-5 md:grid md:grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1.6fr)_auto] md:items-center">
+                <span className="font-heading text-base font-medium tabular-nums text-[hsl(var(--muted-foreground)/0.6)]">
+                  {rank}
+                </span>
+
+                <div className="min-w-0">
+                  <h4 className="m-0 truncate font-heading text-[15px] font-semibold leading-tight text-[hsl(var(--foreground))]">
+                    {casino.name}
+                  </h4>
+                </div>
+
+                <div className="min-w-0 border-l-2 border-[#D4A843] pl-3">
+                  <p className="m-0 mb-2 font-body text-[13px] font-medium leading-snug text-[hsl(var(--foreground))]">
+                    {getCasinoBonusSummary(casino)}
+                  </p>
+                  <ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-1 p-0">
+                    {highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex items-center gap-1.5 text-[12px] leading-snug text-[hsl(var(--muted-foreground))]"
+                      >
+                        <Check className="h-3 w-3 shrink-0 text-[hsl(var(--primary)/0.7)]" />
+                        <span className="truncate">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="shrink-0">
+                  <Link
+                    href={`/casinos/${casino.slug}`}
+                    className="inline-flex h-9 min-w-[128px] items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[hsl(var(--border))] bg-transparent px-3 font-body text-xs font-medium text-[hsl(var(--primary))] ring-offset-[hsl(var(--background))] transition-colors hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+                  >
+                    Visit Casino
+                  </Link>
+                </div>
+              </div>
+
+              <div className="space-y-3.5 p-5 md:hidden">
+                <div className="flex items-start gap-3">
+                  <span className="pt-0.5 font-heading text-sm font-medium tabular-nums text-[hsl(var(--muted-foreground)/0.7)]">
+                    {rank}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h4 className="m-0 font-heading text-[15px] font-semibold leading-tight text-[hsl(var(--foreground))]">
+                      {casino.name}
+                    </h4>
+                  </div>
+                </div>
+
+                <div className="border-l-2 border-[#D4A843] pl-3">
+                  <p className="m-0 font-body text-[13px] font-medium leading-snug text-[hsl(var(--foreground))]">
+                    {getCasinoBonusSummary(casino)}
+                  </p>
+
+                  <ul className="m-0 mt-2 grid list-none grid-cols-1 gap-1.5 p-0">
+                    {highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex items-start gap-2 text-xs leading-relaxed text-[hsl(var(--muted-foreground))]"
+                      >
+                        <Check className="mt-0.5 h-3 w-3 shrink-0 text-[hsl(var(--primary)/0.8)]" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Link
+                  href={`/casinos/${casino.slug}`}
+                  className="inline-flex h-9 w-full items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[hsl(var(--border))] bg-transparent px-3 font-body text-xs font-medium text-[hsl(var(--primary))] ring-offset-[hsl(var(--background))] transition-colors hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+                >
+                  Visit Casino
+                </Link>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
+function getCasinoBonusSummary(casino: CasinoRow) {
+  return casino.bonuses?.headline ?? "Bonus details unavailable";
+}
+
+function getCasinoHighlights(casino: CasinoRow) {
+  return [
+    `${casino.evolution.shows.length} Evolution shows`,
+    `${formatPayoutSpeed(casino.payouts.speed)} payouts`,
+  ];
+}
+
+function formatPayoutSpeed(speed: CasinoRow["payouts"]["speed"]) {
+  if (speed === "fast") {
+    return "Fast";
+  }
+
+  if (speed === "avg") {
+    return "Average";
+  }
+
+  return "Slower";
 }
 
 function GameCell({
