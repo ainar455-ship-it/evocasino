@@ -1,5 +1,14 @@
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check, FileText } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  Check,
+  FileText,
+  ScrollText,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { filterAndRank, getAllCasinos, type CasinoRow } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
 import { guideRegistry } from "@/lib/guides/guideRegistry";
@@ -94,6 +103,29 @@ const evolutionGames: EvolutionGameCard[] = designEvolutionGames.map((game) => {
     available: Boolean(guide),
   };
 });
+
+const editorialPrinciples = [
+  {
+    icon: BarChart3,
+    title: "Deterministic rankings",
+    body: "Every casino score is computed from a fixed rubric — licensing, payout speed, Evolution table coverage, and verified player feedback. No manual overrides.",
+  },
+  {
+    icon: ScrollText,
+    title: "Single source of truth",
+    body: "Game stats — RTP, volatility, max win — are stored once and rendered everywhere. Numbers cannot drift between a guide, a hub, and a ranking.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Facts-only editorial",
+    body: "We do not write copy designed to push deposits. Guides explain mechanics, maths, and trade-offs. Bonuses are listed, not celebrated.",
+  },
+  {
+    icon: Sparkles,
+    title: "Evolution-only scope",
+    body: "We cover one provider, deeply. That focus is the entire reason this site exists — and the reason our analysis goes further than generic affiliates.",
+  },
+];
 
 export default function HomePage() {
   const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 3);
@@ -285,6 +317,40 @@ export default function HomePage() {
               speed, table coverage, and verified player feedback. They are not
               influenced by commercial relationships.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* EDITORIAL PRINCIPLES */}
+      <section className="border-b border-[hsl(var(--border))] bg-[hsl(var(--muted)/0.3)]">
+        <div className="mx-auto max-w-[1060px] px-4">
+          <div className="py-16 md:py-20">
+            <SectionHeader
+              eyebrow="Editorial Principles"
+              title="How EvoCasino is built"
+              lead="The architecture of the site is the integrity of the site. These are the rules our rankings, guides and data follow — without exception."
+            />
+
+            <div className="grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--border))] md:grid-cols-2">
+              {editorialPrinciples.map((principle) => {
+                const Icon = principle.icon;
+
+                return (
+                  <div
+                    key={principle.title}
+                    className="bg-[hsl(var(--card))] p-6 md:p-7"
+                  >
+                    <Icon className="mb-4 h-4 w-4 text-[hsl(var(--primary))]" />
+                    <h4 className="mb-2 font-heading !text-base !font-semibold text-[hsl(var(--foreground))]">
+                      {principle.title}
+                    </h4>
+                    <p className="m-0 text-sm leading-relaxed text-[hsl(var(--muted-foreground))]">
+                      {principle.body}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
