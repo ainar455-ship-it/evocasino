@@ -13,6 +13,8 @@ import { filterAndRank, getAllCasinos, type CasinoRow } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
 import { guideRegistry } from "@/lib/guides/guideRegistry";
 
+type BonusRow = { casino: CasinoRow; bonusScore: number };
+
 const principles = [
   { label: "Facts-only rankings" },
   { label: "No paid placements" },
@@ -130,7 +132,7 @@ const editorialPrinciples = [
 export default function HomePage() {
   const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 3);
 
-  const bonusRows = getAllCasinos()
+  const bonusRows: BonusRow[] = getAllCasinos()
     .filter((c) => !!c.bonuses?.headline)
     .map((c) => ({
       casino: c,
@@ -143,6 +145,7 @@ export default function HomePage() {
         a.casino.name.localeCompare(b.casino.name)
     )
     .slice(0, 5);
+  const [featuredBonusRow, ...secondaryBonusRows] = bonusRows;
 
   return (
     <main className="bg-[hsl(var(--card))]">
@@ -361,23 +364,31 @@ export default function HomePage() {
           <div className="py-16 md:py-20">
             <SectionHeader
               eyebrow="Evolution Bonuses"
-              title="Top Evolution bonuses"
-              lead="Bonuses are surfaced from SSOT facts and the existing bonus scoring logic."
+              title="Current bonus offers"
+              lead="Independent editorial summaries of the strongest Evolution casino bonus offers. Full bonus analysis and operator reviews are available on the dedicated bonuses page."
               action={{ label: "See all bonuses", href: "/evolution-bonuses" }}
             />
 
-            {bonusRows.length === 0 ? (
+            {!featuredBonusRow ? (
               <p className="m-0 text-sm text-[hsl(var(--muted-foreground))]">
                 No bonuses found in SSOT.
               </p>
             ) : (
-              <ul className="m-0 list-none space-y-5 p-0 md:space-y-6">
-                {bonusRows.map((row) => (
-                  <li key={row.casino.id}>
-                    <BonusOfferCard row={row} />
-                  </li>
-                ))}
-              </ul>
+              <>
+                <FeaturedBonusCard row={featuredBonusRow} />
+
+                {secondaryBonusRows.length > 0 && (
+                  <div className="flex flex-col gap-3">
+                    {secondaryBonusRows.map((row, index) => (
+                      <BonusRecommendationCard
+                        key={row.casino.id}
+                        row={row}
+                        rank={index + 2}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -616,6 +627,149 @@ function CasinoResearchCards({ casinos }: { casinos: CasinoRow[] }) {
       </ul>
     </div>
   );
+}
+
+function FeaturedBonusCard({ row }: { row: BonusRow }) {
+  const { casino, bonusScore } = row;
+  const href = `/casinos/${casino.slug}`;
+  const headline = getBonusHeadline(casino);
+
+  return (
+    <article className="relative mb-4 overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(45_40%_98%)] md:mb-5">
+      <div className="absolute left-0 top-0 h-full w-[3px] bg-gold" aria-hidden="true" />
+      <div className="grid gap-5 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:gap-7 md:px-8 md:py-7">
+        <div className="flex min-w-0 gap-4 md:gap-5">
+          <BonusLogoMark casino={casino} featured />
+          <div className="min-w-0 flex-1">
+            <p className="mb-1.5 font-body text-[10.5px] font-bold uppercase tracking-[0.18em] text-gold">
+              Editor&apos;s Choice
+            </p>
+            <h3 className="mb-2 font-heading text-[19px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[21px]">
+              {casino.name}
+            </h3>
+            <p className="mb-2 font-heading text-[15px] font-semibold leading-snug text-[hsl(var(--foreground))] md:text-[16.5px]">
+              {headline}
+            </p>
+            <p className="m-0 max-w-[36rem] text-[13.5px] leading-[1.6] text-[hsl(var(--muted-foreground))]">
+              {getFeaturedBonusSummary(row, bonusScore)}
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-3 md:flex-col md:items-end md:justify-center md:border-l md:border-[hsl(var(--border)/0.7)] md:pl-6">
+          <Link
+            href={href}
+            className="group/cta inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[hsl(var(--primary))] px-4 font-body text-sm font-bold text-[hsl(var(--primary-foreground))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+          >
+            View full review
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
+          </Link>
+          <Link
+            href={href}
+            className="inline-flex items-center gap-1 font-body text-[12.5px] font-medium text-[hsl(var(--primary))] transition-all hover:gap-1.5"
+          >
+            Read review
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function BonusRecommendationCard({
+  row,
+  rank,
+}: {
+  row: BonusRow;
+  rank: number;
+}) {
+  const { casino } = row;
+  const href = `/casinos/${casino.slug}`;
+
+  return (
+    <Link
+      href={href}
+      className="group relative flex items-center gap-3 overflow-hidden rounded-lg border border-[hsl(var(--border)/0.6)] bg-[hsl(var(--card))] p-4 transition-colors duration-200 hover:border-[hsl(var(--gold)/0.3)] hover:bg-[hsl(var(--muted)/0.1)] md:gap-4 md:p-5"
+    >
+      <span
+        className="absolute left-0 top-0 h-full w-[3px] bg-gold opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+        aria-hidden="true"
+      />
+
+      <span className="w-5 shrink-0 font-heading text-[20px] font-semibold leading-none tabular-nums text-[hsl(var(--foreground)/0.3)] md:w-7 md:text-[24px]">
+        {rank}
+      </span>
+
+      <BonusLogoMark casino={casino} />
+
+      <div className="min-w-0 flex-1">
+        <h4 className="font-heading text-[15.5px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[17px]">
+          {casino.name}
+        </h4>
+        <p className="mt-0.5 font-body text-[12.5px] font-semibold leading-snug text-gold md:text-[13px]">
+          {getBonusHeadline(casino)}
+        </p>
+        <p className="mt-0.5 text-[13px] leading-snug text-[hsl(var(--muted-foreground))] md:text-sm">
+          {getCompactBonusSummary(row)}
+        </p>
+      </div>
+
+      <span className="hidden shrink-0 items-center gap-1.5 font-body text-sm font-semibold text-[hsl(var(--primary))] transition-all group-hover:gap-2 md:inline-flex">
+        View review
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+      </span>
+      <ArrowRight className="h-5 w-5 shrink-0 text-[hsl(var(--primary))] transition-transform group-hover:translate-x-0.5 md:hidden" />
+    </Link>
+  );
+}
+
+function BonusLogoMark({
+  casino,
+  featured = false,
+}: {
+  casino: CasinoRow;
+  featured?: boolean;
+}) {
+  const sizeClass = featured
+    ? "h-12 w-12 text-base md:h-14 md:w-14 md:text-lg"
+    : "h-10 w-10 text-[14px] md:h-11 md:w-11 md:text-[15px]";
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`${sizeClass} flex shrink-0 items-center justify-center rounded-md bg-[hsl(var(--primary))] font-heading font-semibold text-[hsl(var(--primary-foreground))]`}
+    >
+      {getCasinoInitials(casino.name)}
+    </span>
+  );
+}
+
+function getCasinoInitials(name: string) {
+  return name
+    .split(/[^a-z0-9]+/i)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+function getBonusHeadline(casino: CasinoRow) {
+  return casino.bonuses?.headline ?? "Bonus details unavailable";
+}
+
+function getFeaturedBonusSummary(row: BonusRow, bonusScore: number) {
+  const { casino } = row;
+  const lastVerified = casino.bonuses?.lastVerified;
+  const verified = lastVerified ? ` Last verified: ${lastVerified}.` : "";
+
+  return `Ranked from production bonus facts with a Bonus Quality Score of ${bonusScore}/100 and an Evolution Score of ${casino.evolutionScore}.${verified}`;
+}
+
+function getCompactBonusSummary(row: BonusRow) {
+  const { casino, bonusScore } = row;
+  return `Bonus score ${bonusScore}/100. ${formatPayoutSpeed(casino.payouts.speed)} payouts.`;
 }
 
 function BonusOfferCard({
