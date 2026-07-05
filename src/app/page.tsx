@@ -3,7 +3,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   BarChart3,
-  Check,
   FileText,
   ScrollText,
   ShieldCheck,
@@ -130,7 +129,7 @@ const editorialPrinciples = [
 ];
 
 export default function HomePage() {
-  const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 3);
+  const topCasinos = filterAndRank(getAllCasinos(), {});
 
   const bonusRows: BonusRow[] = getAllCasinos()
     .filter((c) => !!c.bonuses?.headline)
@@ -315,7 +314,7 @@ export default function HomePage() {
 
             <CasinoResearchCards casinos={topCasinos} />
 
-            <p className="mt-6 max-w-[42rem] font-body text-xs text-[hsl(var(--muted-foreground))]">
+            <p className="mt-8 max-w-[42rem] font-body text-xs text-[hsl(var(--muted-foreground))]">
               Rankings reflect overall Evolution experience — licensing, payout
               speed, table coverage, and verified player feedback. They are not
               influenced by commercial relationships.
@@ -528,104 +527,147 @@ function GuideCard({ guide }: { guide: FeaturedGuideCard }) {
 }
 
 function CasinoResearchCards({ casinos }: { casinos: CasinoRow[] }) {
+  const [featuredCasino, ...runnerCasinos] = casinos;
+
+  if (!featuredCasino) {
+    return null;
+  }
+
   return (
-    <div>
-      <ul className="m-0 list-none space-y-3 p-0">
-        {casinos.map((casino, index) => {
-          const rank = index + 1;
-          const highlights = getCasinoHighlights(casino);
+    <>
+      <FeaturedCasinoCard casino={featuredCasino} />
 
-          return (
-            <li
+      {runnerCasinos.length > 0 && (
+        <div className="flex flex-col gap-3">
+          {runnerCasinos.map((casino, index) => (
+            <CasinoRecommendationCard
               key={casino.id}
-              className="group rounded-lg border border-[hsl(var(--border)/0.6)] bg-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--border))]"
-            >
-              <div className="hidden gap-x-6 px-6 py-5 md:grid md:grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1.6fr)_auto] md:items-center">
-                <span className="font-heading text-base font-medium tabular-nums text-[hsl(var(--muted-foreground)/0.6)]">
-                  {rank}
-                </span>
+              casino={casino}
+              rank={index + 2}
+            />
+          ))}
+        </div>
+      )}
+    </>
+  );
+}
 
-                <div className="min-w-0">
-                  <h4 className="m-0 truncate font-heading text-[15px] font-semibold leading-tight text-[hsl(var(--foreground))]">
-                    {casino.name}
-                  </h4>
-                </div>
+function FeaturedCasinoCard({ casino }: { casino: CasinoRow }) {
+  const href = `/casinos/${casino.slug}`;
 
-                <div
-                  className="min-w-0 border-l-2 pl-3"
-                  style={{ borderLeftColor: "#D4A843" }}
-                >
-                  <p className="m-0 mb-2 font-body text-[13px] font-medium leading-snug text-[hsl(var(--foreground))]">
-                    {getCasinoBonusSummary(casino)}
-                  </p>
-                  <ul className="m-0 flex list-none flex-wrap gap-x-5 gap-y-1 p-0">
-                    {highlights.map((highlight) => (
-                      <li
-                        key={highlight}
-                        className="flex items-center gap-1.5 text-[12px] leading-snug text-[hsl(var(--muted-foreground))]"
-                      >
-                        <Check className="h-3 w-3 shrink-0 text-[hsl(var(--primary)/0.7)]" />
-                        <span className="truncate">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+  return (
+    <article className="relative mb-4 overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(45_40%_98%)] md:mb-5">
+      <div className="absolute left-0 top-0 h-full w-[3px] bg-gold" aria-hidden="true" />
+      <div className="grid gap-5 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:gap-7 md:px-8 md:py-7">
+        <div className="flex min-w-0 gap-4 md:gap-5">
+          <CasinoLogoMark casino={casino} featured />
+          <div className="min-w-0 flex-1">
+            <p className="mb-1.5 font-body text-[10.5px] font-bold uppercase tracking-[0.18em] text-gold">
+              Editor&apos;s Choice
+            </p>
+            <h3 className="mb-2 font-heading text-[19px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[21px]">
+              {casino.name}
+            </h3>
+            <p className="mb-2 font-heading text-[15px] font-semibold leading-snug text-[hsl(var(--foreground))] md:text-[16.5px]">
+              {getCasinoRecommendationHeadline(casino)}
+            </p>
+            <p className="m-0 max-w-[36rem] text-[13.5px] leading-[1.6] text-[hsl(var(--muted-foreground))]">
+              {getFeaturedCasinoSummary(casino)}
+            </p>
+          </div>
+        </div>
 
-                <div className="shrink-0">
-                  <Link
-                    href={`/casinos/${casino.slug}`}
-                    className="inline-flex h-9 min-w-[128px] items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[hsl(var(--border))] bg-transparent px-3 font-body text-xs font-medium text-[hsl(var(--primary))] ring-offset-[hsl(var(--background))] transition-colors hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
-                  >
-                    Visit Casino
-                  </Link>
-                </div>
-              </div>
+        <div className="flex items-center justify-between gap-3 md:flex-col md:items-end md:justify-center md:gap-2.5 md:border-l md:border-[hsl(var(--border)/0.7)] md:pl-6">
+          <Link
+            href={href}
+            className="group/cta inline-flex h-9 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[hsl(var(--primary))] px-3 font-body text-xs font-bold text-[hsl(var(--primary-foreground))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+          >
+            Visit Casino
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
+          </Link>
+          <Link
+            href={href}
+            className="inline-flex items-center gap-1 font-body text-[12.5px] font-medium text-[hsl(var(--primary))] transition-all hover:gap-1.5"
+          >
+            Read review
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
 
-              <div className="space-y-3.5 p-5 md:hidden">
-                <div className="flex items-start gap-3">
-                  <span className="pt-0.5 font-heading text-sm font-medium tabular-nums text-[hsl(var(--muted-foreground)/0.7)]">
-                    {rank}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="m-0 font-heading text-[15px] font-semibold leading-tight text-[hsl(var(--foreground))]">
-                      {casino.name}
-                    </h4>
-                  </div>
-                </div>
+function CasinoRecommendationCard({
+  casino,
+  rank,
+}: {
+  casino: CasinoRow;
+  rank: number;
+}) {
+  const href = `/casinos/${casino.slug}`;
+  const highlights = getCasinoRecommendationHighlights(casino);
 
-                <div
-                  className="border-l-2 pl-3"
-                  style={{ borderLeftColor: "#D4A843" }}
-                >
-                  <p className="m-0 font-body text-[13px] font-medium leading-snug text-[hsl(var(--foreground))]">
-                    {getCasinoBonusSummary(casino)}
-                  </p>
+  return (
+    <div className="group relative flex items-center gap-4 rounded-lg border border-[hsl(var(--border)/0.6)] bg-[hsl(var(--card))] p-4 transition-colors duration-200 hover:border-[hsl(var(--gold)/0.4)] md:gap-5 md:p-5">
+      <div className="flex shrink-0 items-center gap-3 md:w-[220px] md:gap-4">
+        <span className="w-5 text-center font-heading text-[20px] font-semibold leading-none tabular-nums text-[hsl(var(--foreground)/0.3)] md:w-6 md:text-[22px]">
+          {rank}
+        </span>
 
-                  <ul className="m-0 mt-2 grid list-none grid-cols-1 gap-1.5 p-0">
-                    {highlights.map((highlight) => (
-                      <li
-                        key={highlight}
-                        className="flex items-start gap-2 text-xs leading-relaxed text-[hsl(var(--muted-foreground))]"
-                      >
-                        <Check className="mt-0.5 h-3 w-3 shrink-0 text-[hsl(var(--primary)/0.8)]" />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        <CasinoLogoMark casino={casino} />
 
-                <Link
-                  href={`/casinos/${casino.slug}`}
-                  className="inline-flex h-9 w-full items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[hsl(var(--border))] bg-transparent px-3 font-body text-xs font-medium text-[hsl(var(--primary))] ring-offset-[hsl(var(--background))] transition-colors hover:bg-[hsl(var(--primary))] hover:text-[hsl(var(--primary-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
-                >
-                  Visit Casino
-                </Link>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+        <h4 className="truncate font-heading text-[15px] font-semibold leading-tight text-[hsl(var(--foreground))] md:text-[16px]">
+          {casino.name}
+        </h4>
+      </div>
+
+      <div className="hidden h-12 w-px shrink-0 bg-[hsl(var(--gold)/0.6)] md:block" aria-hidden="true" />
+
+      <div className="hidden min-w-0 flex-1 md:block">
+        <p className="font-body text-[14.5px] font-semibold leading-snug text-[hsl(var(--foreground))]">
+          {getCasinoRecommendationHeadline(casino)}
+        </p>
+        <p className="mt-1 text-[12.5px] leading-snug text-[hsl(var(--muted-foreground))]">
+          <span className="mr-1 text-gold">✓</span>
+          {highlights[0]}
+          <span className="mx-2 text-[hsl(var(--border))]">·</span>
+          <span className="mr-1 text-gold">✓</span>
+          {highlights[1]}
+        </p>
+      </div>
+
+      <Link
+        href={href}
+        className="inline-flex h-10 shrink-0 items-center justify-center rounded-md bg-[hsl(var(--primary))] px-4 font-body text-[13px] font-bold text-[hsl(var(--primary-foreground))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] md:h-11 md:px-5 md:text-sm"
+      >
+        Visit Casino
+      </Link>
     </div>
+  );
+}
+
+function CasinoLogoMark({
+  casino,
+  featured = false,
+}: {
+  casino: CasinoRow;
+  featured?: boolean;
+}) {
+  const sizeClass = featured
+    ? "h-12 w-12 text-base md:h-14 md:w-14 md:text-lg"
+    : "h-10 w-10 text-[14px] md:h-11 md:w-11 md:text-[15px]";
+  const colorClass = featured
+    ? "bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))]"
+    : "bg-[hsl(var(--muted))] text-[hsl(var(--foreground)/0.9)]";
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`${sizeClass} ${colorClass} flex shrink-0 items-center justify-center rounded-md font-heading font-semibold`}
+    >
+      {getCasinoInitials(casino.name)}
+    </span>
   );
 }
 
@@ -972,14 +1014,34 @@ function BonusTermRow({
   );
 }
 
-function getCasinoBonusSummary(casino: CasinoRow) {
-  return casino.bonuses?.headline ?? "Bonus details unavailable";
+function getFeaturedCasinoSummary(casino: CasinoRow) {
+  const license = casino.license ? `${casino.license} licensing, ` : "";
+
+  return `${casino.evolution.shows.length} tracked Evolution games, ${license}${formatPayoutSpeed(
+    casino.payouts.speed
+  ).toLowerCase()} payouts, and mobile score ${casino.mobile.experience}/5.`;
 }
 
-function getCasinoHighlights(casino: CasinoRow) {
+function getCasinoRecommendationHeadline(casino: CasinoRow) {
+  if (casino.payouts.speed === "fast") {
+    return "Fast withdrawals with strong Evolution coverage.";
+  }
+
+  if (casino.mobile.experience >= 4) {
+    return "Strong mobile Evolution live casino experience.";
+  }
+
+  if (casino.license) {
+    return `${casino.license} licensed Evolution live casino.`;
+  }
+
+  return "Reliable Evolution live casino coverage.";
+}
+
+function getCasinoRecommendationHighlights(casino: CasinoRow) {
   return [
-    `${casino.evolution.shows.length} Evolution shows`,
     `${formatPayoutSpeed(casino.payouts.speed)} payouts`,
+    `${casino.evolution.shows.length} tracked Evolution games`,
   ];
 }
 
