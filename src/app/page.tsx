@@ -355,82 +355,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
-      {/* BONUSES */}
-      <section style={{ marginTop: 18 }}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 12,
-            flexWrap: "wrap",
-            alignItems: "baseline",
-          }}
-        >
-          <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0 }}>
-            Top Evolution bonuses
-          </h2>
+      {/* TOP EVOLUTION BONUSES */}
+      <section className="border-b border-[hsl(var(--border))]">
+        <div className="mx-auto max-w-[1060px] px-4">
+          <div className="py-16 md:py-20">
+            <SectionHeader
+              eyebrow="Evolution Bonuses"
+              title="Top Evolution bonuses"
+              lead="Bonuses are surfaced from SSOT facts and the existing bonus scoring logic."
+              action={{ label: "See all bonuses", href: "/evolution-bonuses" }}
+            />
 
-          <a href="/evolution-bonuses" style={{ textDecoration: "underline" }}>
-            See all bonuses →
-          </a>
-        </div>
-
-        <p style={{ marginTop: 8, opacity: 0.85, lineHeight: 1.5 }}>
-          Bonuses are surfaced from SSOT facts and the existing bonus scoring logic.
-        </p>
-
-        <div style={{ marginTop: 10, display: "grid", gap: 10 }}>
-          {bonusRows.map((r, idx) => {
-            const c = r.casino;
-
-            return (
-              <div
-                key={c.id}
-                style={{
-                  padding: 14,
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: 12,
-                }}
-              >
-                <div style={{ fontSize: 18, fontWeight: 800 }}>
-                  #{idx + 1} — {c.name}
-                </div>
-
-                <div style={{ marginTop: 6, opacity: 0.85 }}>
-                  Bonus Quality Score: <strong>{r.bonusScore}</strong> · Evolution
-                  Score: {c.evolutionScore}
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                  <div style={{ fontWeight: 700 }}>Bonus</div>
-
-                  <div style={{ marginTop: 4 }}>
-                    {c.bonuses?.headline}
-                  </div>
-
-                  <div style={{ marginTop: 4, opacity: 0.75 }}>
-                    Last verified: {c.bonuses?.lastVerified}
-                  </div>
-                </div>
-
-                <div style={{ marginTop: 10 }}>
-                  <a
-                    href={`/casinos/${c.slug}`}
-                    style={{
-                      textDecoration: "underline",
-                      fontWeight: 700,
-                    }}
-                  >
-                    View full review →
-                  </a>
-                </div>
-              </div>
-            );
-          })}
+            {bonusRows.length === 0 ? (
+              <p className="m-0 text-sm text-[hsl(var(--muted-foreground))]">
+                No bonuses found in SSOT.
+              </p>
+            ) : (
+              <ul className="m-0 list-none space-y-5 p-0 md:space-y-6">
+                {bonusRows.map((row) => (
+                  <li key={row.casino.id}>
+                    <BonusOfferCard row={row} />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
       </section>
 
+      <div style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
       {/* TRUST */}
       <section
         style={{
@@ -661,6 +614,190 @@ function CasinoResearchCards({ casinos }: { casinos: CasinoRow[] }) {
           );
         })}
       </ul>
+    </div>
+  );
+}
+
+function BonusOfferCard({
+  row,
+}: {
+  row: { casino: CasinoRow; bonusScore: number };
+}) {
+  const { casino, bonusScore } = row;
+  const bonus = casino.bonuses;
+  const href = `/casinos/${casino.slug}`;
+  const headline = bonus?.headline ?? "Bonus details unavailable";
+  const wagering =
+    typeof bonus?.wageringX === "number"
+      ? `${bonus.wageringX}x`
+      : "Not listed in SSOT";
+  const termsStatus = bonus?.termsUrl ? "Terms link available" : "Not listed in SSOT";
+  const lastVerified = bonus?.lastVerified ?? "Not verified";
+  const verdict = `Bonus Quality Score: ${bonusScore} · Evolution Score: ${casino.evolutionScore}.`;
+
+  return (
+    <article className="group rounded-lg border border-[hsl(var(--border)/0.7)] bg-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--border))]">
+      <div className="hidden md:grid md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.15fr)_minmax(0,0.78fr)] md:items-stretch">
+        <div className="min-w-0 px-7 py-7">
+          <div className="mb-4 flex items-center gap-2.5">
+            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
+              {casino.name}
+            </span>
+            <span className="h-px w-4 bg-[hsl(var(--border))]" />
+            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--muted-foreground)/0.7)]">
+              Welcome offer
+            </span>
+          </div>
+
+          <h3 className="m-0 max-w-[20ch] font-heading !text-[26px] font-semibold !leading-[1.12] tracking-tight text-[hsl(var(--foreground))] lg:!text-[30px]">
+            {headline}
+          </h3>
+
+          <div
+            className="mt-5 border-l-2 pl-4"
+            style={{ borderLeftColor: "hsl(var(--gold) / 0.7)" }}
+          >
+            <span className="mb-1.5 block font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">
+              Editorial verdict
+            </span>
+            <p className="m-0 max-w-[34rem] text-[14px] font-medium leading-[1.55] text-[hsl(var(--foreground)/0.9)]">
+              {verdict}
+            </p>
+          </div>
+
+          <p className="m-0 mt-3 max-w-[34rem] text-[12.5px] leading-[1.6] text-[hsl(var(--muted-foreground))]">
+            Last verified: {lastVerified}
+          </p>
+        </div>
+
+        <div className="min-w-0 border-l border-[hsl(var(--border)/0.6)] px-7 py-7">
+          <span className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--muted-foreground)/0.7)]">
+            Conditions
+          </span>
+          <dl className="m-0 mt-4 divide-y divide-[hsl(var(--border)/0.5)]">
+            <BonusTermRow label="Offer detail" value={headline} emphasis />
+            <BonusTermRow label="Bonus quality" value={`${bonusScore}/100`} />
+            <BonusTermRow label="Wagering" value={wagering} />
+            <BonusTermRow label="Terms" value={termsStatus} />
+          </dl>
+        </div>
+
+        <aside className="flex flex-col rounded-r-lg border-l border-[hsl(var(--border)/0.6)] bg-[hsl(var(--muted)/0.22)] px-5 py-7">
+          <span className="font-body text-[10px] font-semibold uppercase tracking-[0.18em] text-[hsl(var(--muted-foreground))]">
+            Take action
+          </span>
+          <div className="mt-4 space-y-3">
+            <Link
+              href={href}
+              className="group/cta inline-flex h-10 w-full items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[hsl(var(--primary))] px-4 py-2 font-body text-sm font-bold text-[hsl(var(--primary-foreground))] ring-offset-[hsl(var(--background))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+            >
+              View full review
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/evolution-bonuses"
+              className="inline-flex items-center gap-1.5 font-body text-[12.5px] font-medium text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--primary))]"
+            >
+              See all bonuses
+              <ArrowUpRight className="h-3 w-3" />
+            </Link>
+          </div>
+
+          <p className="mt-auto border-t border-[hsl(var(--border)/0.5)] pt-6 font-body text-[12.5px] leading-[1.6] text-[hsl(var(--muted-foreground)/0.8)]">
+            Ranked from production bonus facts and Evolution scoring.
+          </p>
+          <p className="mt-3 font-body text-[11px] tabular-nums text-[hsl(var(--muted-foreground)/0.6)]">
+            18+ · T&Cs apply · Play responsibly
+          </p>
+        </aside>
+      </div>
+
+      <div className="space-y-4 px-4 py-4 md:hidden">
+        <div>
+          <div className="mb-2.5 flex items-center gap-2">
+            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
+              {casino.name}
+            </span>
+            <span className="h-px w-3 bg-[hsl(var(--border))]" />
+            <span className="font-body text-[10px] font-semibold uppercase tracking-[0.16em] text-[hsl(var(--muted-foreground)/0.7)]">
+              Welcome offer
+            </span>
+          </div>
+          <h3 className="m-0 max-w-[20ch] font-heading !text-[22px] font-semibold !leading-[1.15] tracking-tight text-[hsl(var(--foreground))]">
+            {headline}
+          </h3>
+
+          <div
+            className="mt-4 border-l-2 pl-3"
+            style={{ borderLeftColor: "hsl(var(--gold) / 0.7)" }}
+          >
+            <span className="mb-1 block font-body text-[10px] font-semibold uppercase tracking-[0.16em] text-gold">
+              Editorial verdict
+            </span>
+            <p className="m-0 text-[13px] font-medium leading-[1.55] text-[hsl(var(--foreground)/0.9)]">
+              {verdict}
+            </p>
+          </div>
+        </div>
+
+        <dl className="m-0 divide-y divide-[hsl(var(--border)/0.5)] border-t border-[hsl(var(--border)/0.6)] pt-1">
+          <BonusTermRow label="Offer detail" value={headline} emphasis />
+          <BonusTermRow label="Bonus quality" value={`${bonusScore}/100`} />
+          <BonusTermRow label="Wagering" value={wagering} />
+          <BonusTermRow label="Terms" value={termsStatus} />
+        </dl>
+
+        <p className="m-0 border-t border-[hsl(var(--border)/0.6)] pt-3 font-body text-[11.5px] leading-[1.55] text-[hsl(var(--muted-foreground)/0.85)]">
+          Last verified: {lastVerified}
+        </p>
+
+        <div className="flex items-center gap-3 pt-1">
+          <Link
+            href={href}
+            className="inline-flex h-9 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-[hsl(var(--primary))] px-3 font-body text-xs font-bold text-[hsl(var(--primary-foreground))] ring-offset-[hsl(var(--background))] transition-colors hover:bg-[hsl(var(--primary)/0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--ring))] focus-visible:ring-offset-2"
+          >
+            View full review
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </Link>
+          <Link
+            href="/evolution-bonuses"
+            className="inline-flex shrink-0 items-center gap-1 font-body text-[12px] font-medium text-[hsl(var(--muted-foreground))] transition-colors hover:text-[hsl(var(--primary))]"
+          >
+            Bonuses
+            <ArrowUpRight className="h-3 w-3" />
+          </Link>
+        </div>
+        <p className="m-0 font-body text-[10px] tabular-nums text-[hsl(var(--muted-foreground)/0.6)]">
+          18+ · T&Cs apply · Play responsibly
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function BonusTermRow({
+  label,
+  value,
+  emphasis,
+}: {
+  label: string;
+  value: string;
+  emphasis?: boolean;
+}) {
+  return (
+    <div className="py-2.5 first:pt-0 last:pb-0">
+      <dt className="m-0 mb-1 font-body text-[9.5px] uppercase tracking-[0.16em] text-[hsl(var(--muted-foreground)/0.7)]">
+        {label}
+      </dt>
+      <dd
+        className={`m-0 font-body leading-[1.4] ${
+          emphasis
+            ? "text-[15.5px] font-semibold tracking-tight text-[hsl(var(--foreground))]"
+            : "text-[13.5px] text-[hsl(var(--foreground)/0.9)]"
+        }`}
+      >
+        {value}
+      </dd>
     </div>
   );
 }
