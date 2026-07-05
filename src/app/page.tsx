@@ -68,33 +68,32 @@ const featuredGuides: FeaturedGuideCard[] = [
 type EvolutionGameCard = {
   name: string;
   type: string;
-  href: string;
+  href?: string;
   available: boolean;
 };
 
-const liveGameRoutes = new Set([
-  "crazy-time",
-  "lightning-roulette",
-  "monopoly-live",
-]);
+const designEvolutionGames = [
+  { name: "Crazy Time", type: "Game Show" },
+  { name: "Monopoly Live", type: "Game Show" },
+  { name: "Dream Catcher", type: "Money Wheel" },
+  { name: "Lightning Roulette", type: "Live Roulette" },
+  { name: "Lightning Dice", type: "Game Show" },
+  { name: "Live Baccarat", type: "Live Tables" },
+  { name: "Live Blackjack", type: "Live Tables" },
+  { name: "Crazy Coin Flip", type: "Game Show" },
+];
 
-const evolutionGames: EvolutionGameCard[] = guideRegistry
-  .map((guide) => {
-    if (!guide.intent.startsWith("show:")) {
-      return null;
-    }
+const evolutionGames: EvolutionGameCard[] = designEvolutionGames.map((game) => {
+  const guide = guideRegistry.find(
+    (entry) => getEvolutionGuideName(entry.title) === game.name
+  );
 
-    const slug = guide.intent.slice("show:".length);
-    const name = guide.title.replace(/ on Evolution Live$/, "");
-
-    return {
-      name,
-      type: getEvolutionGameType(name),
-      href: `/games/${slug}`,
-      available: liveGameRoutes.has(slug),
-    };
-  })
-  .filter((game): game is EvolutionGameCard => game !== null);
+  return {
+    ...game,
+    href: guide ? `/guides/${guide.slug}` : undefined,
+    available: Boolean(guide),
+  };
+});
 
 export default function HomePage() {
   const topCasinos = filterAndRank(getAllCasinos(), {}).slice(0, 5);
@@ -249,7 +248,7 @@ export default function HomePage() {
             <ul className="m-0 grid list-none grid-cols-2 gap-px overflow-hidden rounded-lg border border-[hsl(var(--border))] bg-[hsl(var(--border))] p-0 md:grid-cols-3 lg:grid-cols-4">
               {evolutionGames.map((game) => (
                 <li key={game.name}>
-                  {game.available ? (
+                  {game.available && game.href ? (
                     <Link
                       href={game.href}
                       className="group block h-full bg-[hsl(var(--card))] px-5 py-5 transition-colors hover:bg-[hsl(var(--muted)/0.4)]"
@@ -450,16 +449,8 @@ export default function HomePage() {
   );
 }
 
-function getEvolutionGameType(name: string) {
-  if (name.includes("Roulette")) {
-    return "Live Roulette";
-  }
-
-  if (name.includes("Dream Catcher")) {
-    return "Money Wheel";
-  }
-
-  return "Game Show";
+function getEvolutionGuideName(title: string) {
+  return title.replace(/ on Evolution Live$/, "");
 }
 
 function SectionHeader({
