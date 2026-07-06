@@ -1,12 +1,15 @@
+import type { Metadata } from "next";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
+import { canonicalMetadata } from "@/app/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Lightning Dice (Evolution) – RTP, Odds & Strategy Guide",
-  description: "Learn how Lightning Dice works: RTP, odds, rules, and simple winning strategies. Quick guide to Evolution’s live dice game."
+  description: "Learn how Lightning Dice works: RTP, odds, rules, and simple winning strategies. Quick guide to Evolution’s live dice game.",
+  ...canonicalMetadata("/guides/lightning-dice"),
 };
 
 function getGuide(slug: string) {

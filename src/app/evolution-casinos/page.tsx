@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
 import RankingExplainer from "@/components/evocasino/RankingExplainer";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow, PayoutSpeed, PaymentMethod } from "@/data/evocasino/schema";
 import { evoBreadcrumbsEvolutionCasinos } from "@/lib/seo/jsonld";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
+import { canonicalMetadata } from "@/app/seo";
+
+export const metadata: Metadata = canonicalMetadata("/evolution-casinos");
 
 function pick<T extends string>(v: string | undefined, allowed: readonly T[]): T | undefined {
   if (!v) return undefined;

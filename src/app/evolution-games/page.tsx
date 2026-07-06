@@ -1,3 +1,8 @@
+import type { Metadata } from "next";
+import { canonicalMetadata } from "@/app/seo";
+
+export const metadata: Metadata = canonicalMetadata("/evolution-games");
+
 export default function EvolutionGamesPage() {
   return (
     <main style={{ maxWidth: 960, margin: "0 auto", padding: "40px 20px" }}>

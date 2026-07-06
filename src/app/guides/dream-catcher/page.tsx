@@ -1,12 +1,15 @@
+import type { Metadata } from "next";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
+import { canonicalMetadata } from "@/app/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Dream Catcher (Evolution) – How to Play, Odds & Strategy Guide",
-  description: "Dream Catcher explained: rules, payouts, odds, and strategy tips. Learn how this Evolution money wheel game works."
+  description: "Dream Catcher explained: rules, payouts, odds, and strategy tips. Learn how this Evolution money wheel game works.",
+  ...canonicalMetadata("/guides/dream-catcher"),
 };
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);

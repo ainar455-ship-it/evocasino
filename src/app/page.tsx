@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -11,8 +12,11 @@ import {
 import { filterAndRank, getAllCasinos, type CasinoRow } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
 import { guideRegistry } from "@/lib/guides/guideRegistry";
+import { canonicalMetadata } from "@/app/seo";
 
 type BonusRow = { casino: CasinoRow; bonusScore: number };
+
+export const metadata: Metadata = canonicalMetadata("/");
 
 const principles = [
   { label: "Facts-only rankings" },

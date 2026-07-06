@@ -1,12 +1,15 @@
+import type { Metadata } from "next";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
+import { canonicalMetadata } from "@/app/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Crazy Coin Flip (Evolution) – How It Works & Strategy Guide",
-  description: "Learn how Crazy Coin Flip works, including multipliers, rules, and simple strategies. Quick guide to Evolution bonus game."
+  description: "Learn how Crazy Coin Flip works, including multipliers, rules, and simple strategies. Quick guide to Evolution bonus game.",
+  ...canonicalMetadata("/guides/crazy-coin-flip"),
 };
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);

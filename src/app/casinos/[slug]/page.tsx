@@ -1,11 +1,22 @@
+import type { Metadata } from "next";
 import RelatedCasinos from "@/components/evocasino/RelatedCasinos";
 import RankingExplainer from "@/components/evocasino/RankingExplainer";
 import { getAllCasinos, getRelatedCasinos } from "@/lib/evo/load";
 import { computeEvolutionScore } from "@/lib/evo/score";
+import { canonicalMetadata } from "@/app/seo";
 
 export async function generateStaticParams() {
   const casinos = getAllCasinos();
   return casinos.map((c) => ({ slug: c.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  return canonicalMetadata(`/casinos/${slug}`);
 }
 
 export default async function CasinoPage({

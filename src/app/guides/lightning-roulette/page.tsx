@@ -1,12 +1,15 @@
+import type { Metadata } from "next";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
+import { canonicalMetadata } from "@/app/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Lightning Roulette (Evolution) – Rules, Multipliers & RTP Guide",
-  description: "Learn how Lightning Roulette works, including lightning multipliers, RTP, rules, and simple strategies for better play."
+  description: "Learn how Lightning Roulette works, including lightning multipliers, RTP, rules, and simple strategies for better play.",
+  ...canonicalMetadata("/guides/lightning-roulette"),
 };
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);

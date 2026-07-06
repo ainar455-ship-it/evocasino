@@ -1,4 +1,8 @@
+import type { Metadata } from "next";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
+import { canonicalMetadata } from "@/app/seo";
+
+export const metadata: Metadata = canonicalMetadata("/games/lightning-roulette");
 
 export default function LightningRoulettePage() {
   const all = getAllCasinos();

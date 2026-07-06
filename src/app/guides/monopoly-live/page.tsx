@@ -1,12 +1,15 @@
+import type { Metadata } from "next";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
+import { canonicalMetadata } from "@/app/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Monopoly Live (Evolution) – Bonus Rounds, RTP & How to Play",
-  description: "Monopoly Live guide: rules, bonus rounds, multipliers, RTP, and strategy tips. Learn how Evolution’s game show works."
+  description: "Monopoly Live guide: rules, bonus rounds, multipliers, RTP, and strategy tips. Learn how Evolution’s game show works.",
+  ...canonicalMetadata("/guides/monopoly-live"),
 };
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);

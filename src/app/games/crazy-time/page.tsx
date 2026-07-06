@@ -1,5 +1,9 @@
+import type { Metadata } from "next";
 import RelatedCasinos from "@/components/evocasino/RelatedCasinos";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
+import { canonicalMetadata } from "@/app/seo";
+
+export const metadata: Metadata = canonicalMetadata("/games/crazy-time");
 
 export default function CrazyTimePage() {
   const all = getAllCasinos();

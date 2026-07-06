@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import SiteNav from "@/app/_components/SiteNav";
+import { SITE_METADATA_BASE } from "@/app/seo";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
 const playfairDisplay = Playfair_Display({
@@ -19,6 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: SITE_METADATA_BASE,
   title: "EvoCasino — Evolution Live Casino Guide",
   description: "Expert guide to Evolution live dealer casinos, games, bonuses, and methodology.",
 };
