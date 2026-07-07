@@ -3,7 +3,7 @@ import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos, type CasinoRow } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
-import type { EvolutionShow, PaymentMethod } from "@/data/evocasino/schema";
+import type { EvolutionShow, PaymentMethod, PayoutSpeed } from "@/data/evocasino/schema";
 import { canonicalMetadata } from "@/app/seo";
 import GuidePage from "@/components/guide/GuidePage";
 import type { GuideCasino } from "@/components/guide/GuideCasinoCards";
@@ -32,23 +32,33 @@ const paymentLabels: Record<PaymentMethod, string> = {
   usdt: "USDT",
 };
 
+const payoutLabels: Record<PayoutSpeed, string> = {
+  fast: "Fast payout-policy field",
+  avg: "Average payout-policy field",
+  slow: "Slower payout-policy field",
+};
+
 function toGuideCasino(casino: CasinoRow, index: number): GuideCasino {
   const payments = casino.payments.methods.map((method) => paymentLabels[method] ?? method.toUpperCase());
   const licensing = casino.license ? `${casino.license} licensing signal` : "Licensing signals reviewed";
+  const tableCoverage = casino.evolution.tablesApprox
+    ? `Approx. ${casino.evolution.tablesApprox} Evolution tables listed`
+    : "Evolution live casino coverage listed";
 
   return {
     rank: index + 1,
     name: casino.name,
-    rating: Math.max(1, Math.min(5, Number((casino.evolutionScore / 20).toFixed(1)))),
+    scoreLabel: `Evolution Score ${casino.evolutionScore}/100`,
     bonus: casino.bonuses?.headline ?? "Offer details depend on current operator terms",
-    pros: [
+    facts: [
       "Crazy Time listed in Evolution coverage",
       licensing,
+      tableCoverage,
       `Mobile experience ${casino.mobile.experience}/5`,
+      payoutLabels[casino.payouts.speed],
       `${payments.length} payment methods listed`,
     ],
     payments,
-    mobile: casino.mobile.experience >= 4,
     ctaLabel: "Read Review",
     href: `/casinos/${casino.slug}`,
   };
