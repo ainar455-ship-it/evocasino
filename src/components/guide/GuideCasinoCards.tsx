@@ -45,8 +45,8 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
 
       <ul className="space-y-3 list-none p-0 m-0">
         {casinos.map((c) => (
-          <li key={c.name} className="group bg-card border border-border/60 rounded-lg shadow-sm transition-colors hover:border-border">
-            <div className="hidden md:grid md:grid-cols-[2.75rem_minmax(0,1fr)_minmax(0,1.45fr)_auto] md:items-center gap-x-5 px-5 py-5">
+          <li key={c.name} className="group bg-card border border-border/60 rounded-lg transition-colors hover:border-border">
+            <div className="hidden md:grid md:grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1.6fr)_auto] md:items-center gap-x-6 px-6 py-5">
               <span className="text-base font-heading font-medium text-muted-foreground/60 tabular-nums">
                 {String(c.rank).padStart(2, "0")}
               </span>
@@ -62,11 +62,11 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                 )}
               </div>
 
-              <div className="min-w-0 border-l border-gold pl-4">
+              <div className="min-w-0 border-l-2 border-[#D4A843] pl-3">
                 <p className="text-[13px] text-foreground font-body font-medium m-0 mb-2 leading-snug">
                   {c.bonus}
                 </p>
-                <ul className="flex flex-wrap gap-x-4 gap-y-1 list-none p-0 m-0">
+                <ul className="flex flex-wrap gap-x-5 gap-y-1 list-none p-0 m-0">
                   {c.facts.slice(0, 2).map((p) => (
                     <li key={p} className="flex items-center gap-1.5 text-[12px] text-muted-foreground leading-snug">
                       <Check className="h-3 w-3 text-primary/70 shrink-0" />
@@ -96,11 +96,11 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                 </div>
               </div>
 
-              <div className="border-l border-gold pl-4">
-                <p className="text-[13px] text-foreground font-body font-medium m-0">{c.bonus}</p>
+              <div className="border-l-2 border-[#D4A843] pl-3">
+                <p className="text-[13px] text-foreground font-body font-medium m-0 leading-snug">{c.bonus}</p>
               </div>
 
-              <ul className="grid grid-cols-1 gap-1.5 list-none p-0 m-0">
+              <ul className="grid grid-cols-1 gap-1.5 list-none p-0 m-0 mt-2">
                 {c.facts.slice(0, 3).map((p) => (
                   <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
                     <Check className="h-3 w-3 text-primary/80 mt-0.5 shrink-0" />
