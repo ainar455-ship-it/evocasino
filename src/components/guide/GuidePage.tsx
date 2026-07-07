@@ -30,7 +30,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
     }));
 
   return (
-    <Page className="bg-background">
+    <Page>
       <Container className="max-w-[1060px] px-4">
         <GuideHero
           breadcrumbs={g.breadcrumbs}
