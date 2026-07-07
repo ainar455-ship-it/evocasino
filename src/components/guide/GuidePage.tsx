@@ -31,7 +31,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
 
   return (
     <Page className="bg-background">
-      <Container className="max-w-[68rem] px-4 md:px-6">
+      <Container className="max-w-[1060px] px-4">
         <GuideHero
           breadcrumbs={g.breadcrumbs}
           category={g.category}
@@ -43,8 +43,8 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
         />
       </Container>
 
-      <Container className="max-w-[68rem] px-4 md:px-6 mt-6 md:mt-10 pb-14 md:pb-20">
-        <div className="md:grid md:grid-cols-[9.5rem_minmax(0,46rem)] md:gap-9 lg:gap-12 md:justify-center">
+      <Container className="max-w-[1060px] px-4 mt-6 md:mt-10 pb-14 md:pb-20">
+        <div className="md:grid md:grid-cols-[180px_minmax(0,1fr)] md:gap-10 lg:gap-14">
           <aside className="md:py-5 mb-8 md:mb-0">
             <GuideQuickNav items={navItems} />
           </aside>
