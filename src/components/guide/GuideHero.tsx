@@ -28,7 +28,7 @@ export function GuideHero({
 }: GuideHeroProps) {
   return (
     <header className="pt-8 md:pt-12 pb-8 md:pb-12 border-b border-border/60">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+      <div className="mx-auto grid max-w-[62rem] gap-7 lg:grid-cols-[minmax(0,38rem)_19.5rem] lg:items-start lg:gap-10">
         <div className="min-w-0">
           <Breadcrumbs items={breadcrumbs} />
 
@@ -36,11 +36,11 @@ export function GuideHero({
             {category}
           </p>
 
-          <h1 className="mb-5 max-w-[18ch] text-[2.65rem] leading-[1.04] md:text-[3.6rem] lg:text-[4rem]">
+          <h1 className="mb-5 max-w-[17ch] text-[2.55rem] leading-[1.05] md:text-[3.35rem] lg:text-[3.75rem]">
             {title}
           </h1>
 
-          <p className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.75] max-w-[45rem] mb-6 md:mb-7">
+          <p className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.75] max-w-[40rem] mb-6 md:mb-7">
             {intro}
           </p>
 
