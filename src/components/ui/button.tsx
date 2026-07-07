@@ -1,15 +1,19 @@
 import React from "react";
+import { Slot } from "@radix-ui/react-slot";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: string;
   size?: string;
   className?: string;
+  asChild?: boolean;
 }
 
-export function Button({ children, ...props }: ButtonProps) {
+export function Button({ children, asChild = false, ...props }: ButtonProps) {
+  const Component: any = asChild ? Slot : "button";
+
   return (
-    <button
+    <Component
       {...props}
       style={{
         padding: "10px 16px",
@@ -22,6 +26,6 @@ export function Button({ children, ...props }: ButtonProps) {
       }}
     >
       {children}
-    </button>
+    </Component>
   );
 }
