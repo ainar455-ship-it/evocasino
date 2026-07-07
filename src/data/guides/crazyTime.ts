@@ -16,11 +16,14 @@ export const crazyTimeGuide = {
     { label: "RTP", value: "96.08%" },
     { label: "Volatility", value: "Very High" },
     { label: "Crazy Time Bonus", value: "Up to 20,000x" },
+    { label: "Min Bet", value: "Varies" },
+    { label: "Max Bet", value: "Varies" },
     { label: "Released", value: "2020" },
   ],
   sections: [
     {
       id: "overview",
+      navLabel: "Overview",
       title: "What is Crazy Time?",
       content:
         "Crazy Time is a live Evolution game show built around a giant vertical money wheel. Players bet on number segments or bonus segments before each spin, then watch a live presenter run the betting window, trigger the Top Slot and spin the wheel.",
@@ -29,6 +32,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "how-to-play",
+      navLabel: "How to Play",
       title: "How to Play Crazy Time",
       content:
         "Each round follows the same basic flow: choose a stake, place bets before the timer closes, watch the Top Slot, then follow the wheel result. If the wheel lands on a number, matching bets pay immediately. If it lands on a bonus segment, qualifying players enter that bonus round.",
@@ -57,6 +61,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "rtp-odds",
+      navLabel: "RTP & Odds",
       title: "RTP & Odds",
       content:
         "Crazy Time has a published headline RTP of 96.08%, but return varies by bet type. Number bets and bonus bets have different hit rates, payout profiles and volatility. The game should be treated as high variance, especially when chasing bonus rounds.",
@@ -65,6 +70,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "bonus-rounds",
+      navLabel: "Bonus Rounds",
       title: "The Four Bonus Rounds",
       content:
         "Crazy Time includes four separate bonus rounds. Each uses different mechanics, different hit frequency and different multiplier potential.",
@@ -109,6 +115,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "strategy-bankroll",
+      navLabel: "Strategies",
       title: "Strategy & Bankroll",
       content:
         "No Crazy Time strategy can remove the house edge or make bonus rounds predictable. Useful strategy is mostly about bankroll control, bet sizing and understanding how volatile the game can be.",
@@ -134,6 +141,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "myths",
+      navLabel: "Myths",
       title: "Myths",
       content:
         "Crazy Time has built up plenty of myths around patterns, streaks and bonus timing. These claims should not guide real-money play.",
@@ -157,6 +165,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "mobile",
+      navLabel: "Mobile",
       title: "Playing on Mobile",
       content:
         "Crazy Time is built for live video play and is commonly available on mobile casino sites. Actual quality depends on the operator, region, device, connection and Evolution table availability.",
@@ -169,12 +178,14 @@ export const crazyTimeGuide = {
     },
     {
       id: "dealers",
+      navLabel: "Dealers",
       title: "Crazy Time Dealers and Live Studio",
       content:
         "Crazy Time is hosted by live Evolution presenters in a studio environment. Dealers manage the betting window, trigger the Top Slot, spin the wheel and guide players through bonus rounds. Dealer availability, language and table presentation can vary by casino and region.",
     },
     {
       id: "best-casinos",
+      navLabel: "Best Casinos",
       title: "Best Casinos for Crazy Time",
       content:
         "We compare casinos using verified operator information, licensing signals, Evolution game availability, published payout policies and EvoCasino's ranking framework.",
@@ -183,6 +194,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "faq",
+      navLabel: "FAQ",
       title: "Crazy Time FAQ",
       content:
         "Short answers to the most common Crazy Time questions, including rules, RTP, meaning, dealers and mobile play.",
@@ -241,6 +253,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "methodology",
+      showInNav: false,
       title: "Methodology",
       content:
         "EvoCasino separates guide information from production ranking data so design content can be migrated safely without changing scoring logic.",
@@ -252,6 +265,7 @@ export const crazyTimeGuide = {
     },
     {
       id: "related-guides",
+      showInNav: false,
       title: "Related Evolution Guides",
       content:
         "Continue through production guide routes for related Evolution live games and casino research.",
