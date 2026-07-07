@@ -45,7 +45,8 @@ type RelatedGame = {
   name: string;
   type: string;
   description: string;
-  href?: string;
+  href: string;
+  cta: "Open hub" | "Open guide";
 };
 
 const relatedGames: RelatedGame[] = [
@@ -53,23 +54,29 @@ const relatedGames: RelatedGame[] = [
     name: "Lightning Roulette",
     type: "Live Roulette",
     href: "/games/lightning-roulette",
+    cta: "Open hub",
     description: "Lightning multipliers and Evolution roulette pacing in a short game hub.",
   },
   {
     name: "Monopoly Live",
     type: "Game Show",
     href: "/games/monopoly-live",
+    cta: "Open hub",
     description: "Bonus boards, 4 Rolls and Evolution's board-game inspired live show.",
   },
   {
     name: "Crazy Coin Flip",
     type: "Game Show",
-    description: "Coin-flip game show coverage will be added once the production game route is available.",
+    href: "/guides/crazy-coin-flip",
+    cta: "Open guide",
+    description: "Guide coverage for Evolution's coin-flip game show and bonus mechanics.",
   },
   {
     name: "Dream Catcher",
-    type: "Game Show",
-    description: "Dream Catcher coverage will be added once the production game route is available.",
+    type: "Money Wheel",
+    href: "/guides/dream-catcher",
+    cta: "Open guide",
+    description: "Guide coverage for Evolution's classic live money wheel format.",
   },
 ];
 
@@ -402,37 +409,20 @@ export default function CrazyTimePage() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-lg overflow-hidden border border-border list-none p-0 m-0">
               {relatedGames.map((related) => (
                 <li key={related.name}>
-                  {related.href ? (
-                    <Link href={related.href} className="group flex h-full flex-col bg-card p-5 transition-colors hover:bg-muted/40">
-                      <p className="text-[10px] font-body font-semibold tracking-[0.18em] uppercase text-gold mb-1.5">
-                        {related.type}
-                      </p>
-                      <h3 className="text-[15px] font-heading font-semibold text-foreground mb-2 leading-tight">
-                        {related.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed m-0 flex-1">
-                        {related.description}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-[12px] font-body font-medium text-primary">
-                        Open game <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
-                      </span>
-                    </Link>
-                  ) : (
-                    <article className="flex h-full flex-col bg-card p-5">
-                      <p className="text-[10px] font-body font-semibold tracking-[0.18em] uppercase text-gold mb-1.5">
-                        {related.type}
-                      </p>
-                      <h3 className="text-[15px] font-heading font-semibold text-foreground mb-2 leading-tight">
-                        {related.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground leading-relaxed m-0 flex-1">
-                        {related.description}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-1 text-[12px] font-body font-medium text-muted-foreground">
-                        Coming soon
-                      </span>
-                    </article>
-                  )}
+                  <Link href={related.href} className="group flex h-full flex-col bg-card p-5 transition-colors hover:bg-muted/40">
+                    <p className="text-[10px] font-body font-semibold tracking-[0.18em] uppercase text-gold mb-1.5">
+                      {related.type}
+                    </p>
+                    <h3 className="text-[15px] font-heading font-semibold text-foreground mb-2 leading-tight">
+                      {related.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed m-0 flex-1">
+                      {related.description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-[12px] font-body font-medium text-primary">
+                      {related.cta} <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
                 </li>
               ))}
             </ul>
