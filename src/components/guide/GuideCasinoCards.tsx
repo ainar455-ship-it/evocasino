@@ -1,16 +1,14 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Star, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 export interface GuideCasino {
   rank: number;
   name: string;
-  logo?: string;
-  rating: number;
+  scoreLabel?: string;
   bonus: string;
-  pros: string[];
+  facts: string[];
   payments: string[];
-  mobile: boolean;
   ctaLabel?: string;
   href?: string;
 }
@@ -57,14 +55,11 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                 <h4 className="text-[15px] font-heading font-semibold text-foreground m-0 leading-tight truncate">
                   {c.name}
                 </h4>
-                <div className="flex items-center gap-1.5 mt-2">
-                  <div className="flex items-center gap-0.5">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className={`h-3 w-3 ${i < Math.floor(c.rating) ? "text-gold fill-gold" : "text-border"}`} />
-                    ))}
-                  </div>
-                  <span className="text-[11px] text-muted-foreground font-body tabular-nums">{c.rating.toFixed(1)}</span>
-                </div>
+                {c.scoreLabel && (
+                  <p className="text-[11px] text-muted-foreground font-body mt-2 mb-0">
+                    {c.scoreLabel}
+                  </p>
+                )}
               </div>
 
               <div className="min-w-0">
@@ -72,7 +67,7 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                   {c.bonus}
                 </p>
                 <ul className="flex flex-wrap gap-x-4 gap-y-1 list-none p-0 m-0">
-                  {c.pros.slice(0, 2).map((p) => (
+                  {c.facts.slice(0, 2).map((p) => (
                     <li key={p} className="flex items-center gap-1.5 text-[12px] text-muted-foreground leading-snug">
                       <Check className="h-3 w-3 text-primary/70 shrink-0" />
                       <span className="truncate">{p}</span>
@@ -93,21 +88,18 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                 </span>
                 <div className="min-w-0 flex-1">
                   <h4 className="text-[15px] font-heading font-semibold text-foreground m-0 leading-tight">{c.name}</h4>
-                  <div className="flex items-center gap-1.5 mt-1.5">
-                    <div className="flex items-center gap-0.5">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className={`h-3 w-3 ${i < Math.floor(c.rating) ? "text-gold fill-gold" : "text-border"}`} />
-                      ))}
-                    </div>
-                    <span className="text-xs text-muted-foreground font-body tabular-nums">{c.rating.toFixed(1)}</span>
-                  </div>
+                  {c.scoreLabel && (
+                    <p className="text-xs text-muted-foreground font-body mt-1.5 mb-0">
+                      {c.scoreLabel}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <p className="text-[13px] text-foreground font-body font-medium m-0">{c.bonus}</p>
 
               <ul className="grid grid-cols-1 gap-1.5 list-none p-0 m-0">
-                {c.pros.slice(0, 3).map((p) => (
+                {c.facts.slice(0, 3).map((p) => (
                   <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
                     <Check className="h-3 w-3 text-primary/80 mt-0.5 shrink-0" />
                     <span>{p}</span>
