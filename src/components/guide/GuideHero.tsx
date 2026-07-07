@@ -27,7 +27,7 @@ function TitleText({ title }: { title: string }) {
   return (
     <>
       {prefix}
-      <span className="text-blue-700">{emphasis}</span>
+      <span className="text-primary">{emphasis}</span>
     </>
   );
 }
@@ -46,27 +46,27 @@ export function GuideHero({
   stats,
 }: GuideHeroProps) {
   return (
-    <header className="pt-8 md:pt-12 pb-8 md:pb-12 border-b border-border/60">
-      <div className="mx-auto grid max-w-[62rem] gap-7 lg:grid-cols-[minmax(0,38rem)_19.5rem] lg:items-start lg:gap-10">
-        <div className="min-w-0">
-          <Breadcrumbs items={breadcrumbs} />
+    <header className="pt-10 md:pt-16 pb-10 md:pb-14 border-b border-border/70">
+      <Breadcrumbs items={breadcrumbs} />
 
-          <p className="mt-6 mb-4 text-[11px] uppercase tracking-[0.22em] text-gold font-body font-semibold">
+      <div className="mt-6 grid md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] gap-10 md:gap-14 lg:gap-20 items-start">
+        <div className="max-w-[40rem]">
+          <p className="text-[11px] font-body font-semibold tracking-[0.18em] uppercase text-gold mb-5">
             {category}
           </p>
 
-          <h1 className="mb-5 max-w-[17ch] text-[2.55rem] leading-[1.05] md:text-[3.35rem] lg:text-[3.75rem] text-foreground">
+          <h1 className="mb-6 max-w-[22ch] text-foreground">
             <TitleText title={title} />
           </h1>
 
-          <p className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.75] max-w-[40rem] mb-6 md:mb-7">
+          <p className="text-[16.5px] md:text-[17.5px] text-muted-foreground leading-[1.7] mb-7 max-w-[36rem]">
             {intro}
           </p>
 
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs md:text-sm text-muted-foreground font-body">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[12.5px] font-body text-muted-foreground">
             <span>Updated {updated}</span>
             <Dot />
-            <Link href={methodologyHref} className="text-primary hover:underline underline-offset-2">
+            <Link href={methodologyHref} className="text-primary hover:underline underline-offset-4">
               Our methodology
             </Link>
             <Dot />
@@ -74,9 +74,7 @@ export function GuideHero({
           </div>
         </div>
 
-        <div className="lg:pt-12">
-          <FactsGrid facts={stats} />
-        </div>
+        <FactsGrid facts={stats} />
       </div>
     </header>
   );
