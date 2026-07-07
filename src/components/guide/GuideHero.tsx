@@ -17,6 +17,25 @@ interface GuideHeroProps {
   stats: HeroStat[];
 }
 
+function TitleText({ title }: { title: string }) {
+  const emphasis = "Best Casinos & How to Play";
+
+  if (!title.includes(emphasis)) return <>{title}</>;
+
+  const [prefix] = title.split(emphasis);
+
+  return (
+    <>
+      {prefix}
+      <span className="text-blue-700">{emphasis}</span>
+    </>
+  );
+}
+
+function Dot() {
+  return <span aria-hidden="true" className="h-1 w-1 rounded-full bg-gold" />;
+}
+
 export function GuideHero({
   breadcrumbs,
   category,
@@ -32,12 +51,12 @@ export function GuideHero({
         <div className="min-w-0">
           <Breadcrumbs items={breadcrumbs} />
 
-          <p className="mt-6 mb-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-body font-semibold">
+          <p className="mt-6 mb-4 text-[11px] uppercase tracking-[0.22em] text-gold font-body font-semibold">
             {category}
           </p>
 
-          <h1 className="mb-5 max-w-[17ch] text-[2.55rem] leading-[1.05] md:text-[3.35rem] lg:text-[3.75rem]">
-            {title}
+          <h1 className="mb-5 max-w-[17ch] text-[2.55rem] leading-[1.05] md:text-[3.35rem] lg:text-[3.75rem] text-foreground">
+            <TitleText title={title} />
           </h1>
 
           <p className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.75] max-w-[40rem] mb-6 md:mb-7">
@@ -46,11 +65,11 @@ export function GuideHero({
 
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs md:text-sm text-muted-foreground font-body">
             <span>Updated {updated}</span>
-            <span className="text-muted-foreground/40">/</span>
+            <Dot />
             <Link href={methodologyHref} className="text-primary hover:underline underline-offset-2">
               Our methodology
             </Link>
-            <span className="text-muted-foreground/40">/</span>
+            <Dot />
             <span>Independent analysis</span>
           </div>
         </div>
