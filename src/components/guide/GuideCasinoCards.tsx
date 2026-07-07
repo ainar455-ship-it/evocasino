@@ -39,24 +39,16 @@ function CasinoCta({ casino }: { casino: GuideCasino }) {
   );
 }
 
-export function GuideCasinoCards({
-  casinos,
-  title,
-  description,
-}: GuideCasinoCardsProps) {
+export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCardsProps) {
   return (
     <div>
       {title && <h3 className="mb-1">{title}</h3>}
-      {description && (
-        <p className="text-sm text-muted-foreground mb-5 max-w-[44rem]">{description}</p>
-      )}
+      {description && <p className="text-sm text-muted-foreground mb-5 max-w-[44rem]">{description}</p>}
+
       <ul className="space-y-3 list-none p-0 m-0">
         {casinos.map((c) => (
-          <li
-            key={c.name}
-            className="group bg-card border border-border/60 rounded-lg transition-colors hover:border-border"
-          >
-            <div className="hidden md:grid md:grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1.6fr)_auto] md:items-center gap-x-6 px-6 py-5">
+          <li key={c.name} className="group bg-card border border-border/60 rounded-lg shadow-sm transition-colors hover:border-border">
+            <div className="hidden md:grid md:grid-cols-[2.75rem_minmax(0,1fr)_minmax(0,1.45fr)_auto] md:items-center gap-x-5 px-5 py-5">
               <span className="text-base font-heading font-medium text-muted-foreground/60 tabular-nums">
                 {String(c.rank).padStart(2, "0")}
               </span>
@@ -68,17 +60,10 @@ export function GuideCasinoCards({
                 <div className="flex items-center gap-1.5 mt-2">
                   <div className="flex items-center gap-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-3 w-3 ${
-                          i < Math.floor(c.rating) ? "text-gold fill-gold" : "text-border"
-                        }`}
-                      />
+                      <Star key={i} className={`h-3 w-3 ${i < Math.floor(c.rating) ? "text-gold fill-gold" : "text-border"}`} />
                     ))}
                   </div>
-                  <span className="text-[11px] text-muted-foreground font-body tabular-nums">
-                    {c.rating.toFixed(1)}
-                  </span>
+                  <span className="text-[11px] text-muted-foreground font-body tabular-nums">{c.rating.toFixed(1)}</span>
                 </div>
               </div>
 
@@ -86,12 +71,9 @@ export function GuideCasinoCards({
                 <p className="text-[13px] text-foreground font-body font-medium m-0 mb-2 leading-snug">
                   {c.bonus}
                 </p>
-                <ul className="flex flex-wrap gap-x-5 gap-y-1 list-none p-0 m-0">
-                  {c.pros.slice(0, 2).map((p, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center gap-1.5 text-[12px] text-muted-foreground leading-snug"
-                    >
+                <ul className="flex flex-wrap gap-x-4 gap-y-1 list-none p-0 m-0">
+                  {c.pros.slice(0, 2).map((p) => (
+                    <li key={p} className="flex items-center gap-1.5 text-[12px] text-muted-foreground leading-snug">
                       <Check className="h-3 w-3 text-primary/70 shrink-0" />
                       <span className="truncate">{p}</span>
                     </li>
@@ -110,37 +92,23 @@ export function GuideCasinoCards({
                   {String(c.rank).padStart(2, "0")}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h4 className="text-[15px] font-heading font-semibold text-foreground m-0 leading-tight">
-                    {c.name}
-                  </h4>
+                  <h4 className="text-[15px] font-heading font-semibold text-foreground m-0 leading-tight">{c.name}</h4>
                   <div className="flex items-center gap-1.5 mt-1.5">
                     <div className="flex items-center gap-0.5">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-3 w-3 ${
-                            i < Math.floor(c.rating) ? "text-gold fill-gold" : "text-border"
-                          }`}
-                        />
+                        <Star key={i} className={`h-3 w-3 ${i < Math.floor(c.rating) ? "text-gold fill-gold" : "text-border"}`} />
                       ))}
                     </div>
-                    <span className="text-xs text-muted-foreground font-body tabular-nums">
-                      {c.rating.toFixed(1)}
-                    </span>
+                    <span className="text-xs text-muted-foreground font-body tabular-nums">{c.rating.toFixed(1)}</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-[13px] text-foreground font-body font-medium m-0">
-                {c.bonus}
-              </p>
+              <p className="text-[13px] text-foreground font-body font-medium m-0">{c.bonus}</p>
 
               <ul className="grid grid-cols-1 gap-1.5 list-none p-0 m-0">
-                {c.pros.slice(0, 3).map((p, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed"
-                  >
+                {c.pros.slice(0, 3).map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-xs text-muted-foreground leading-relaxed">
                     <Check className="h-3 w-3 text-primary/80 mt-0.5 shrink-0" />
                     <span>{p}</span>
                   </li>
