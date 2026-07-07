@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Star, Check } from "lucide-react";
 
@@ -20,6 +21,24 @@ interface GuideCasinoCardsProps {
   description?: string;
 }
 
+function CasinoCta({ casino }: { casino: GuideCasino }) {
+  const label = casino.ctaLabel ?? "Read Review";
+
+  if (casino.href) {
+    return (
+      <Button asChild variant="outline" size="sm" className="min-w-[128px] font-medium">
+        <Link href={casino.href}>{label}</Link>
+      </Button>
+    );
+  }
+
+  return (
+    <Button variant="outline" size="sm" className="min-w-[128px] font-medium">
+      {label}
+    </Button>
+  );
+}
+
 export function GuideCasinoCards({
   casinos,
   title,
@@ -37,7 +56,6 @@ export function GuideCasinoCards({
             key={c.name}
             className="group bg-card border border-border/60 rounded-lg transition-colors hover:border-border"
           >
-            {/* Desktop */}
             <div className="hidden md:grid md:grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1.6fr)_auto] md:items-center gap-x-6 px-6 py-5">
               <span className="text-base font-heading font-medium text-muted-foreground/60 tabular-nums">
                 {String(c.rank).padStart(2, "0")}
@@ -82,14 +100,10 @@ export function GuideCasinoCards({
               </div>
 
               <div className="shrink-0">
-                <Button variant="outline" size="sm" className="min-w-[128px] font-medium">
-                  {c.ctaLabel ?? "Visit Casino"}
-                </Button>
+                <CasinoCta casino={c} />
               </div>
             </div>
 
-
-            {/* Mobile */}
             <div className="md:hidden p-5 space-y-3.5">
               <div className="flex items-start gap-3">
                 <span className="text-sm font-heading font-medium text-muted-foreground/70 tabular-nums pt-0.5">
@@ -133,9 +147,9 @@ export function GuideCasinoCards({
                 ))}
               </ul>
 
-              <Button variant="outline" size="sm" className="w-full font-medium">
-                {c.ctaLabel ?? "Visit Casino"}
-              </Button>
+              <div className="[&>a]:w-full [&>button]:w-full">
+                <CasinoCta casino={c} />
+              </div>
             </div>
           </li>
         ))}
