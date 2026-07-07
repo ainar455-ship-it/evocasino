@@ -1,3 +1,5 @@
+import { Info } from "lucide-react";
+
 interface Fact {
   label: string;
   value: string;
@@ -5,20 +7,21 @@ interface Fact {
 
 export function FactsGrid({ facts }: { facts: Fact[] }) {
   return (
-    <aside className="rounded-lg border border-border/70 bg-card shadow-sm overflow-hidden">
-      <div className="px-5 py-4 border-b border-border/60">
-        <p className="text-[10.5px] uppercase tracking-[0.2em] text-muted-foreground font-body font-semibold m-0">
+    <aside className="bg-card border border-border/70 rounded-lg p-6 md:p-7">
+      <div className="flex items-center justify-between mb-5">
+        <p className="text-[10.5px] font-body font-semibold tracking-[0.18em] uppercase text-muted-foreground m-0">
           At a glance
         </p>
+        <Info aria-hidden="true" className="h-4 w-4 text-muted-foreground/60" />
       </div>
 
-      <dl className="m-0 divide-y divide-border/60">
+      <dl className="divide-y divide-border/60 list-none p-0 m-0">
         {facts.map((fact) => (
-          <div key={fact.label} className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 px-5 py-3.5 items-center">
-            <dt className="text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground/85 font-body leading-tight">
+          <div key={fact.label} className="flex items-baseline justify-between gap-4 py-3 first:pt-0 last:pb-0">
+            <dt className="text-[12px] font-body uppercase tracking-[0.14em] text-muted-foreground">
               {fact.label}
             </dt>
-            <dd className="text-sm font-semibold text-foreground font-body text-right m-0 tabular-nums">
+            <dd className="text-[14px] font-body font-semibold text-foreground tabular-nums text-right m-0">
               {fact.value}
             </dd>
           </div>
