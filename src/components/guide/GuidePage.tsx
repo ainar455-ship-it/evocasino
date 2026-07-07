@@ -31,7 +31,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
 
   return (
     <Page className="bg-background">
-      <Container>
+      <Container className="max-w-[68rem] px-4 md:px-6">
         <GuideHero
           breadcrumbs={g.breadcrumbs}
           category={g.category}
@@ -43,8 +43,8 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
         />
       </Container>
 
-      <Container className="mt-6 md:mt-10 pb-14 md:pb-20">
-        <div className="md:grid md:grid-cols-[9.75rem_minmax(0,46rem)] md:gap-10 lg:gap-14">
+      <Container className="max-w-[68rem] px-4 md:px-6 mt-6 md:mt-10 pb-14 md:pb-20">
+        <div className="md:grid md:grid-cols-[9.5rem_minmax(0,46rem)] md:gap-9 lg:gap-12 md:justify-center">
           <aside className="md:py-5 mb-8 md:mb-0">
             <GuideQuickNav items={navItems} />
           </aside>
@@ -65,9 +65,31 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                     section.strategyBoxes ||
                     section.faq ||
                     section.methodology ||
-                    section.related
+                    section.related ||
+                    section.metrics
                 )}
               >
+                {section.metrics && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                    {section.metrics.map((metric: any) => (
+                      <div key={metric.label} className="border border-border rounded-lg p-4 bg-card">
+                        <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body mb-1">
+                          {metric.label}
+                        </p>
+                        <p className="text-base font-semibold text-foreground font-body m-0">
+                          {metric.value}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {section.support && (
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                    {section.support}
+                  </p>
+                )}
+
                 {section.keyTakeaway && <KeyTakeaway>{section.keyTakeaway}</KeyTakeaway>}
 
                 {section.steps && (
@@ -108,7 +130,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                 )}
 
                 {section.strategyBoxes && (
-                  <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-4">
                     {section.strategyBoxes.map((box: any) => (
                       <StrategyBox
                         key={box.title}
@@ -120,7 +142,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                   </div>
                 )}
 
-                {section.myths && <GuideMythBox items={section.myths} />}
+                {section.myths && <GuideMythBox items={section.myths} title="" />}
 
                 {section.casinos && (
                   <div className="max-w-none space-y-4">
@@ -163,9 +185,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                   </ol>
                 )}
 
-                {section.related && (
-                  <RelatedGuides guides={section.related} title="Related Evolution Guides" />
-                )}
+                {section.related && <RelatedGuides guides={section.related} title="" />}
               </GuideSection>
             ))}
           </article>
