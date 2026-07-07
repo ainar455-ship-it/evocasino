@@ -8,7 +8,14 @@ import {
   GuideMythBox,
   GuideBonusRound,
   GuideCasinoCards,
+  RelatedGuides,
 } from "@/components/guide";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 interface GuidePageProps {
   guide: any;
@@ -24,6 +31,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
           title={g.title}
           intro={g.intro}
           updated={g.updated}
+          methodologyHref={g.methodologyHref}
           stats={g.stats}
         />
       </Container>
@@ -44,7 +52,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
               <GuideSection
                 key={section.id}
                 id={section.id}
-                eyebrow={`${String(index + 1).padStart(2, "0")} — ${section.title}`}
+                eyebrow={`${String(index + 1).padStart(2, "0")} - ${section.title}`}
                 title={section.title}
                 lead={section.content}
                 tone={index % 2 === 1 ? "muted" : "default"}
@@ -52,20 +60,48 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                 wide={Boolean(
                   section.bonusRounds ||
                     section.casinos ||
-                    section.strategyBoxes
+                    section.strategyBoxes ||
+                    section.faq ||
+                    section.methodology ||
+                    section.related
                 )}
               >
-                {section.keyTakeaway && (
-                  <KeyTakeaway>
-                    {section.keyTakeaway}
-                  </KeyTakeaway>
+                {section.keyTakeaway && <KeyTakeaway>{section.keyTakeaway}</KeyTakeaway>}
+
+                {section.steps && (
+                  <ol className="space-y-5 list-none p-0 m-0">
+                    {section.steps.map((step: any, i: number) => (
+                      <li key={step.title} className="flex gap-4">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                          <span className="text-sm font-bold text-primary-foreground font-body">
+                            {i + 1}
+                          </span>
+                        </div>
+                        <div>
+                          <h4 className="text-base font-semibold mb-0.5">{step.title}</h4>
+                          <p className="text-sm text-muted-foreground leading-relaxed m-0">
+                            {step.desc}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+
+                {section.points && (
+                  <ul className="space-y-2.5 list-none p-0 m-0">
+                    {section.points.map((point: string) => (
+                      <li key={point} className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed">
+                        <span className="h-1 w-1 rounded-full bg-primary mt-2.5 shrink-0" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
                 )}
 
                 {section.bonusRounds && (
                   <div className="max-w-none">
-                    <GuideBonusRound
-                      rounds={section.bonusRounds}
-                    />
+                    <GuideBonusRound rounds={section.bonusRounds} />
                   </div>
                 )}
 
@@ -82,16 +118,51 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                   </div>
                 )}
 
-                {section.myths && (
-                  <GuideMythBox items={section.myths} />
-                )}
+                {section.myths && <GuideMythBox items={section.myths} />}
 
                 {section.casinos && (
-                  <div className="max-w-none">
-                    <GuideCasinoCards
-                      casinos={section.casinos}
-                    />
+                  <div className="max-w-none space-y-4">
+                    <GuideCasinoCards casinos={section.casinos} />
+                    {section.casinoNote && (
+                      <p className="text-xs text-muted-foreground leading-relaxed max-w-[44rem] m-0">
+                        {section.casinoNote}
+                      </p>
+                    )}
                   </div>
+                )}
+
+                {section.faq && (
+                  <Accordion type="single" collapsible className="border border-border/60 rounded-lg bg-card divide-y divide-border/60">
+                    {section.faq.map((item: any) => (
+                      <AccordionItem key={item.question} value={item.question} className="border-b-0 px-4 md:px-5">
+                        <AccordionTrigger className="text-left text-sm md:text-[15px] font-semibold hover:no-underline">
+                          {item.question}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                          {item.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                )}
+
+                {section.methodology && (
+                  <ol className="space-y-3 list-none p-0 m-0 border border-border/60 rounded-lg bg-card divide-y divide-border/60">
+                    {section.methodology.map((item: string, i: number) => (
+                      <li key={item} className="flex gap-4 p-4 md:p-5">
+                        <span className="text-[11px] font-body font-medium tabular-nums text-muted-foreground/70 pt-0.5 w-6 shrink-0">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <p className="text-[14.5px] text-muted-foreground leading-[1.75] m-0">
+                          {item}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+
+                {section.related && (
+                  <RelatedGuides guides={section.related} title="Related Evolution Guides" />
                 )}
               </GuideSection>
             ))}
