@@ -62,7 +62,7 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                 )}
               </div>
 
-              <div className="min-w-0">
+              <div className="min-w-0 border-l border-gold pl-4">
                 <p className="text-[13px] text-foreground font-body font-medium m-0 mb-2 leading-snug">
                   {c.bonus}
                 </p>
@@ -96,7 +96,9 @@ export function GuideCasinoCards({ casinos, title, description }: GuideCasinoCar
                 </div>
               </div>
 
-              <p className="text-[13px] text-foreground font-body font-medium m-0">{c.bonus}</p>
+              <div className="border-l border-gold pl-4">
+                <p className="text-[13px] text-foreground font-body font-medium m-0">{c.bonus}</p>
+              </div>
 
               <ul className="grid grid-cols-1 gap-1.5 list-none p-0 m-0">
                 {c.facts.slice(0, 3).map((p) => (
