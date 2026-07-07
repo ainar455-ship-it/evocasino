@@ -1,5 +1,5 @@
 export const crazyTimeGuide = {
-  category: "Evolution Game Guide",
+  category: "Evolution Gaming · Editorial Guide",
   title: "Crazy Time on Evolution Live",
   intro:
     "Crazy Time is Evolution's flagship game show - a vibrant, multiplier-heavy live casino experience hosted in real time. With four bonus rounds and a highest published RTP commonly listed at 96.08%, it has become one of the most-played live games globally. This guide breaks down how it works, what the maths actually look like, and where it is worth playing.",
@@ -7,7 +7,7 @@ export const crazyTimeGuide = {
   methodologyHref: "/how-we-rank",
   breadcrumbs: [
     { label: "Home", href: "/" },
-    { label: "Evolution Casinos", href: "/evolution-casinos" },
+    { label: "Guides", href: "/evolution-games" },
     { label: "Crazy Time" },
   ],
   stats: [
