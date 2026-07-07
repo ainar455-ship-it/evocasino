@@ -22,8 +22,15 @@ interface GuidePageProps {
 }
 
 export default function GuidePage({ guide: g }: GuidePageProps) {
+  const navItems = g.sections
+    .filter((section: any) => section.showInNav !== false)
+    .map((section: any) => ({
+      id: section.id,
+      label: section.navLabel ?? section.title,
+    }));
+
   return (
-    <Page>
+    <Page className="bg-background">
       <Container>
         <GuideHero
           breadcrumbs={g.breadcrumbs}
@@ -36,18 +43,13 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
         />
       </Container>
 
-      <Container className="mt-2 md:mt-4">
-        <div className="md:grid md:grid-cols-[180px_minmax(0,1fr)] md:gap-10 lg:gap-14">
-          <aside className="md:py-4">
-            <GuideQuickNav
-              items={g.sections.map((section: any) => ({
-                id: section.id,
-                label: section.title,
-              }))}
-            />
+      <Container className="mt-6 md:mt-10 pb-14 md:pb-20">
+        <div className="md:grid md:grid-cols-[9.75rem_minmax(0,46rem)] md:gap-10 lg:gap-14">
+          <aside className="md:py-5 mb-8 md:mb-0">
+            <GuideQuickNav items={navItems} />
           </aside>
 
-          <article className="min-w-0">
+          <article className="min-w-0 max-w-[46rem]">
             {g.sections.map((section: any, index: number) => (
               <GuideSection
                 key={section.id}
@@ -106,7 +108,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                 )}
 
                 {section.strategyBoxes && (
-                  <div className="space-y-4">
+                  <div className="grid gap-4 md:grid-cols-2">
                     {section.strategyBoxes.map((box: any) => (
                       <StrategyBox
                         key={box.title}
