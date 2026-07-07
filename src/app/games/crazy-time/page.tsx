@@ -66,7 +66,7 @@ function initialsFor(name: string): string {
     .toUpperCase();
 }
 
-function ScoreRing({ score, size = 64 }: { score: number; size?: number }) {
+function ScoreRing({ score, size = 58 }: { score: number; size?: number }) {
   const stroke = 3;
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -133,8 +133,8 @@ function OperatorCard({ casino, rank }: { casino: CasinoRow; rank: number }) {
   return (
     <article className="group relative bg-card border border-border/60 rounded-lg transition-all duration-200 hover:border-primary/40 hover:shadow-[0_8px_24px_-20px_hsl(var(--primary)/0.35)]">
       <div className="hidden md:grid md:grid-cols-[minmax(0,2.4fr)_minmax(0,0.8fr)] md:items-stretch">
-        <div className="pl-5 pr-5 py-3.5 min-w-0 relative">
-          <span className="absolute top-3.5 left-5 font-heading text-[20px] font-semibold text-foreground/85 tabular-nums leading-none">
+        <div className="pl-5 pr-5 py-3 min-w-0 relative">
+          <span className="absolute top-3 left-5 font-heading text-[20px] font-semibold text-foreground/85 tabular-nums leading-none">
             {rank}
           </span>
           <div className="pl-8">
@@ -197,9 +197,9 @@ function OperatorCard({ casino, rank }: { casino: CasinoRow; rank: number }) {
         </div>
 
         <aside className="relative border-l border-border/60 bg-muted/[0.22] rounded-r-lg">
-          <div className="px-4 py-3.5 flex flex-col h-full justify-center items-center gap-3">
+          <div className="px-4 py-3 flex flex-col h-full justify-center items-center gap-2.5">
             <ScoreRing score={casino.evolutionScore} />
-            <div className="space-y-1.5 w-full">
+            <div className="space-y-1 w-full">
               <Button asChild className="group/cta h-9 w-full text-xs">
                 <Link href={href}>
                   Read Review
@@ -333,7 +333,7 @@ export default function CrazyTimePage() {
 
       <section className="border-b border-border bg-muted/20">
         <Container>
-          <div className="py-12 md:py-14">
+          <div className="py-11 md:py-12">
             <div className="mb-7 flex items-end justify-between gap-6 flex-wrap">
               <div className="max-w-[36rem]">
                 <p className="text-[11px] font-body font-semibold tracking-[0.18em] uppercase text-muted-foreground mb-2">
@@ -380,7 +380,7 @@ export default function CrazyTimePage() {
               Related games
             </p>
             <h2 className="mb-6 text-[22px] md:text-[24px]">More from the Evolution catalogue</h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-lg overflow-hidden border border-border list-none p-0 m-0">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border rounded-lg overflow-hidden border border-border list-none p-0 m-0 sm:max-w-[36rem]">
               {relatedGames.map((related) => (
                 <li key={related.href}>
                   <Link href={related.href} className="group flex h-full flex-col bg-card p-5 transition-colors hover:bg-muted/40">
