@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { FactsGrid } from "@/components/guide/FactsGrid";
 
@@ -28,30 +27,38 @@ export function GuideHero({
   stats,
 }: GuideHeroProps) {
   return (
-    <header className="pt-8 md:pt-12 pb-7 md:pb-10">
-      <Breadcrumbs items={breadcrumbs} />
+    <header className="pt-8 md:pt-12 pb-8 md:pb-12 border-b border-border/60">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div className="min-w-0">
+          <Breadcrumbs items={breadcrumbs} />
 
-      <div className="flex flex-wrap items-center gap-2 mb-5">
-        <Badge variant="evolution">{category}</Badge>
-        <span className="text-xs md:text-sm text-muted-foreground font-body">
-          Updated {updated}
-        </span>
-        <span className="text-muted-foreground/40">·</span>
-        <Link
-          href={methodologyHref}
-          className="text-xs md:text-sm text-primary hover:underline underline-offset-2"
-        >
-          Our methodology
-        </Link>
+          <p className="mt-6 mb-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-body font-semibold">
+            {category}
+          </p>
+
+          <h1 className="mb-5 max-w-[18ch] text-[2.65rem] leading-[1.04] md:text-[3.6rem] lg:text-[4rem]">
+            {title}
+          </h1>
+
+          <p className="text-[16px] md:text-[18px] text-muted-foreground leading-[1.75] max-w-[45rem] mb-6 md:mb-7">
+            {intro}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs md:text-sm text-muted-foreground font-body">
+            <span>Updated {updated}</span>
+            <span className="text-muted-foreground/40">/</span>
+            <Link href={methodologyHref} className="text-primary hover:underline underline-offset-2">
+              Our methodology
+            </Link>
+            <span className="text-muted-foreground/40">/</span>
+            <span>Independent analysis</span>
+          </div>
+        </div>
+
+        <div className="lg:pt-12">
+          <FactsGrid facts={stats} />
+        </div>
       </div>
-
-      <h1 className="mb-5 max-w-[20ch]">{title}</h1>
-
-      <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-[44rem] mb-7 md:mb-8">
-        {intro}
-      </p>
-
-      <FactsGrid facts={stats} />
     </header>
   );
 }
