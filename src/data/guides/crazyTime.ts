@@ -2,7 +2,7 @@ export const crazyTimeGuide = {
   category: "Evolution Game Guide",
   title: "Crazy Time on Evolution Live",
   intro:
-    "Crazy Time is Evolution's flagship live game show: a wheel-based casino game with number bets, four bonus rounds, Top Slot multipliers and very high volatility. This guide explains what Crazy Time is, how it works, the rules, RTP, bonus rounds, strategy basics and where EvoCasino will map production-ranked casinos for staging.",
+    "Crazy Time is Evolution's flagship game show - a vibrant, multiplier-heavy live casino experience hosted in real time. With four bonus rounds and a highest published RTP commonly listed at 96.08%, it has become one of the most-played live games globally. This guide breaks down how it works, what the maths actually look like, and where it is worth playing.",
   updated: "July 2026",
   methodologyHref: "/how-we-rank",
   breadcrumbs: [
@@ -26,60 +26,66 @@ export const crazyTimeGuide = {
       navLabel: "Overview",
       title: "What is Crazy Time?",
       content:
-        "Crazy Time is a live Evolution game show built around a giant vertical money wheel. Players bet on number segments or bonus segments before each spin, then watch a live presenter run the betting window, trigger the Top Slot and spin the wheel.",
+        "Crazy Time launched in 2020 and quickly defined the modern live game show category. A large vertical money wheel, hosted by a live presenter, is divided into 54 segments: numbered pay segments (1, 2, 5, 10) and four bonus rounds - Coin Flip, Cash Hunt, Pachinko, and Crazy Time itself. A separate Top Slot above the wheel can add a multiplier to a random segment on every spin.",
       keyTakeaway:
-        "Crazy Time is entertainment-first and very volatile. Most of the long-term return comes from rare bonus outcomes rather than steady base-wheel payouts.",
+        "Crazy Time is a very high-volatility entertainment game - most of its long-term return is concentrated in rare bonus rounds, not steady payouts.",
     },
     {
       id: "how-to-play",
       navLabel: "How to Play",
       title: "How to Play Crazy Time",
       content:
-        "Each round follows the same basic flow: choose a stake, place bets before the timer closes, watch the Top Slot, then follow the wheel result. If the wheel lands on a number, matching bets pay immediately. If it lands on a bonus segment, qualifying players enter that bonus round.",
+        "Each round follows the same loop: betting window, Top Slot spin, wheel spin, payout - then either an immediate cash win or entry into one of the four bonus rounds.",
       steps: [
         {
-          title: "Choose a licensed casino",
-          desc: "Use operators that publish clear licensing, payment and responsible-play information.",
+          title: "Choose a casino",
+          desc: "Choose an operator that offers Evolution live tables and publishes clear licensing, payment and responsible-play information.",
         },
         {
-          title: "Open Crazy Time",
-          desc: "Find Crazy Time in the live casino lobby, usually under Evolution or Game Shows.",
+          title: "Find Crazy Time",
+          desc: "Open the live casino lobby and look under Game Shows or Evolution categories. Availability can vary by casino and region.",
         },
         {
-          title: "Place bets before the timer closes",
-          desc: "Bet on number segments, bonus segments, or a mix of both depending on your risk tolerance.",
+          title: "Place your bets",
+          desc: "Bet on any combination of numbers and bonus rounds before the betting window closes.",
         },
         {
-          title: "Watch the Top Slot and wheel spin",
-          desc: "The Top Slot may assign a multiplier to a segment before the wheel result is known.",
+          title: "Watch the spin",
+          desc: "The presenter triggers the Top Slot and spins the wheel. If your selected segment lands, the round pays according to the result.",
         },
         {
-          title: "Follow the payout or bonus round",
-          desc: "Number wins settle immediately. Bonus wins move into Coin Flip, Cash Hunt, Pachinko or Crazy Time.",
+          title: "Play the bonus",
+          desc: "Landing on a bonus segment opens Coin Flip, Cash Hunt, Pachinko or Crazy Time, each with its own multiplier mechanics.",
         },
       ],
     },
     {
       id: "rtp-odds",
       navLabel: "RTP & Odds",
-      title: "RTP & Odds",
+      title: "RTP, Odds & Volatility",
       content:
-        "Crazy Time has a published headline RTP of 96.08%, but return varies by bet type. Number bets and bonus bets have different hit rates, payout profiles and volatility. The game should be treated as high variance, especially when chasing bonus rounds.",
+        "Crazy Time's headline RTP of 96.08% is segment-dependent. Number 1 has the highest theoretical RTP, while the Crazy Time bonus itself sits closer to 94-95%. The wheel is heavily weighted toward low numbers, which keeps base-game spins active but means most of the variance lives inside the bonus rounds.",
+      metrics: [
+        { label: "RTP", value: "96.08% segment-dependent, 94.41%-96.08%" },
+        { label: "Volatility", value: "Very High" },
+      ],
+      support:
+        "Expect long stretches of small or no payouts punctuated by rare, large bonus-round wins. Bankroll planning should assume meaningful drawdowns between high-value hits.",
       keyTakeaway:
-        "RTP describes long-run theoretical return. It does not predict short sessions, bonus timing or individual outcomes.",
+        "Bonus rounds drive most of Crazy Time's RTP variance. Number bets stabilise sessions, bonus bets create the swings.",
     },
     {
       id: "bonus-rounds",
       navLabel: "Bonus Rounds",
       title: "The Four Bonus Rounds",
       content:
-        "Crazy Time includes four separate bonus rounds. Each uses different mechanics, different hit frequency and different multiplier potential.",
+        "All four bonus rounds use distinct mechanics, hit frequencies, and multiplier ceilings. Understanding their character matters more than memorising odds.",
       bonusRounds: [
         {
           name: "Coin Flip",
           icon: null as any,
           shortDesc:
-            "A two-sided coin carries red and blue multipliers. The side that lands face-up sets the payout for the round.",
+            "The most frequent bonus. A two-sided coin with red and blue multipliers is flipped, and the winning side sets the payout.",
           mechanic: "Two-sided coin flip",
           maxMultiplier: "Up to 10,000x",
           hitFrequency: "About 1 in 22 spins",
@@ -88,8 +94,8 @@ export const crazyTimeGuide = {
           name: "Cash Hunt",
           icon: null as any,
           shortDesc:
-            "Players choose from a wall of hidden symbols after multipliers are shuffled behind the targets.",
-          mechanic: "Hidden target pick",
+            "A grid of 108 multipliers is hidden behind symbols. Each player chooses one target, and the value behind it is the result.",
+          mechanic: "Pick one of 108 targets",
           maxMultiplier: "Up to 25,000x",
           hitFrequency: "About 1 in 38 spins",
         },
@@ -97,7 +103,7 @@ export const crazyTimeGuide = {
           name: "Pachinko",
           icon: null as any,
           shortDesc:
-            "A puck drops through a peg board into multiplier slots. Double zones can increase values and trigger another drop.",
+            "A puck drops down a peg wall and lands in a multiplier slot. Double zones can increase every value and trigger another drop.",
           mechanic: "Puck drop board",
           maxMultiplier: "Up to 10,000x",
           hitFrequency: "About 1 in 54 spins",
@@ -106,7 +112,7 @@ export const crazyTimeGuide = {
           name: "Crazy Time",
           icon: null as any,
           shortDesc:
-            "The headline bonus uses a secondary wheel with flapper choices, multipliers and Double or Triple segments.",
+            "The headline round uses a secondary wheel, flapper choice, multipliers and Double or Triple zones for the largest swings.",
           mechanic: "Secondary wheel",
           maxMultiplier: "Up to 20,000x",
           hitFrequency: "About 1 in 76 spins",
@@ -118,23 +124,31 @@ export const crazyTimeGuide = {
       navLabel: "Strategies",
       title: "Strategy & Bankroll",
       content:
-        "No Crazy Time strategy can remove the house edge or make bonus rounds predictable. Useful strategy is mostly about bankroll control, bet sizing and understanding how volatile the game can be.",
+        "There is no strategy that overcomes Crazy Time's house edge. What strategy can do is shape your variance, protect your budget and keep bonus-round chasing under control.",
       strategyBoxes: [
         {
-          title: "Control stake size",
+          title: "Bankroll management",
           points: [
-            "Treat each session as an entertainment budget.",
-            "Use smaller stakes if you want more spins before a bonus drought matters.",
-            "Set stop-loss and stop-win points before the session starts.",
+            "Treat each session as an entertainment budget you are prepared to lose in full.",
+            "Set bet size so your bankroll covers enough spins to ride out bonus-round droughts.",
+            "Pre-commit to a stop-loss and a stop-win before the session starts.",
           ],
-          caveat: "Bankroll rules manage variance; they do not change expected return.",
+          caveat: "No bet-sizing system changes the house edge. These rules manage variance, not expected return.",
         },
         {
-          title: "Understand bet profiles",
+          title: "Bet selection",
           points: [
-            "Number bets usually hit more often but pay less.",
-            "Bonus bets are less frequent and create much larger swings.",
-            "Covering many segments increases total stake and still leaves the house edge intact.",
+            "Number bets usually create more stable session pacing.",
+            "Bonus-only approaches create extreme variance and can drain a bankroll quickly.",
+            "Mixed coverage can balance activity with bonus exposure, but it also increases total stake.",
+          ],
+        },
+        {
+          title: "Top Slot awareness",
+          points: [
+            "Top Slot multipliers only matter when the wheel lands on the matching segment.",
+            "Large multipliers on rare segments look exciting but may not convert.",
+            "Treat Top Slot outcomes as part of the entertainment, not as a predictor for future spins.",
           ],
         },
       ],
@@ -142,24 +156,29 @@ export const crazyTimeGuide = {
     {
       id: "myths",
       navLabel: "Myths",
-      title: "Myths",
+      title: "Common Myths & Mistakes",
       content:
-        "Crazy Time has built up plenty of myths around patterns, streaks and bonus timing. These claims should not guide real-money play.",
+        "Crazy Time has accumulated a lot of folklore around patterns, streaks and bonus timing. These are the misconceptions that can push players into poor bankroll decisions.",
       myths: [
         {
           myth: "The wheel has patterns you can predict.",
           reality:
-            "Past spins should not be treated as a reliable guide to the next spin. Streaks and droughts can happen naturally in volatile games.",
+            "Crazy Time should be treated as a regulated live casino game where past spins are not a reliable guide to the next outcome.",
         },
         {
-          myth: "Betting every segment guarantees profit.",
+          myth: "Betting every segment guarantees a profit.",
           reality:
             "Covering more segments changes variance and total stake, but it does not remove the house edge.",
         },
         {
+          myth: "Bonus rounds always pay big.",
+          reality:
+            "Bonus rounds can return modest results. The largest multipliers are possible but rare.",
+        },
+        {
           myth: "A bonus is due after a long wait.",
           reality:
-            "Published hit frequencies are long-run averages. Short sessions can vary sharply from those averages.",
+            "Published hit frequencies are long-run averages. Short sessions can include clusters and droughts.",
         },
       ],
     },
@@ -168,7 +187,7 @@ export const crazyTimeGuide = {
       navLabel: "Mobile",
       title: "Playing on Mobile",
       content:
-        "Crazy Time is built for live video play and is commonly available on mobile casino sites. Actual quality depends on the operator, region, device, connection and Evolution table availability.",
+        "Crazy Time was built mobile-first. The vertical wheel layout, large segment labels, and bottom-anchored bet panel translate well to portrait phone screens, though availability, limits and stream quality can vary by operator, region and connection.",
       points: [
         "Portrait play is usually practical for the wheel and bet panel.",
         "Bonus rounds such as Cash Hunt and Pachinko use touch-friendly interactions.",
@@ -181,7 +200,7 @@ export const crazyTimeGuide = {
       navLabel: "Dealers",
       title: "Crazy Time Dealers and Live Studio",
       content:
-        "Crazy Time is hosted by live Evolution presenters in a studio environment. Dealers manage the betting window, trigger the Top Slot, spin the wheel and guide players through bonus rounds. Dealer availability, language and table presentation can vary by casino and region.",
+        "Crazy Time is hosted by live Evolution presenters in a studio environment. Live presenters guide every round in real time, manage the betting window, trigger the Top Slot before the wheel spin, spin the wheel and explain bonus rounds as they happen. Dealer availability, language and table presentation can vary by casino and region.",
     },
     {
       id: "best-casinos",
@@ -190,34 +209,34 @@ export const crazyTimeGuide = {
       content:
         "We compare casinos using verified operator information, licensing signals, Evolution game availability, published payout policies and EvoCasino's ranking framework.",
       casinoNote:
-        "Final casino ranking will be generated from EvoCasino's production ranking data during staging migration.",
+        "Final casino ranking is generated from EvoCasino's production ranking data during staging migration.",
     },
     {
       id: "faq",
       navLabel: "FAQ",
-      title: "Crazy Time FAQ",
+      title: "Frequently Asked Questions",
       content:
         "Short answers to the most common Crazy Time questions, including rules, RTP, meaning, dealers and mobile play.",
       faq: [
         {
           question: "What is Crazy Time?",
           answer:
-            "Crazy Time is an Evolution live casino game show where players bet on a money wheel with number segments and four bonus rounds.",
+            "Crazy Time is an Evolution live casino game show built around a money wheel, number segments and four bonus rounds.",
         },
         {
           question: "How does Crazy Time work?",
           answer:
-            "Players place bets before the timer closes. The presenter triggers the Top Slot, spins the wheel, and the result either pays a number bet or opens a bonus round.",
+            "Players bet before the timer closes. The presenter triggers the Top Slot, spins the wheel, and the result either pays a number bet or opens a bonus round.",
         },
         {
           question: "What are the Crazy Time rules?",
           answer:
-            "Bet on one or more segments before the round closes. Matching number segments pay their listed multiplier, while Coin Flip, Cash Hunt, Pachinko and Crazy Time trigger bonus rounds.",
+            "Choose one or more segments before the round closes. Matching number segments pay their listed multiplier, while Coin Flip, Cash Hunt, Pachinko and Crazy Time trigger bonus rounds.",
         },
         {
           question: "What is the Crazy Time RTP?",
           answer:
-            "The commonly published headline RTP is 96.08%, though RTP can vary by bet type and does not predict short-term results.",
+            "The highest commonly published RTP is 96.08%, but RTP is segment-dependent and can be lower for some bonus bets.",
         },
         {
           question: "Who are Crazy Time dealers?",
@@ -227,12 +246,12 @@ export const crazyTimeGuide = {
         {
           question: "Is Crazy Time rigged?",
           answer:
-            "Crazy Time is an Evolution live casino game offered through licensed operators. Players should rely on licensed casinos, published game information and responsible-play limits rather than pattern claims or guaranteed-outcome systems.",
+            "Crazy Time is offered by Evolution through licensed casino operators. Use regulated casinos and published game information, not pattern claims or guaranteed-outcome systems.",
         },
         {
           question: "What is the best strategy for Crazy Time?",
           answer:
-            "There is no guaranteed winning strategy. The safest approach is to manage stake size, understand volatility and avoid chasing bonus rounds.",
+            "There is no guaranteed winning strategy. Manage stake size, understand volatility and avoid chasing bonus rounds.",
         },
         {
           question: "Can I play Crazy Time on mobile?",
@@ -242,19 +261,19 @@ export const crazyTimeGuide = {
         {
           question: "What are the bonus rounds in Crazy Time?",
           answer:
-            "The four bonus rounds are Coin Flip, Cash Hunt, Pachinko and Crazy Time. Each has separate mechanics and multiplier potential.",
+            "The four bonus rounds are Coin Flip, Cash Hunt, Pachinko and Crazy Time. Each uses different mechanics and multiplier potential.",
         },
         {
           question: "How often do bonus rounds trigger?",
           answer:
-            "Bonus rounds have published long-run hit frequencies, but individual sessions can include long droughts or clusters because the game is highly volatile.",
+            "Bonus rounds have long-run hit frequencies, but individual sessions can include long droughts or clusters because the game is highly volatile.",
         },
       ],
     },
     {
       id: "methodology",
       showInNav: false,
-      title: "Methodology",
+      title: "How We Researched This Guide",
       content:
         "EvoCasino separates guide information from production ranking data so design content can be migrated safely without changing scoring logic.",
       methodology: [
