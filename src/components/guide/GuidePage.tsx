@@ -66,7 +66,8 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                     section.faq ||
                     section.methodology ||
                     section.related ||
-                    section.metrics
+                    section.metrics ||
+                    section.cards
                 )}
               >
                 {section.metrics && (
@@ -121,6 +122,38 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {section.cards && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    {section.cards.map((card: any) => (
+                      <article
+                        key={card.title}
+                        className="border border-border/70 rounded-lg bg-card p-5 md:p-6 flex flex-col h-full"
+                      >
+                        <h4 className="text-[15px] font-heading font-semibold text-foreground m-0 mb-2 leading-tight">
+                          {card.title}
+                        </h4>
+                        <p className="text-sm text-muted-foreground leading-[1.7] mb-5">
+                          {card.body}
+                        </p>
+                        {(card.label || card.value) && (
+                          <div className="mt-auto pt-4 border-t border-border/60">
+                            {card.label && (
+                              <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground/80 font-body mb-1">
+                                {card.label}
+                              </p>
+                            )}
+                            {card.value && (
+                              <p className="text-[13px] font-medium text-foreground font-body leading-tight">
+                                {card.value}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </article>
+                    ))}
+                  </div>
                 )}
 
                 {section.bonusRounds && (
@@ -186,6 +219,12 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                 )}
 
                 {section.related && <RelatedGuides guides={section.related} title="" />}
+
+                {section.footnote && (
+                  <p className="mt-5 text-xs text-muted-foreground/85 leading-relaxed">
+                    {section.footnote}
+                  </p>
+                )}
               </GuideSection>
             ))}
           </article>
