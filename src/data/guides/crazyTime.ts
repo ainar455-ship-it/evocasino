@@ -1,5 +1,5 @@
 export const crazyTimeGuide = {
-  category: "Evolution Gaming · Editorial Guide",
+  category: "Evolution Gaming - Editorial Guide",
   title: "Crazy Time on Evolution Live",
   intro:
     "Crazy Time is Evolution's flagship game show - a vibrant, multiplier-heavy live casino experience hosted in real time. With four bonus rounds and a highest published RTP commonly listed at 96.08%, it has become one of the most-played live games globally. This guide breaks down how it works, what the maths actually look like, and where it is worth playing.",
@@ -194,6 +194,22 @@ export const crazyTimeGuide = {
         "A stable connection matters because the betting timer is live.",
         "Table availability and limits can vary by casino and jurisdiction.",
       ],
+      cards: [
+        {
+          title: "Connection & Stream",
+          body:
+            "Live betting windows are time-sensitive, so a stable connection matters more on mobile than on desktop.",
+          label: "Connection",
+          value: "Stable connection recommended",
+        },
+        {
+          title: "Bet Limits",
+          body:
+            "Some operators apply different limits by device, market or table. Check the in-game limits before placing bets.",
+          label: "Limits",
+          value: "Operator-dependent",
+        },
+      ],
     },
     {
       id: "dealers",
@@ -201,6 +217,28 @@ export const crazyTimeGuide = {
       title: "Crazy Time Dealers and Live Studio",
       content:
         "Crazy Time is hosted by live Evolution presenters in a studio environment. Live presenters guide every round in real time, manage the betting window, trigger the Top Slot before the wheel spin, spin the wheel and explain bonus rounds as they happen. Dealer availability, language and table presentation can vary by casino and region.",
+      points: [
+        "Live presenters guide every round in real time.",
+        "The presenter triggers the Top Slot before the wheel spin.",
+        "Bonus rounds remain hosted and explained as they happen.",
+      ],
+    },
+    {
+      id: "responsible",
+      navLabel: "Responsible Play",
+      title: "Responsible Play",
+      content:
+        "Crazy Time is high-volatility entertainment, not a source of income. Understanding the risk profile and using operator-provided tools helps keep play within intended limits.",
+      points: [
+        "Pause if you increase stakes specifically to recover previous losses.",
+        "Stop if you play longer than originally planned.",
+        "Avoid spending money set aside for other purposes.",
+        "Use deposit limits, time-outs, self-exclusion and reality checks where available.",
+      ],
+      keyTakeaway:
+        "No staking pattern changes Crazy Time's house edge. Limits manage exposure and time, which are the practical levers available to players.",
+      footnote:
+        "If gambling stops feeling like entertainment, use the responsible-play support tools and help resources available in your licensed market.",
     },
     {
       id: "best-casinos",
