@@ -54,7 +54,7 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
               <GuideSection
                 key={section.id}
                 id={section.id}
-                eyebrow={`${String(index + 1).padStart(2, "0")} - ${section.title}`}
+                eyebrow={section.eyebrow ?? `${String(index + 1).padStart(2, "0")} - ${section.title}`}
                 title={section.title}
                 lead={section.content}
                 tone={index % 2 === 1 ? "muted" : "default"}
@@ -92,6 +92,41 @@ export default function GuidePage({ guide: g }: GuidePageProps) {
                 )}
 
                 {section.keyTakeaway && <KeyTakeaway>{section.keyTakeaway}</KeyTakeaway>}
+
+                {section.responsiblePlay && (
+                  <div className="border border-border/70 rounded-xl bg-card p-5 md:p-7 shadow-sm">
+                    <div className="grid gap-6 md:grid-cols-2">
+                      {section.responsiblePlay.groups.map((group: any) => (
+                        <div key={group.title}>
+                          <h4 className="text-[15px] font-heading font-semibold text-foreground m-0 mb-3">
+                            {group.title}
+                          </h4>
+                          <ul className="space-y-2.5 list-none p-0 m-0">
+                            {group.items.map((item: string) => (
+                              <li
+                                key={item}
+                                className="flex gap-2.5 text-sm text-muted-foreground leading-relaxed"
+                              >
+                                <span className="h-1 w-1 rounded-full bg-primary mt-2.5 shrink-0" />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                    {section.responsiblePlay.takeaway && (
+                      <div className="mt-7 rounded-lg border border-gold/30 bg-gold/10 p-4 md:p-5">
+                        <p className="text-[10.5px] uppercase tracking-[0.18em] text-gold font-body font-semibold mb-2">
+                          Key takeaway
+                        </p>
+                        <p className="text-sm md:text-[15px] leading-[1.7] text-foreground m-0">
+                          {section.responsiblePlay.takeaway}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {section.steps && (
                   <ol className="space-y-5 list-none p-0 m-0">
