@@ -247,7 +247,7 @@ export const lightningRouletteGuide = {
       content:
         "We compare casinos using verified operator information, licensing signals, Evolution game availability, published payout policies and EvoCasino's ranking framework.",
       casinoNote:
-        "Final casino ranking is generated from EvoCasino's production ranking data during staging migration.",
+        "Casino rankings are generated from EvoCasino’s production ranking data, including Evolution availability, licensing signals, payment information and published payout-policy transparency.",
     },
     {
       id: "faq",
