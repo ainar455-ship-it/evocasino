@@ -209,19 +209,36 @@ export const lightningRouletteGuide = {
     {
       id: "responsible",
       navLabel: "Responsible Play",
+      eyebrow: "09 — Responsible Play",
       title: "Responsible Play",
       content:
         "Lightning Roulette is entertainment, not a source of income. The same responsible-play principles that apply to roulette and other high-variance live games apply here.",
-      points: [
-        "Pause if you increase stakes to recover previous losses.",
-        "Avoid chasing a specific number because it has not appeared recently.",
-        "Use deposit limits, time-outs, self-exclusion and reality checks where available.",
-        "Stop if play stops feeling like entertainment.",
-      ],
-      keyTakeaway:
-        "No number-selection method changes Lightning Roulette's house edge. Limits manage exposure and time, which are the practical levers available to players.",
+      responsiblePlay: {
+        groups: [
+          {
+            title: "Signs to pause",
+            items: [
+              "Increasing bet size specifically to recover previous losses",
+              "Chasing a specific number because it “hasn't been struck yet”",
+              "Playing longer than originally planned",
+              "Spending money set aside for other purposes",
+            ],
+          },
+          {
+            title: "Tools available",
+            items: [
+              "Deposit limits (daily, weekly, monthly)",
+              "Time-out periods (24 hours to 30 days)",
+              "Self-exclusion (6 months or longer, often cross-operator)",
+              "Reality check notifications during play",
+            ],
+          },
+        ],
+        takeaway:
+          "No number-selection method changes Lightning Roulette's house edge. The tools above manage exposure and time, which is the only lever available to players.",
+      },
       footnote:
-        "If gambling stops feeling like entertainment, use the responsible-play support tools and help resources available in your licensed market.",
+        "If gambling stops feeling like entertainment, free and confidential support is available 24/7: National Problem Gambling Helpline (US) — call or text 1-800-MY-RESET — National Gambling Helpline (UK, GamCare) — 0808 8020 133 — Gambling Help Online (Australia) — 1800 858 858.",
     },
     {
       id: "best-casinos",
