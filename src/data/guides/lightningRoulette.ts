@@ -1,3 +1,5 @@
+import { Bolt, Zap } from "lucide-react";
+
 export const lightningRouletteGuide = {
   category: "Evolution Gaming - Editorial Guide",
   title: "Lightning Roulette on Evolution Live",
@@ -24,6 +26,7 @@ export const lightningRouletteGuide = {
     {
       id: "overview",
       navLabel: "Overview",
+      eyebrow: "01 — Overview",
       title: "What is Lightning Roulette?",
       content:
         "Lightning Roulette launched in 2018 as Evolution's multiplier-based live roulette. The base game follows European roulette on a single-zero 37-number wheel. Before each spin, the game selects 1 to 5 Lightning Numbers and assigns each a multiplier between 50x and 500x. If your straight-up number bet lands on a struck number, the multiplier payout replaces the standard straight-up payout.",
@@ -33,6 +36,7 @@ export const lightningRouletteGuide = {
     {
       id: "how-to-play",
       navLabel: "How to Play",
+      eyebrow: "02 — How it works",
       title: "How to Play Lightning Roulette",
       content:
         "Each round follows the European roulette flow with one extra step: Lightning Numbers are selected after betting closes and before the wheel result is known.",
@@ -62,6 +66,7 @@ export const lightningRouletteGuide = {
     {
       id: "rtp-odds",
       navLabel: "RTP & Odds",
+      eyebrow: "03 — Maths",
       title: "RTP, Odds & Volatility",
       content:
         "Lightning Roulette's commonly published RTP is 97.30% on standard bets, close to European roulette. Straight-up bets are more volatile because the Lightning Numbers mechanic can replace normal number payouts with larger multipliers when a struck number lands.",
@@ -77,13 +82,14 @@ export const lightningRouletteGuide = {
     {
       id: "bonus-rounds",
       navLabel: "Lightning Numbers",
+      eyebrow: "04 — Lightning Numbers",
       title: "The Lightning Numbers Feature",
       content:
         "The feature that separates Lightning Roulette from standard European roulette is the pre-spin lightning strike. Understanding how it pays matters more than trying to predict where it appears.",
       bonusRounds: [
         {
           name: "How Numbers Are Struck",
-          icon: null as any,
+          icon: Zap,
           shortDesc:
             "Before each spin, the game selects between 1 and 5 numbers on the board and assigns each a multiplier value.",
           mechanic: "1 to 5 numbers selected before each spin",
@@ -91,7 +97,7 @@ export const lightningRouletteGuide = {
         },
         {
           name: "How Payouts Work",
-          icon: null as any,
+          icon: Bolt,
           shortDesc:
             "Struck straight-up bets that win pay the assigned multiplier instead of the standard straight-up payout. Other winning bet types follow standard European roulette payouts.",
           mechanic: "Struck straight-up bets pay multiplier",
@@ -104,6 +110,7 @@ export const lightningRouletteGuide = {
     {
       id: "strategies",
       navLabel: "Strategy",
+      eyebrow: "05 — Strategy & Bankroll",
       title: "Strategy & Bankroll",
       content:
         "There is no strategy that overcomes Lightning Roulette's house edge. What strategy can do is shape your variance and keep the session aligned with a fixed entertainment budget.",
@@ -128,17 +135,20 @@ export const lightningRouletteGuide = {
         {
           title: "Worked example",
           points: [
-            "A straight-up-focused session can go many spins without landing a selected number.",
-            "Outside-bet sessions behave closer to standard European roulette.",
+            "A session focused on outside bets behaves closer to standard roulette, with steadier variance around the published RTP context.",
+            "A session chasing straight-up lightning numbers can go long stretches without a hit.",
+            "Rare multiplier wins can be large when a struck number lands, but they should not be treated as a plan.",
             "Plan bankroll size around losing streaks, not around rare multiplier outcomes.",
           ],
-          caveat: "Examples are illustrative and based on published game mechanics, not a guarantee of individual results.",
+          caveat:
+            "These examples are illustrative and based on game mechanics and published RTP context, not a guarantee of any individual session outcome.",
         },
       ],
     },
     {
       id: "myths",
       navLabel: "Myths",
+      eyebrow: "06 — Reality check",
       title: "Common Myths & Mistakes",
       content:
         "Lightning Roulette has the same folklore as standard roulette, plus extra myths around the lightning mechanic.",
@@ -168,6 +178,7 @@ export const lightningRouletteGuide = {
     {
       id: "mobile",
       navLabel: "Mobile",
+      eyebrow: "07 — Playing on Mobile",
       title: "Playing on Mobile",
       content:
         "Lightning Roulette's board-and-wheel layout adapts well to phone screens, with the lightning strike sequence displayed before each spin.",
@@ -175,20 +186,20 @@ export const lightningRouletteGuide = {
         "Portrait and landscape layouts are commonly supported by operators.",
         "The lightning strike sequence does not require extra player input.",
         "Bet panels use quick-chip controls similar to other mobile roulette tables.",
-        "A stable connection matters because the betting timer is live.",
+        "A stable connection matters because betting windows are time-sensitive.",
       ],
       cards: [
         {
           title: "Connection & Stream",
           body:
-            "Live betting windows are time-sensitive, so a stable connection matters more on mobile than on desktop.",
+            "A stable connection matters because betting windows are time-sensitive. Interruptions can affect whether a bet is accepted before the round closes.",
           label: "Connection",
           value: "Stable connection recommended",
         },
         {
           title: "Bet Limits",
           body:
-            "Some operators apply different limits by device, market or table. Check the in-game limits before placing bets.",
+            "Some operators apply different limits by device, market or table. Check in-game limits before placing bets.",
           label: "Limits",
           value: "Operator-dependent",
         },
@@ -197,6 +208,7 @@ export const lightningRouletteGuide = {
     {
       id: "dealers",
       navLabel: "Dealers",
+      eyebrow: "08 — Dealers",
       title: "Lightning Roulette Dealers and Live Studio",
       content:
         "Lightning Roulette is hosted by live Evolution presenters in a studio environment built around the game's electric visual theme. Presenters manage the betting window and spin the wheel, while the Lightning Numbers sequence is displayed automatically by the game system.",
@@ -243,6 +255,7 @@ export const lightningRouletteGuide = {
     {
       id: "best-casinos",
       navLabel: "Best Casinos",
+      eyebrow: "10 — Best Casinos",
       title: "Best Casinos for Lightning Roulette",
       content:
         "We compare casinos using verified operator information, licensing signals, Evolution game availability, published payout policies and EvoCasino's ranking framework.",
@@ -252,6 +265,7 @@ export const lightningRouletteGuide = {
     {
       id: "faq",
       navLabel: "FAQ",
+      eyebrow: "11 — FAQ",
       title: "Frequently Asked Questions",
       content:
         "Short answers to the most common Lightning Roulette questions, including rules, RTP, multipliers and mobile play.",
@@ -291,6 +305,7 @@ export const lightningRouletteGuide = {
     {
       id: "methodology",
       showInNav: false,
+      eyebrow: "12 — Methodology",
       title: "How We Researched This Guide",
       content:
         "EvoCasino separates guide information from production ranking data so design content can be migrated safely without changing scoring logic.",
@@ -303,6 +318,7 @@ export const lightningRouletteGuide = {
     {
       id: "related-guides",
       showInNav: false,
+      eyebrow: "13 — Related Guides",
       title: "Related Evolution Guides",
       content:
         "Continue through production guide routes for related Evolution live games and casino research.",
