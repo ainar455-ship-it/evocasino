@@ -1,3 +1,5 @@
+import { CircleDot, Coins, Crosshair, Sparkles } from "lucide-react";
+
 export const crazyTimeGuide = {
   category: "Evolution Gaming - Editorial Guide",
   title: "Crazy Time on Evolution Live",
@@ -24,6 +26,7 @@ export const crazyTimeGuide = {
     {
       id: "overview",
       navLabel: "Overview",
+      eyebrow: "01 — Overview",
       title: "What is Crazy Time?",
       content:
         "Crazy Time launched in 2020 and quickly defined the modern live game show category. A large vertical money wheel, hosted by a live presenter, is divided into 54 segments: numbered pay segments (1, 2, 5, 10) and four bonus rounds - Coin Flip, Cash Hunt, Pachinko, and Crazy Time itself. A separate Top Slot above the wheel can add a multiplier to a random segment on every spin.",
@@ -33,6 +36,7 @@ export const crazyTimeGuide = {
     {
       id: "how-to-play",
       navLabel: "How to Play",
+      eyebrow: "02 — How it works",
       title: "How to Play Crazy Time",
       content:
         "Each round follows the same loop: betting window, Top Slot spin, wheel spin, payout - then either an immediate cash win or entry into one of the four bonus rounds.",
@@ -62,6 +66,7 @@ export const crazyTimeGuide = {
     {
       id: "rtp-odds",
       navLabel: "RTP & Odds",
+      eyebrow: "03 — Maths",
       title: "RTP, Odds & Volatility",
       content:
         "Crazy Time's headline RTP of 96.08% is segment-dependent. Number 1 has the highest theoretical RTP, while the Crazy Time bonus itself sits closer to 94-95%. The wheel is heavily weighted toward low numbers, which keeps base-game spins active but means most of the variance lives inside the bonus rounds.",
@@ -77,13 +82,14 @@ export const crazyTimeGuide = {
     {
       id: "bonus-rounds",
       navLabel: "Bonus Rounds",
+      eyebrow: "04 — Bonus Rounds",
       title: "The Four Bonus Rounds",
       content:
         "All four bonus rounds use distinct mechanics, hit frequencies, and multiplier ceilings. Understanding their character matters more than memorising odds.",
       bonusRounds: [
         {
           name: "Coin Flip",
-          icon: null as any,
+          icon: Coins,
           shortDesc:
             "The most frequent bonus. A two-sided coin with red and blue multipliers is flipped, and the winning side sets the payout.",
           mechanic: "Two-sided coin flip",
@@ -92,7 +98,7 @@ export const crazyTimeGuide = {
         },
         {
           name: "Cash Hunt",
-          icon: null as any,
+          icon: Crosshair,
           shortDesc:
             "A grid of 108 multipliers is hidden behind symbols. Each player chooses one target, and the value behind it is the result.",
           mechanic: "Pick one of 108 targets",
@@ -101,7 +107,7 @@ export const crazyTimeGuide = {
         },
         {
           name: "Pachinko",
-          icon: null as any,
+          icon: CircleDot,
           shortDesc:
             "A puck drops down a peg wall and lands in a multiplier slot. Double zones can increase every value and trigger another drop.",
           mechanic: "Puck drop board",
@@ -110,7 +116,7 @@ export const crazyTimeGuide = {
         },
         {
           name: "Crazy Time",
-          icon: null as any,
+          icon: Sparkles,
           shortDesc:
             "The headline round uses a secondary wheel, flapper choice, multipliers and Double or Triple zones for the largest swings.",
           mechanic: "Secondary wheel",
@@ -122,6 +128,7 @@ export const crazyTimeGuide = {
     {
       id: "strategy-bankroll",
       navLabel: "Strategies",
+      eyebrow: "05 — Strategy & Bankroll",
       title: "Strategy & Bankroll",
       content:
         "There is no strategy that overcomes Crazy Time's house edge. What strategy can do is shape your variance, protect your budget and keep bonus-round chasing under control.",
@@ -151,11 +158,23 @@ export const crazyTimeGuide = {
             "Treat Top Slot outcomes as part of the entertainment, not as a predictor for future spins.",
           ],
         },
+        {
+          title: "Worked Example",
+          points: [
+            "A session without bonus-round hits can steadily draw down the bankroll.",
+            "A Coin Flip result can temporarily rebuild a session, but outcomes vary.",
+            "The Crazy Time bonus is rare enough that many short sessions will not see it.",
+            "Plan bankroll size around the drawdown case, not the lucky case.",
+          ],
+          caveat:
+            "These examples are illustrative and based on game mechanics and published RTP context, not a guarantee of any individual session outcome.",
+        },
       ],
     },
     {
       id: "myths",
       navLabel: "Myths",
+      eyebrow: "06 — Reality check",
       title: "Common Myths & Mistakes",
       content:
         "Crazy Time has accumulated a lot of folklore around patterns, streaks and bonus timing. These are the misconceptions that can push players into poor bankroll decisions.",
@@ -185,6 +204,7 @@ export const crazyTimeGuide = {
     {
       id: "mobile",
       navLabel: "Mobile",
+      eyebrow: "07 — Playing on Mobile",
       title: "Playing on Mobile",
       content:
         "Crazy Time was built mobile-first. The vertical wheel layout, large segment labels, and bottom-anchored bet panel translate well to portrait phone screens, though availability, limits and stream quality can vary by operator, region and connection.",
@@ -205,7 +225,7 @@ export const crazyTimeGuide = {
         {
           title: "Bet Limits",
           body:
-            "Some operators apply different limits by device, market or table. Check the in-game limits before placing bets.",
+            "Some operators apply different limits by device, market or table. Check in-game limits before placing bets.",
           label: "Limits",
           value: "Operator-dependent",
         },
@@ -214,6 +234,7 @@ export const crazyTimeGuide = {
     {
       id: "dealers",
       navLabel: "Dealers",
+      eyebrow: "08 — Dealers",
       title: "Crazy Time Dealers and Live Studio",
       content:
         "Crazy Time is hosted by live Evolution presenters in a studio environment. Live presenters guide every round in real time, manage the betting window, trigger the Top Slot before the wheel spin, spin the wheel and explain bonus rounds as they happen. Dealer availability, language and table presentation can vary by casino and region.",
@@ -226,23 +247,41 @@ export const crazyTimeGuide = {
     {
       id: "responsible",
       navLabel: "Responsible Play",
+      eyebrow: "09 — Responsible Play",
       title: "Responsible Play",
       content:
         "Crazy Time is high-volatility entertainment, not a source of income. Understanding the risk profile and using operator-provided tools helps keep play within intended limits.",
-      points: [
-        "Pause if you increase stakes specifically to recover previous losses.",
-        "Stop if you play longer than originally planned.",
-        "Avoid spending money set aside for other purposes.",
-        "Use deposit limits, time-outs, self-exclusion and reality checks where available.",
-      ],
-      keyTakeaway:
-        "No staking pattern changes Crazy Time's house edge. Limits manage exposure and time, which are the practical levers available to players.",
+      responsiblePlay: {
+        groups: [
+          {
+            title: "Signs to pause",
+            items: [
+              "Increasing bet size specifically to recover previous losses",
+              "Playing longer than originally planned",
+              "Spending money set aside for other purposes",
+              "Feeling anxious, frustrated, or unable to stop",
+            ],
+          },
+          {
+            title: "Tools available",
+            items: [
+              "Deposit limits (daily, weekly, monthly)",
+              "Time-out periods (24 hours to 30 days)",
+              "Self-exclusion (6 months or longer, often cross-operator)",
+              "Reality check notifications during play",
+            ],
+          },
+        ],
+        takeaway:
+          "No staking pattern changes Crazy Time's house edge. The tools above manage exposure and time, which is the only lever available to players.",
+      },
       footnote:
-        "If gambling stops feeling like entertainment, use the responsible-play support tools and help resources available in your licensed market.",
+        "If gambling stops feeling like entertainment, free and confidential support is available 24/7: National Problem Gambling Helpline (US) — call or text 1-800-MY-RESET — National Gambling Helpline (UK, GamCare) — 0808 8020 133 — Gambling Help Online (Australia) — 1800 858 858.",
     },
     {
       id: "best-casinos",
       navLabel: "Best Casinos",
+      eyebrow: "10 — Best Casinos",
       title: "Best Casinos for Crazy Time",
       content:
         "We compare casinos using verified operator information, licensing signals, Evolution game availability, published payout policies and EvoCasino's ranking framework.",
@@ -252,6 +291,7 @@ export const crazyTimeGuide = {
     {
       id: "faq",
       navLabel: "FAQ",
+      eyebrow: "11 — FAQ",
       title: "Frequently Asked Questions",
       content:
         "Short answers to the most common Crazy Time questions, including rules, RTP, meaning, dealers and mobile play.",
@@ -311,6 +351,7 @@ export const crazyTimeGuide = {
     {
       id: "methodology",
       showInNav: false,
+      eyebrow: "12 — Methodology",
       title: "How We Researched This Guide",
       content:
         "EvoCasino separates guide information from production ranking data so design content can be migrated safely without changing scoring logic.",
@@ -323,6 +364,7 @@ export const crazyTimeGuide = {
     {
       id: "related-guides",
       showInNav: false,
+      eyebrow: "13 — Related Guides",
       title: "Related Evolution Guides",
       content:
         "Continue through production guide routes for related Evolution live games and casino research.",
