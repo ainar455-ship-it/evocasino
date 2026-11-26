@@ -17,14 +17,22 @@ export default function RelatedCasinos({ title = "Related casinos for Evolution 
         {items.map((c) => (
           <li key={c.slug} className="rounded-lg border p-4">
             <div className="font-medium">{c.name}</div>
-            <div className="mt-2 flex gap-3 text-sm">
-              <Link className="underline" href={`/casinos/${c.slug}`}>
-                Review
-              </Link>
-              <a className="underline" href={c.brandUrl} rel="nofollow noopener" target="_blank">
-                Visit
-              </a>
-            </div>
+<div className="mt-2 text-sm">
+  <Link className="underline" href={`/casinos/${c.slug}`}>
+    Review
+  </Link>
+
+  <span> &nbsp;|&nbsp; </span>
+
+  <a
+    className="underline"
+    href={c.brandUrl}
+    rel="nofollow noopener"
+    target="_blank"
+  >
+    Visit
+  </a>
+</div>
           </li>
         ))}
       </ul>

@@ -1,5 +1,9 @@
+import type { Metadata } from "next";
 import { getAllCasinos } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
+import { canonicalMetadata } from "@/app/seo";
+
+export const metadata: Metadata = canonicalMetadata("/evolution-bonuses");
 
 export default function EvolutionBonusesPage() {
   const all = getAllCasinos();

@@ -49,3 +49,9 @@ outputs/seo/temp-*.md
 !outputs/**/README.md
 !outputs/quality/approved/**
 *.bak.*
+
+# local backups (never commit)
+*.bak
+
+# removed Phase 3 artifact (never commit)
+src/data/evocasino/payout-tests.json

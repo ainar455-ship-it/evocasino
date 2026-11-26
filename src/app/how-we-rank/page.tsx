@@ -1,10 +1,13 @@
+import type { Metadata } from "next";
 import RankingExplainer from "@/components/evocasino/RankingExplainer";
 import { evoBreadcrumbsHowWeRank, howWeRankFaqJsonLd } from "@/lib/seo/jsonld";
+import { canonicalMetadata } from "@/app/seo";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "How we rank Evolution casinos (Phase 1) | EvoCasino",
   description:
     "Transparent methodology for EvoCasino rankings: Evolution Score is derived from facts in our SSOT dataset. No manual ranking or score overrides.",
+  ...canonicalMetadata("/how-we-rank"),
 };
 
 export default function HowWeRankPage() {

@@ -92,3 +92,23 @@ export function howWeRankFaqJsonLd() {
     ],
   };
 }
+
+// WebPage JSON-LD helper (Phase 4 Step 3 requirement; no UI)
+export function webPageJsonLd(args: { path: string; name: string; description?: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: args.name,
+    url: absUrl(args.path),
+    ...(args.description ? { description: args.description } : {}),
+  };
+}
+
+// Guide breadcrumbs (Phase 4 Step 3; hub -> guide)
+export function evoBreadcrumbsGuide(guideTitle: string, guideSlug: string) {
+  return breadcrumbList([
+    { name: "Home", path: "/" },
+    { name: "Evolution Casinos", path: "/evolution-casinos" },
+    { name: guideTitle, path: `/guides/${guideSlug}` },
+  ]);
+}
