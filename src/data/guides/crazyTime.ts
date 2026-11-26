@@ -71,7 +71,7 @@ export const crazyTimeGuide = {
       content:
         "Crazy Time's headline RTP of 96.08% is segment-dependent. Number 1 has the highest theoretical RTP, while the Crazy Time bonus itself sits closer to 94-95%. The wheel is heavily weighted toward low numbers, which keeps base-game spins active but means most of the variance lives inside the bonus rounds.",
       metrics: [
-        { label: "RTP", value: "96.08% segment-dependent, 94.41%-96.08%" },
+        { label: "RTP", value: "96.08% segment-dependent, 94.33%-96.08%" },
         { label: "Volatility", value: "Very High" },
       ],
       support:
@@ -367,8 +367,13 @@ export const crazyTimeGuide = {
       eyebrow: "13 — Related Guides",
       title: "Related Evolution Guides",
       content:
-        "Continue through production guide routes for related Evolution live games and casino research.",
+        "Run the numbers on your own bets, or continue with related Evolution live games.",
       related: [
+        {
+          title: "Crazy Time Calculator",
+          href: "/tools/crazy-time-calculator",
+          description: "Odds, RTP and expected cost of your own Crazy Time bet pattern.",
+        },
         {
           title: "Lightning Roulette Guide",
           href: "/guides/lightning-roulette",

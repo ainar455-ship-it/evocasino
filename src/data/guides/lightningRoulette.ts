@@ -321,7 +321,7 @@ export const lightningRouletteGuide = {
       eyebrow: "13 — Related Guides",
       title: "Related Evolution Guides",
       content:
-        "Continue through production guide routes for related Evolution live games and casino research.",
+        "Continue with related Evolution live games and casino research.",
       related: [
         {
           title: "Crazy Time Guide",

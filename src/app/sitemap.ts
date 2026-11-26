@@ -18,6 +18,7 @@ const INDEXABLE_PATHS = [
   "/guides/crazy-time",
   "/guides/lightning-roulette",
   "/how-we-rank",
+  "/tools/crazy-time-calculator",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

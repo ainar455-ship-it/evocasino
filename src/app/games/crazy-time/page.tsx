@@ -330,7 +330,7 @@ export default function CrazyTimePage() {
                   {game.blurb}
                 </p>
 
-                <div className="mt-7">
+                <div className="mt-7 flex flex-col gap-3">
                   <Link
                     href={game.guideHref}
                     className="inline-flex items-center gap-2 text-[13.5px] font-body font-semibold text-primary hover:gap-3 transition-all"
@@ -338,6 +338,13 @@ export default function CrazyTimePage() {
                     <BookOpen className="h-4 w-4" />
                     Read the full {game.name} guide
                     <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="/tools/crazy-time-calculator"
+                    className="inline-flex items-center gap-2 text-[13.5px] font-body font-semibold text-primary hover:gap-3 transition-all"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                    Crazy Time calculator: odds, RTP and expected cost
                   </Link>
                 </div>
               </div>
