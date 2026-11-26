@@ -12,7 +12,7 @@ import { crazyTimeGuide } from "@/data/guides/crazyTime";
 export const metadata: Metadata = {
   title: "Crazy Time (Evolution) - How It Works, Bonus Rounds & Strategy",
   description:
-    "Complete Crazy Time guide: rules, RTP, bonus rounds, dealers, strategy basics and SSOT-ranked Evolution casinos that support Crazy Time.",
+    "Complete Crazy Time guide: rules, RTP, bonus rounds, dealers, strategy basics and ranked Evolution casinos that offer Crazy Time.",
   ...canonicalMetadata("/guides/crazy-time"),
 };
 
@@ -100,7 +100,7 @@ export default function CrazyTimeGuidePage() {
               path: `/guides/${guide.slug}`,
               name: h1,
               description:
-                "How to play Crazy Time on Evolution Live, including rules, RTP, dealers, bonus rounds and SSOT-derived casino review links.",
+                "How to play Crazy Time on Evolution Live, including rules, RTP, dealers, bonus rounds and links to relevant casino reviews.",
             })
           ),
         }}

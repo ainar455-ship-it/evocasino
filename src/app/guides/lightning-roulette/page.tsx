@@ -12,7 +12,7 @@ import { lightningRouletteGuide } from "@/data/guides/lightningRoulette";
 export const metadata: Metadata = {
   title: "Lightning Roulette (Evolution) - Rules, Multipliers & RTP Guide",
   description:
-    "Learn how Lightning Roulette works, including Lightning Numbers, RTP, roulette rules and SSOT-ranked Evolution casinos that support Lightning Roulette.",
+    "Learn how Lightning Roulette works, including Lightning Numbers, RTP, roulette rules and ranked Evolution casinos that offer Lightning Roulette.",
   ...canonicalMetadata("/guides/lightning-roulette"),
 };
 
@@ -100,7 +100,7 @@ export default function LightningRouletteGuidePage() {
               path: `/guides/${guide.slug}`,
               name: h1,
               description:
-                "How to play Lightning Roulette on Evolution Live, including Lightning Numbers, RTP, mobile play and SSOT-derived casino review links.",
+                "How to play Lightning Roulette on Evolution Live, including Lightning Numbers, RTP, mobile play and links to relevant casino reviews.",
             })
           ),
         }}

@@ -16,7 +16,12 @@ import { canonicalMetadata } from "@/app/seo";
 
 type BonusRow = { casino: CasinoRow; bonusScore: number };
 
-export const metadata: Metadata = canonicalMetadata("/");
+export const metadata: Metadata = {
+  title: "EvoCasino – Independent Guide to Evolution Live Casino Games",
+  description:
+    "Independent guides to Evolution live casino games like Crazy Time and Lightning Roulette, plus casinos ranked by how well they serve Evolution players.",
+  ...canonicalMetadata("/"),
+};
 
 const principles = [
   { label: "Facts-only rankings" },
@@ -374,7 +379,7 @@ export default function HomePage() {
 
             {!featuredBonusRow ? (
               <p className="m-0 text-sm text-[hsl(var(--muted-foreground))]">
-                No bonuses found in SSOT.
+                No bonus offers are listed at the moment.
               </p>
             ) : (
               <>
@@ -847,8 +852,8 @@ function BonusOfferCard({
   const wagering =
     typeof bonus?.wageringX === "number"
       ? `${bonus.wageringX}x`
-      : "Not listed in SSOT";
-  const termsStatus = bonus?.termsUrl ? "Terms link available" : "Not listed in SSOT";
+      : "Not published";
+  const termsStatus = bonus?.termsUrl ? "Terms link available" : "Not published";
   const lastVerified = bonus?.lastVerified ?? "Not verified";
   const verdict = `Bonus Quality Score: ${bonusScore} · Evolution Score: ${casino.evolutionScore}.`;
 

@@ -15,10 +15,10 @@ const researchLinks = [
 ];
 
 const companyLinks = [
-  { label: "Home", to: "/" },
   { label: "How We Rank", to: "/how-we-rank" },
-  { label: "Evolution Casinos", to: "/evolution-casinos" },
-  { label: "Evolution Bonuses", to: "/evolution-bonuses" },
+  { label: "Affiliate Disclosure", to: "/affiliate-disclosure" },
+  { label: "Privacy Policy", to: "/privacy" },
+  { label: "Terms of Use", to: "/terms" },
 ];
 
 function FooterSection({ title, links }: { title: string; links: { label: string; to: string }[] }) {
@@ -68,6 +68,15 @@ export function SiteFooter() {
 
         <hr className="border-0 border-t !border-[hsl(220_30%_20%)]" />
         <p className="py-[1.5rem] [font-family:var(--font-body)] text-[0.75rem] leading-4 text-[hsl(var(--footer-foreground))]">
+          18+ only. Gambling can be addictive — play responsibly. EvoCasino is an independent website and is not
+          affiliated with or endorsed by Evolution AB. Casino availability depends on your country: only play at
+          casinos that are licensed and legal where you live.{" "}
+          <Link href="/affiliate-disclosure" className="underline underline-offset-2">
+            Affiliate disclosure
+          </Link>
+          .
+        </p>
+        <p className="pb-[1.5rem] [font-family:var(--font-body)] text-[0.75rem] leading-4 text-[hsl(var(--footer-foreground))]">
           © {new Date().getFullYear()} EvoCasino. All rights reserved.
         </p>
       </div>

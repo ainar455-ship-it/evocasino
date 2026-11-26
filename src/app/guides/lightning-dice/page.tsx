@@ -4,12 +4,13 @@ import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
 export const metadata: Metadata = {
   title: "Lightning Dice (Evolution) – RTP, Odds & Strategy Guide",
   description: "Learn how Lightning Dice works: RTP, odds, rules, and simple winning strategies. Quick guide to Evolution’s live dice game.",
   ...canonicalMetadata("/guides/lightning-dice"),
+  ...NOINDEX,
 };
 
 function getGuide(slug: string) {
@@ -23,7 +24,7 @@ const guide = getGuide("lightning-dice");
 export default function CrazyTimeGuidePage() {
   const h1 = `${guide.title}${GUIDE_H1_SUFFIX}`;
 
-  // Deterministic top-2 (SSOT-derived)
+  // Deterministic top-2 from ranked casino data
   const show = guide.intent.startsWith("show:")
     ? (guide.intent.slice("show:".length) as EvolutionShow)
     : undefined;
@@ -55,22 +56,22 @@ export default function CrazyTimeGuidePage() {
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>{h1}</h1>
 
       <section style={{ marginTop: 14, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
-        <strong>Required links</strong>
+        <strong>Where to play Lightning Dice</strong>
         <div style={{ marginTop: 8, display: "grid", gap: 8 }}>
           <div>
-            Hub:{" "}
+            All casinos:{" "}
             <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
               Evolution Casinos
             </a>
           </div>
           <div>
-            Methodology:{" "}
+            Our method:{" "}
             <a href="/how-we-rank" style={{ textDecoration: "underline" }}>
               How we rank
             </a>
           </div>
           <div>
-            Casino reviews (top 2, SSOT-derived):
+            Top-ranked casinos for Lightning Dice:
             <div style={{ marginTop: 6, display: "flex", gap: 12, flexWrap: "wrap" }}>
               {top2.length >= 1 ? (
                 <a href={`/casinos/${top2[0].slug}`} style={{ textDecoration: "underline" }}>

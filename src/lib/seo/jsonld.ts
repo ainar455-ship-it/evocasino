@@ -78,7 +78,7 @@ export function howWeRankFaqJsonLd() {
         name: "Can casinos pay to rank higher?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "No. Ranking is derived deterministically from facts in the SSOT dataset and is not manually manipulated.",
+          text: "No. Ranking is calculated from documented casino facts and is not manually adjusted.",
         },
       },
       {
@@ -86,7 +86,7 @@ export function howWeRankFaqJsonLd() {
         name: "How often is the data verified?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "We store and display verification or testing dates in the SSOT dataset (for example last verified or last tested fields where applicable).",
+          text: "Every data point carries the date it was last checked, and that date is shown on the casino pages.",
         },
       },
     ],

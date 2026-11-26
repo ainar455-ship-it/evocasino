@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
-export const metadata: Metadata = canonicalMetadata("/games/lightning-roulette");
+export const metadata: Metadata = {
+  title: "Where to Play Lightning Roulette – Evolution Casinos | EvoCasino",
+  description:
+    "Evolution casinos that offer Lightning Roulette, ranked by Evolution Score.",
+  ...canonicalMetadata("/games/lightning-roulette"),
+  ...NOINDEX,
+};
 
 export default function LightningRoulettePage() {
   const all = getAllCasinos();

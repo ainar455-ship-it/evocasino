@@ -9,7 +9,12 @@ import { Button } from "@/components/ui/button";
 import type { PaymentMethod } from "@/data/evocasino/schema";
 import { filterAndRank, getAllCasinos, type CasinoRow } from "@/lib/evo/load";
 
-export const metadata: Metadata = canonicalMetadata("/games/crazy-time");
+export const metadata: Metadata = {
+  title: "Where to Play Crazy Time – Evolution Casinos Compared | EvoCasino",
+  description:
+    "Crazy Time key facts and the Evolution casinos that offer it, ranked by Evolution Score. Read our full Crazy Time guide for rules and bonus rounds.",
+  ...canonicalMetadata("/games/crazy-time"),
+};
 
 const game = {
   name: "Crazy Time",
@@ -165,7 +170,7 @@ function OperatorCard({ casino, rank }: { casino: CasinoRow; rank: number }) {
           </span>
           <div className="pl-8">
             <div className="text-[10px] font-body font-semibold uppercase tracking-[0.18em] text-gold mb-1">
-              SSOT ranked for Crazy Time
+              Ranked for Crazy Time
             </div>
             <div className="flex items-center gap-3 flex-wrap">
               <div className="h-10 w-10 shrink-0 rounded-lg bg-white border-[3px] border-gold flex items-center justify-center shadow-sm">
@@ -247,7 +252,7 @@ function OperatorCard({ casino, rank }: { casino: CasinoRow; rank: number }) {
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="text-[9.5px] font-body font-semibold uppercase tracking-[0.16em] text-gold mb-1 truncate">
-              SSOT ranked for Crazy Time
+              Ranked for Crazy Time
             </div>
             <div className="flex items-center gap-2.5">
               <span className="font-heading text-[18px] font-semibold text-foreground/85 tabular-nums leading-none">
@@ -389,7 +394,7 @@ export default function CrazyTimePage() {
             )}
 
             <p className="mt-5 text-[11.5px] text-muted-foreground">
-              Operator cards are generated from EvoCasino's production SSOT ranking data. Full evaluation criteria are on{" "}
+              Casinos are ranked by Evolution Score, calculated from documented casino facts. Full evaluation criteria are on{" "}
               <Link href="/how-we-rank" className="text-primary hover:underline underline-offset-4">
                 How we rank
               </Link>

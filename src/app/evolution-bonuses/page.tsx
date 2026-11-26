@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import { getAllCasinos } from "@/lib/evo/load";
 import { computeBonusQualityScore } from "@/lib/evo/bonus";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
-export const metadata: Metadata = canonicalMetadata("/evolution-bonuses");
+export const metadata: Metadata = {
+  title: "Evolution Casino Bonuses Compared | EvoCasino",
+  description:
+    "Welcome offers at casinos with Evolution live games, compared by a transparent Bonus Quality Score.",
+  ...canonicalMetadata("/evolution-bonuses"),
+  ...NOINDEX,
+};
 
 export default function EvolutionBonusesPage() {
   const all = getAllCasinos();
@@ -20,12 +26,12 @@ export default function EvolutionBonusesPage() {
     <main style={{ padding: 24, maxWidth: 980, margin: "0 auto" }}>
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>Best Evolution Bonuses</h1>
       <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
-        Bonuses are ranked by a derived <strong>Bonus Quality Score</strong> (0–100) computed from SSOT facts
+        Bonuses are ranked by a derived <strong>Bonus Quality Score</strong> (0–100) calculated from documented bonus facts
         (wagering when known, terms link, and last verified date). Evolution Score remains the tie-breaker.
       </p>
 
       <section style={{ marginTop: 20 }}>
-        {rows.length === 0 && <p>No bonuses found in SSOT.</p>}
+        {rows.length === 0 && <p>No bonus offers are listed at the moment.</p>}
 
         <div style={{ display: "grid", gap: 12 }}>
           {rows.map((c, idx) => (

@@ -3,7 +3,7 @@ import RelatedCasinos from "@/components/evocasino/RelatedCasinos";
 import RankingExplainer from "@/components/evocasino/RankingExplainer";
 import { getAllCasinos, getRelatedCasinos } from "@/lib/evo/load";
 import { computeEvolutionScore } from "@/lib/evo/score";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
 export async function generateStaticParams() {
   const casinos = getAllCasinos();
@@ -16,7 +16,14 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  return canonicalMetadata(`/casinos/${slug}`);
+  const casino = getAllCasinos().find((c) => c.slug === slug);
+  const name = casino?.name ?? "Casino";
+  return {
+    title: `${name} Review – Evolution Live Casino Games | EvoCasino`,
+    description: `${name} reviewed for Evolution live casino players: Evolution game coverage, payouts, payments and mobile play.`,
+    ...canonicalMetadata(`/casinos/${slug}`),
+    ...NOINDEX,
+  };
 }
 
 export default async function CasinoPage({
@@ -96,7 +103,7 @@ export default async function CasinoPage({
       <section style={{ marginTop: 24 }}>
         <h2>Payouts</h2>
         <p>Reported speed: {casino.payouts.speed}</p>
-        <p>Last tested: {casino.payouts.lastTested}</p>
+        <p>Last checked: {casino.payouts.lastTested}</p>
       </section>
 
       {/* PAYMENTS */}

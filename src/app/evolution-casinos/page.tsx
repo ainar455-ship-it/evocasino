@@ -7,7 +7,12 @@ import { evoBreadcrumbsEvolutionCasinos } from "@/lib/seo/jsonld";
 import { guideRegistry, GUIDE_H1_SUFFIX } from "@/lib/guides/guideRegistry";
 import { canonicalMetadata } from "@/app/seo";
 
-export const metadata: Metadata = canonicalMetadata("/evolution-casinos");
+export const metadata: Metadata = {
+  title: "Best Evolution Live Casinos – Ranked by Evolution Score | EvoCasino",
+  description:
+    "Online casinos offering Evolution live games, ranked by a transparent Evolution Score based on game coverage, payouts, payments and mobile play.",
+  ...canonicalMetadata("/evolution-casinos"),
+};
 
 function pick<T extends string>(v: string | undefined, allowed: readonly T[]): T | undefined {
   if (!v) return undefined;
@@ -63,7 +68,7 @@ export default function EvolutionCasinosPage({
 
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>Best Evolution Live Casinos</h1>
       <p style={{ marginTop: 10, fontSize: 16, lineHeight: 1.5 }}>
-        Evolution is the leading provider of live dealer casino games. Online casinos that offer Evolution tables give players access to popular titles such as Crazy Time, Lightning Roulette and Dream Catcher. Casinos on this page are ranked by a derived <strong>Evolution Score</strong> (0–100) computed from SSOT facts.
+        Evolution is the leading provider of live dealer casino games. Online casinos that offer Evolution tables give players access to popular titles such as Crazy Time, Lightning Roulette and Dream Catcher. Casinos on this page are ranked by a derived <strong>Evolution Score</strong> (0–100) calculated from documented casino facts.
       </p>
       <section style={{ marginTop: 18, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
         <strong>Quick links</strong>

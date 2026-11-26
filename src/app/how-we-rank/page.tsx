@@ -4,9 +4,9 @@ import { evoBreadcrumbsHowWeRank, howWeRankFaqJsonLd } from "@/lib/seo/jsonld";
 import { canonicalMetadata } from "@/app/seo";
 
 export const metadata: Metadata = {
-  title: "How we rank Evolution casinos (Phase 1) | EvoCasino",
+  title: "How We Rank Evolution Casinos – Methodology | EvoCasino",
   description:
-    "Transparent methodology for EvoCasino rankings: Evolution Score is derived from facts in our SSOT dataset. No manual ranking or score overrides.",
+    "Transparent methodology for EvoCasino rankings: the Evolution Score is calculated from documented casino facts. No paid placements, manual ranking or score overrides.",
   ...canonicalMetadata("/how-we-rank"),
 };
 
@@ -33,22 +33,22 @@ export default function HowWeRankPage() {
       <RankingExplainer variant="hub" />
 
       <section style={{ marginTop: 26 }}>
-        <h2>Phase 1 rules</h2>
+        <h2>Ranking rules</h2>
         <ul style={{ marginTop: 10, paddingLeft: 18 }}>
           <li>
-            <strong>SSOT facts-only:</strong> our dataset stores verifiable facts (e.g. Evolution shows offered, payout
+            <strong>Facts only:</strong> our dataset stores verifiable facts (e.g. Evolution shows offered, payout
             speed, payment methods, mobile experience, and verification dates).
           </li>
           <li>
-            <strong>Derived scoring only in code:</strong> Evolution Score (0–100) is computed from SSOT facts. We do not
+            <strong>Derived scoring only in code:</strong> Evolution Score (0–100) is calculated from those facts. We do not
             store scores or ranking order in JSON.
           </li>
           <li>
             <strong>No manual overrides:</strong> no editorial ranking weights, no forced positions.
           </li>
           <li>
-            <strong>No scope expansion:</strong> Phase 1 does not cover generic casino “best overall”, crypto pillars, or
-            “highest bonus” rankings.
+            <strong>Narrow scope:</strong> we only rank how well a casino serves Evolution live games, not “best casino overall”
+            or “highest bonus” rankings.
           </li>
         </ul>
       </section>
@@ -57,8 +57,7 @@ export default function HowWeRankPage() {
         <h2>What we do not rank</h2>
         <ul style={{ marginTop: 10, paddingLeft: 18 }}>
           <li>Best casino overall</li>
-          <li>Best crypto casino</li>
-          <li>Highest bonus casino</li>
+                    <li>Highest bonus casino</li>
           <li>Non-Evolution provider “top lists”</li>
         </ul>
       </section>

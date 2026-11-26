@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
-export const metadata: Metadata = canonicalMetadata("/games/monopoly-live");
+export const metadata: Metadata = {
+  title: "Where to Play Monopoly Live – Evolution Casinos | EvoCasino",
+  description:
+    "Evolution casinos that offer Monopoly Live, ranked by Evolution Score.",
+  ...canonicalMetadata("/games/monopoly-live"),
+  ...NOINDEX,
+};
 
 export default function MonopolyLivePage() {
   const all = getAllCasinos();

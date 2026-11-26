@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
-export const metadata: Metadata = canonicalMetadata("/evolution-games");
+export const metadata: Metadata = {
+  title: "Evolution Live Casino Games – Guides & Overviews | EvoCasino",
+  description:
+    "Overview of Evolution live casino games covered by EvoCasino, with links to our game guides.",
+  ...canonicalMetadata("/evolution-games"),
+  ...NOINDEX,
+};
 
 export default function EvolutionGamesPage() {
   return (

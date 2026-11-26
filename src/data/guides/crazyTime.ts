@@ -358,7 +358,7 @@ export const crazyTimeGuide = {
       methodology: [
         "We evaluate Evolution live games across a consistent editorial rubric: game mechanics, RTP transparency, volatility, mobile usability, casino availability and responsible-play context.",
         "RTP and game mechanics are checked against published game information and visible in-game paytable information where available.",
-        "Casino recommendations are prepared for production mapping against EvoCasino's SSOT ranking framework, including licensing signals, Evolution availability, published payout policies and payment information.",
+        "Casino recommendations follow EvoCasino's ranking method, which looks at licensing signals, Evolution game availability, published payout policies and payment information.",
       ],
     },
     {

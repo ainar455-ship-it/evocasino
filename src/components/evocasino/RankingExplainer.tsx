@@ -22,19 +22,19 @@ export default function RankingExplainer({ variant = "hub" }: Props) {
 
       <ul style={{ marginTop: 10, paddingLeft: 18 }}>
         <li>
-          <strong>Evolution Score (0–100)</strong> is derived in code from SSOT facts (e.g. Evolution shows offered,
+          <strong>Evolution Score (0–100)</strong> is calculated from documented casino facts (e.g. Evolution shows offered,
           payout speed, mobile experience, payment support).
         </li>
         <li>
           <strong>No manual ranking</strong>: we don’t store rank order, score overrides, or editorial weights in the dataset.
         </li>
         <li>
-          <strong>Facts-only SSOT</strong>: the dataset stores verification dates (e.g. last verified / last tested) to keep it auditable.
+          <strong>Dated facts</strong>: every data point carries the date it was last checked, so you can see how current it is.
         </li>
       </ul>
 
       <p style={{ marginTop: 10, opacity: 0.85 }}>
-        Note: We don’t rank crypto casinos or generic “highest bonus” offers in Phase 1 — only Evolution relevance.
+        Note: we don’t publish generic “best casino overall” or “highest bonus” rankings — only Evolution relevance. Availability depends on your country; check that a casino is licensed and legal where you live.
       </p>
     </section>
   );

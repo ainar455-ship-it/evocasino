@@ -4,12 +4,13 @@ import { evoBreadcrumbsGuide, webPageJsonLd } from "@/lib/seo/jsonld";
 import { filterAndRank, getAllCasinos } from "@/lib/evo/load";
 import type { EvoCasinosFilters } from "@/lib/evo/load";
 import type { EvolutionShow } from "@/data/evocasino/schema";
-import { canonicalMetadata } from "@/app/seo";
+import { canonicalMetadata, NOINDEX } from "@/app/seo";
 
 export const metadata: Metadata = {
   title: "Monopoly Live (Evolution) – Bonus Rounds, RTP & How to Play",
   description: "Monopoly Live guide: rules, bonus rounds, multipliers, RTP, and strategy tips. Learn how Evolution’s game show works.",
   ...canonicalMetadata("/guides/monopoly-live"),
+  ...NOINDEX,
 };
 function getGuide(slug: string) {
   const g = guideRegistry.find((x) => x.slug === slug);
@@ -22,7 +23,7 @@ const guide = getGuide("monopoly-live");
 export default function CrazyTimeGuidePage() {
   const h1 = `${guide.title}${GUIDE_H1_SUFFIX}`;
 
-  // Deterministic top-2 (SSOT-derived)
+  // Deterministic top-2 from ranked casino data
   const show = guide.intent.startsWith("show:")
     ? (guide.intent.slice("show:".length) as EvolutionShow)
     : undefined;
@@ -41,7 +42,7 @@ export default function CrazyTimeGuidePage() {
             webPageJsonLd({
               path: `/guides/${guide.slug}`,
               name: h1,
-              description: "How to play Crazy Time on Evolution Live, plus SSOT-derived links to relevant casino reviews.",
+              description: "How to play Monopoly Live on Evolution Live, plus links to relevant casino reviews.",
             })
           ),
         }}
@@ -54,22 +55,22 @@ export default function CrazyTimeGuidePage() {
       <h1 style={{ fontSize: 34, fontWeight: 800 }}>{h1}</h1>
 
       <section style={{ marginTop: 14, padding: 16, border: "1px solid #e5e7eb", borderRadius: 12 }}>
-        <strong>Required links</strong>
+        <strong>Where to play Monopoly Live</strong>
         <div style={{ marginTop: 8, display: "grid", gap: 8 }}>
           <div>
-            Hub:{" "}
+            All casinos:{" "}
             <a href="/evolution-casinos" style={{ textDecoration: "underline" }}>
               Evolution Casinos
             </a>
           </div>
           <div>
-            Methodology:{" "}
+            Our method:{" "}
             <a href="/how-we-rank" style={{ textDecoration: "underline" }}>
               How we rank
             </a>
           </div>
           <div>
-            Casino reviews (top 2, SSOT-derived):
+            Top-ranked casinos for Monopoly Live:
             <div style={{ marginTop: 6, display: "flex", gap: 12, flexWrap: "wrap" }}>
               {top2.length >= 1 ? (
                 <a href={`/casinos/${top2[0].slug}`} style={{ textDecoration: "underline" }}>
