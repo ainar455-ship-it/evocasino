@@ -1,0 +1,79 @@
+name: Deploy production
+
+# Manual only. Never runs on push.
+# Rollback: run again with `ref` set to the previous good commit SHA from main.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type exactly: DEPLOY TO PRODUCTION'
+        required: true
+      ref:
+        description: 'Commit SHA or branch to deploy (must be on main)'
+        required: true
+        default: main
+      dry_run:
+        description: 'Dry run: show what would change, deploy nothing'
+        type: boolean
+        default: true
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check approval phrase
+        run: |
+          if [ "${{ inputs.confirm }}" != "DEPLOY TO PRODUCTION" ]; then
+            echo "Approval phrase does not match exactly. Aborting."; exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+
+      - name: Ensure commit is on main
+        run: |
+          git fetch origin main
+          git merge-base --is-ancestor HEAD origin/main || { echo "Commit is not on main. Aborting."; exit 1; }
+          echo "Deploying $(git rev-parse --short HEAD): $(git log -1 --format=%s)"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "${{ secrets.DEPLOY_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+
+      - name: Rsync to production
+        run: |
+          DRY=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; echo "DRY RUN: nothing will be changed"; fi
+          rsync -az --delete --itemize-changes $DRY \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes" \
+            out/ master@46.225.79.163:evocasino.com/out/ | tee rsync.log
+          echo "Files to delete: $(grep -c '^\*deleting' rsync.log || true)"
+          grep '^\*deleting' rsync.log || true
+
+      - name: Verify live site
+        if: ${{ inputs.dry_run == false }}
+        run: |
+          sleep 5
+          fail=0
+          for p in / /guides/crazy-time /guides/lightning-roulette /evolution-casinos /how-we-rank /sitemap.xml /robots.txt; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://evocasino.com$p")
+            echo "$code $p"; [ "$code" = "200" ] || fail=1
+          done
+          [ $fail = 0 ] || { echo "Live check failed. Roll back by re-running with the previous commit SHA."; exit 1; }
